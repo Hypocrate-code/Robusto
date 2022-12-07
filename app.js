@@ -1,8 +1,6 @@
 const coffeeJar = document.querySelector(".coffee-pot-icon"),
 coffeeJarContainer = document.querySelector(".coffee-pot-container"),
 coffeeCup = document.querySelector(".coffee-cup"),
-size = document.querySelectorAll("#size-button");
-prompt(size);
 let after_of_coffeeJarContainer = window.getComputedStyle(coffeeJarContainer, '::after');
 var coffeeDown = document.getElementById('coffee-down');
 var coffeeUp = document.getElementById('coffee-up');
