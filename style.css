@@ -47,8 +47,11 @@ body {
 }
 
 
-button:focus, a:focus {
-    outline: 2px dashed #fff ;
+button:focus-visible, a:focus-visible {
+    outline: 2px dashed #fff;
+}
+button, a {
+    cursor: pointer;
 }
 
 
@@ -92,7 +95,7 @@ button:focus, a:focus {
     transition: backdrop-filter .1s;
 }
 
-.coffee-pot-container:hover, .coffee-pot-container:focus {
+.coffee-pot-container:hover, .coffee-pot-container:focus-visible {
     backdrop-filter: brightness(80%);
     outline: none;
 }
@@ -100,7 +103,6 @@ button:focus, a:focus {
 .coffee-pot-icon {
     width: 6rem;
     height: 6rem;
-    cursor: pointer;
     transition: all .2s;
     transition-delay: 0s;
 }
@@ -167,16 +169,27 @@ button:focus, a:focus {
     transform: translate(-105%, 0%);
     left: 0;
     width: 40rem;
-    height: 50rem;
+    height: max-content;
     transition: all .2s;
     transition-delay: .2s;
 }
+.coffee-smoke {
+    height: 10rem;
+    transition: transform .3s  ease-in-out;
+    transform: scaleX(-1) translateX(9%);
+    transition-delay: .1s;
+
+
+}
+.coffee-smoke.visible {
+    transform: scaleX(1) translateX(9%); 
+    transition-delay: 0s;
+}
 .coffee-cup-image {
     width: 100%;
-    height: 100%;
+    height: 40rem;
 }
 .side-navbar-links {
-
     position: absolute;
     top: 53%;
     right: 12%;
@@ -307,7 +320,7 @@ main {
     z-index: 3;
     clip-path: polygon(80% 0%, 100% 20%, 100% 100%, 20% 100%, 0% 80%, 0 0);
     box-shadow: 0 0 5px 8px rgba(153, 88, 42, 0.1);
-    transition: transform .1s ease;
+    transition: transform .2s;
 
 }
 #fond-photo::before {
@@ -316,7 +329,7 @@ main {
     position: absolute;
     width: 20rem;
     height: 100%;
-    background-color: #362013;
+    background-color: var(--accent-color);
 
     /* z-index: 3; */
     transform-origin: center;
@@ -347,7 +360,7 @@ main {
     transition-delay: .4s;
 }
 #fond-photo {
-    background-color: var(--accent-color);
+    background-color: var(--really-black-brown);
     height: 60rem;
     position: relative;
     display: flex;
@@ -411,11 +424,11 @@ h3 {
     text-align: justify;
 }
 .buying-part {
-    height: 20rem;
-    width: 27rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    justify-content: space-between;
+    height: 20rem;
+    width: 27rem;
 }
 
 /* boutons choisissant la taille du produit */
@@ -424,10 +437,10 @@ h3 {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 100%;
+    height: 6rem;
 }
 #size-button {
-    height: 6rem;
+    height: 100%;
     width: 8rem;
     border: 4px solid var(--cream-brown);
     background: transparent;
@@ -435,12 +448,12 @@ h3 {
     font-size: 2.5rem;
     font-weight: 600;
     border-radius: 1rem;
-    cursor: pointer;
     transition: all .1s;
 }
-#size-button:focus, #size-button:active  {
+#size-button:focus-visible, #size-button:active  {
     outline: none;
 }
+#size-button:focus-visible, 
 #size-button:hover {
     transform: translateY(-5%);
 }
@@ -455,7 +468,7 @@ h3 {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 5.5rem;
     border-radius: 2rem;
 }
 .quantity {
@@ -466,6 +479,9 @@ h3 {
     width: 80%;
 }
 .quantifier {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 7.2rem;
     height: 100%;
     background-color: var(--cream-brown);
@@ -473,11 +489,12 @@ h3 {
     transition: all .1s;
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--black-brown);
+    color: var(--accent-color);
 }
-.quantifier:not(.result):active {
+.quantifier:not(.result):active, 
+.quantifier:not(.result):focus-visible {
     outline: none;
-    transform: scale(98%);
+    filter: brightness(70%);
 }
 .plus {
     border-radius: 1rem 0 0 1rem;
@@ -485,7 +502,7 @@ h3 {
 .minus {
     border-radius: 0 1rem 1rem 0;
 }
-.quantifier:focus {
+.quantifier:focus-visible {
     outline: none;
 }
 .quantifier:not(.minus) {
@@ -493,13 +510,42 @@ h3 {
 }
 
 .buy-button {
-    display: block;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-family: 'Roboto Slab', sans-serif;
+    color: var(--really-black-brown);
     background-color: var(--accent-color);
     border-radius: 4rem;
-    height: 100%;
+    height: 6rem;
     border: none;
-    box-shadow: 0 0 3px 3px rgba(255, 255, 255, 0.1);
+    transition: all .1s;
+}
+
+
+.buy-button:focus-visible,
+.buy-button:hover {
+    outline: none;
+    transform: scale(103%);
+}
+.buy-button:focus-visible svg,
+.buy-button:hover svg {
+    transform: rotate(-40deg);
+}
+.cart-icon {
+    transition: all .1s;
+}
+
+@keyframes cart {
+    from {
+        transform: rotate(-40deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
 }
 /* histoire du produit */
 
