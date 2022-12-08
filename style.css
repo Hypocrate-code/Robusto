@@ -69,7 +69,7 @@ button, a {
     width: 100vw;
     height: 8rem;
     padding: 0 10rem;
-    box-shadow: 0 2px 5px #362013;
+    box-shadow: 0 2px 5px var(--really-black-brown);
     background-color: rgba(67, 40, 24, 0.4);
     backdrop-filter: blur(10px);
 }
@@ -279,8 +279,9 @@ a::after {
     transform: translate(30%, -30%);
     border-radius: 1rem;
     width: max-content;
-    padding: .5rem .8rem;
+    padding: .3rem .8rem;
     font-family: 'Roboto', sans-serif;
+    font-size: 1.3rem;
     font-weight: 700;
     color: var(--cream-brown);
     height: 2rem;
@@ -378,10 +379,12 @@ main {
 
 }
 h1{
-    font-weight: 800;
+    font-weight: 700;
     width: 100%;
-    font-size: 6.3rem;
+    font-size: 6rem;
     position: relative;
+    letter-spacing: .17rem;
+
 }
 
 /* trait sous le nom du produit */
@@ -398,8 +401,17 @@ h1::after {
     clip-path: polygon(0 0, 99% 0, 100% 100%, 1% 100%);
 }
 h2 {
-    font-size: 3rem;
+    font-size: 3.2rem;
     text-align: right;
+    letter-spacing: .12rem;
+
+}
+#original {
+    color: var(--latte-brown);
+    transition: all .1s;
+}
+#original:hover {
+    color: var(--accent-color);
 }
 .description, .buying-part {
     font-family: 'Roboto', sans-serif;
@@ -407,8 +419,10 @@ h2 {
 .description {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 20rem;
+    justify-content: center;
+    gap: .8rem;
+    height: max-content;
+    padding-bottom: .3rem;
 }
 .price {
     font-size: 4rem;
@@ -418,17 +432,21 @@ h2 {
 }
 h3 {
     font-size: 2.4rem;
+    letter-spacing: .11rem;
 }
 .product-description {
     font-size: 1.6rem;
     text-align: justify;
 }
+.product-description::first-letter {
+    font-size: 2.5rem;
+}
 .buying-part {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 20rem;
-    width: 27rem;
+    height: 21rem;
+    width: 50%;
 }
 
 /* boutons choisissant la taille du produit */
@@ -441,8 +459,8 @@ h3 {
 }
 #size-button {
     height: 100%;
-    width: 8rem;
-    border: 4px solid var(--cream-brown);
+    width: 7.6rem;
+    border: .4rem solid var(--cream-brown);
     background: transparent;
     color: var(--cream-brown);
     font-size: 2.5rem;
@@ -487,7 +505,7 @@ h3 {
     background-color: var(--cream-brown);
     border: none;
     transition: all .1s;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: 700;
     color: var(--accent-color);
 }
@@ -497,16 +515,20 @@ h3 {
     filter: brightness(70%);
 }
 .plus {
-    border-radius: 1rem 0 0 1rem;
+    border-radius: 0 1rem 1rem 0;
 }
 .minus {
-    border-radius: 0 1rem 1rem 0;
+    border-radius: 1rem 0 0 1rem;
+}
+.plus:hover,
+.minus:hover {
+    color: var(--black-brown);
 }
 .quantifier:focus-visible {
     outline: none;
 }
-.quantifier:not(.minus) {
-    border-right: 3px solid #432818;
+.quantifier:not(.plus) {
+    border-right: 3px solid var(--black-brown);
 }
 
 .buy-button {
@@ -516,10 +538,10 @@ h3 {
     gap: 1.5rem;
     font-size: 1.8rem;
     font-weight: 800;
-    font-family: 'Roboto Slab', sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: var(--really-black-brown);
     background-color: var(--accent-color);
-    border-radius: 4rem;
+    border-radius: 1.5rem;
     height: 6rem;
     border: none;
     transition: all .1s;

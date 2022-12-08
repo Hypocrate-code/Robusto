@@ -2,7 +2,8 @@ const coffeeJar = document.querySelector(".coffee-pot-icon"),
 coffeeJarContainer = document.querySelector(".coffee-pot-container"),
 coffeeCup = document.querySelector(".coffee-cup"),
 coffeeSmoke = document.querySelector(".coffee-smoke");
-let after_of_coffeeJarContainer = window.getComputedStyle(coffeeJarContainer, '::after');
+let after_of_coffeeJarContainer = window.getComputedStyle(coffeeJarContainer, '::after'),
+quantity = 0;
 const coffeeDown = document.getElementById('coffee-down');
 const coffeeUp = document.getElementById('coffee-up');
 
@@ -16,7 +17,7 @@ buyButton = document.querySelector('.buy-button');
 
 
 
-let quantity = 0;
+
 document.querySelectorAll('#size-button').forEach(btn => {
   btn.addEventListener('click', event => {
     btn.classList.toggle('chosen');
@@ -28,6 +29,8 @@ buyButton.addEventListener('click', function () {
   let a = Number(cartNumber.innerHTML),
   b = Number(result.innerHTML);
   cartNumber.innerHTML = a + b;
+  result.innerHTML = 0;
+  quantity = 0;
 })
 
 
