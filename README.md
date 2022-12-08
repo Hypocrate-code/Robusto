@@ -1,3 +1,5 @@
+- LIEN DE LA PAGE : https://hypocrate-code.github.io/Hypocrate-code/
+- je n'avais pas compris dès le début comment se servir de github pour publier le code en une page
 - 👋 Hi, I’m @Hypocrate-code
 - 👀 I’m interested in HTML, CSS, Javascript, Python, PHP, C++ and C#
 - 🌱 I’m currently learning everything
