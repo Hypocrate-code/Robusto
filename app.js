@@ -89,22 +89,27 @@ minus.addEventListener('click', function() {
 
 
 
-coffeeJar.addEventListener('click', () => {
+coffeeJarContainer.addEventListener('click', () => {
     if (after_of_coffeeJarContainer.width=='0px'){
-        coffeeJar.classList.add("active");
-        coffeeCup.classList.add('out');
+      coffeeJar.classList.add("active");
+      coffeeDown.beginElement();
+      coffeeCup.classList.add('out');
+      coffeeJarContainer.style.setProperty('--animation', 'liquid .7s');
+      coffeeJarContainer.addEventListener('animationend', () => {
         coffeeSmoke.classList.add('visible');
-        coffeeJarContainer.style.setProperty('--animation', 'liquid')
-        coffeeDown.beginElement();
-        coffeeJarContainer.setAttribute("aria-expanded", true);
+      })
+      coffeeJarContainer.setAttribute("aria-expanded", true);
     }
     else {
-        coffeeJar.classList.remove("active");
+      coffeeJar.classList.remove("active");
+      coffeeUp.beginElement();
+      coffeeJarContainer.style.setProperty('--animation', 'liquid-reverse 0.4s');
+      coffeeJarContainer.addEventListener('animationend', () => {
         coffeeCup.classList.remove('out');
         coffeeSmoke.classList.remove('visible');
-        coffeeJarContainer.style.setProperty('--animation', 'liquid-reverse');
-        coffeeUp.beginElement();
-        coffeeJarContainer.setAttribute("aria-expanded", false);
+      }, {once: true})
+      coffeeJarContainer.setAttribute("aria-expanded", false);
+
     }
 });
 

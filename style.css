@@ -117,8 +117,8 @@ button, a {
 .coffee-pot-icon {
     width: 6rem;
     height: 6rem;
-    transition: all .2s;
-    transition-delay: 0s;
+    transition: all .2s cubic-bezier(.66,.43,.65,.41);
+    transition-delay: .2s;
 }
 .coffee-pot-icon.active {
     transform: rotate(90deg);
@@ -138,7 +138,7 @@ button, a {
     left: 6.1rem;
     z-index: -1;
     transform-origin: top;
-    animation: var(--animation, none) .8s forwards;
+    animation: var(--animation, none) forwards;
 
 }
 
@@ -152,23 +152,22 @@ button, a {
         width: 0rem;
         transform: scaleY(0);
     }
-
-    
     100%{
         transform: scaleY(var(--scale));
         width: .5rem;
-
-
     }
 }
 @keyframes liquid-reverse {
     0%{
-        transform: scaleY(var(--scale));
+        transform: scaleY(var(--scale)) translateY(0%);
         width: .5rem;
     }
-    50%{
-        width: 0rem;
-        transform: scaleY(0);
+    99.9%{
+        transform: scaleY(var(--scale)) translateY(100%);
+        width: .5rem;
+    }
+    100%{
+        display: none;
     }
 }
 
@@ -186,21 +185,20 @@ button, a {
     width: 40rem;
     height: max-content;
     transition: all .2s;
-    transition-delay: .2s;
+    transition-delay: 0s;
+
 }
 .coffee-smoke {
     height: 10rem;
-    transform: translateX(8%);
-    /* transition: transform .3s  ease-in-out; */
-    /* transform: translateX(5%); */
+    transform: translate(8%, 50%);
     filter: opacity(0);
-    transition: all .7s;
+    transition: all .5s;
 
 }
 .coffee-smoke.visible {
     filter: opacity(0.3);
-    transition: filter 1s;
-    transition-delay: .9s;
+    transition: all .3s;
+    transform: translate(8%, 0%);
 }
 .coffee-cup-image {
     width: 100%;
