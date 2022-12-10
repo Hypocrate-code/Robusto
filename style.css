@@ -190,15 +190,17 @@ button, a {
 }
 .coffee-smoke {
     height: 10rem;
-    transition: transform .3s  ease-in-out;
-    transform: scaleX(-1) translateX(9%);
-    transition-delay: .1s;
-
+    transform: translateX(8%);
+    /* transition: transform .3s  ease-in-out; */
+    /* transform: translateX(5%); */
+    filter: opacity(0);
+    transition: all .7s;
 
 }
 .coffee-smoke.visible {
-    transform: scaleX(1) translateX(9%); 
-    transition-delay: 0s;
+    filter: opacity(0.3);
+    transition: filter 1s;
+    transition-delay: .9s;
 }
 .coffee-cup-image {
     width: 100%;
@@ -206,8 +208,8 @@ button, a {
 }
 .side-navbar-links {
     position: absolute;
-    top: 53%;
-    right: 12%;
+    top: 26.9rem;
+    right: 5rem;
     width: 15rem;
     font-size: 2.2rem;
     list-style-type: none;
@@ -223,7 +225,10 @@ button, a {
     font-weight: 600;
     color: var(--black-brown);
     font-family: 'Roboto', sans-serif;
-    transition: all 2s ease-in;
+}
+#light-mode {
+    background: transparent;
+    border: none;
 }
 a::after {
     content: '';
@@ -294,7 +299,7 @@ a::after {
     transform: translate(30%, -30%);
     border-radius: 1rem;
     width: max-content;
-    padding: .3rem .8rem;
+    padding: .25rem .8rem;
     font-family: 'Roboto', sans-serif;
     font-size: 1.3rem;
     font-weight: 700;

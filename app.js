@@ -17,6 +17,9 @@ const cartIcon = document.querySelector('.cart-icon'),
 cartNumber = document.querySelector('#cart-number'),
 buyButton = document.querySelector('.buy-button');
 
+
+
+
 window.addEventListener('load', () => {
   loader.classList.add('disappear');
   loader.addEventListener('transitionend', () => {
