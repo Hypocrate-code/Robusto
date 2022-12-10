@@ -35,6 +35,20 @@ body {
     font-family: 'Roboto Slab', serif;
     /* overflow-x: hidden; */
 }
+.loader {
+    position: fixed;
+    z-index: 100;
+    height: 100%;
+    inset: 0;
+    background-color: var(--black-brown);
+    transition: 1.5s;
+    border-right: 2rem solid var(--cream-brown);
+    /* border-radius: 5rem; */
+
+}
+.loader.disappear {
+    transform: translateX(-180%);
+}
 .website-background{
     position: absolute;
     background-image: url(Images/lukasz-rawa-fmc-tFMMiBs-unsplash.jpg);
@@ -124,23 +138,26 @@ button, a {
     left: 6.1rem;
     z-index: -1;
     transform-origin: top;
-    animation: var(--animation, none) .5s forwards;
+    animation: var(--animation, none) .8s forwards;
 
 }
 
 /* animation du café qui coule */
 
 @keyframes liquid {
-    75%{
-        width: 0;
+    0%{
+        width: 0rem;
+    }    
+    50%{
+        width: 0rem;
+        transform: scaleY(0);
     }
-    76%{
-        width: .1rem;
-    }
+
     
     100%{
         transform: scaleY(var(--scale));
         width: .5rem;
+
 
     }
 }
@@ -149,11 +166,9 @@ button, a {
         transform: scaleY(var(--scale));
         width: .5rem;
     }
-    55%{
-        width: 0;
-    }
-    100% {
-        width: 0;
+    50%{
+        width: 0rem;
+        transform: scaleY(0);
     }
 }
 
@@ -338,16 +353,15 @@ main {
     transition-delay: .2s;
     
 }
-/* #fond-photo::after {
+#fond-photo::after {
     content: '';
     display: block;
+    background: var(--really-black-brown-brown);
     position: absolute;
-    width: 100%;
-    height: 50%;
-    background-color: #362013;
-    transform-origin: center;
-    transition: all .2s;
-} */
+    inset: 0;
+    filter: blur(12rem);
+    z-index: -1;
+}
 .photo-container:hover #fond-photo::before{
     transform: scaleX(2);
     
@@ -408,11 +422,8 @@ h2 {
 }
 #original {
     color: var(--latte-brown);
-    transition: all .1s;
 }
-#original:hover {
-    color: var(--accent-color);
-}
+
 .description, .buying-part {
     font-family: 'Roboto', sans-serif;
 }
@@ -558,15 +569,18 @@ h3 {
     transform: rotate(-40deg);
 }
 .cart-icon {
-    transition: all .1s;
+    transition: transform .1s;
+}
+.cart-icon.spinning {
+    animation: cart .8s forwards;
 }
 
 @keyframes cart {
     from {
-        transform: rotate(-40deg);
+        rotate: 0deg;
     }
     to {
-        transform: rotate(-360deg);
+        rotate: -360deg;
     }
 }
 /* histoire du produit */

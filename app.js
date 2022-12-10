@@ -1,3 +1,5 @@
+const loader = document.querySelector('.loader');
+
 const coffeeJar = document.querySelector(".coffee-pot-icon"),
 coffeeJarContainer = document.querySelector(".coffee-pot-container"),
 coffeeCup = document.querySelector(".coffee-cup"),
@@ -15,17 +17,43 @@ const cartIcon = document.querySelector('.cart-icon'),
 cartNumber = document.querySelector('#cart-number'),
 buyButton = document.querySelector('.buy-button');
 
-
-
-
-document.querySelectorAll('#size-button').forEach(btn => {
-  btn.addEventListener('click', event => {
-    btn.classList.toggle('chosen');
+window.addEventListener('load', () => {
+  loader.classList.add('disappear');
+  loader.addEventListener('transitionend', () => {
+    loader.style.setProperty('display', 'none')
   })
 })
 
-buyButton.addEventListener('click', function () {
-  cartIcon.style.setProperty('animation', 'cart .8s forwards');
+
+const sizeButtonsArray = Array.from(document.querySelectorAll('#size-button'));
+
+sizeButtonsArray.forEach(btn => {
+  btn.addEventListener('click', event => {
+    if (btn.classList.contains('chosen')) {
+      btn.classList.remove('chosen');
+    }
+    else {
+      if(sizeButtonsArray[0].classList.contains('chosen')) {
+        sizeButtonsArray[0].classList.remove('chosen');
+      }
+      else if (sizeButtonsArray[1].classList.contains('chosen')) {
+        sizeButtonsArray[1].classList.remove('chosen');
+      }
+      else {
+        sizeButtonsArray[2].classList.remove('chosen');
+      }
+      btn.classList.add('chosen');
+    }
+  })
+})
+
+
+buyButton.addEventListener('click', () => {
+  cartIcon.classList.add('spinning');
+  cartIcon.addEventListener('animationend', () => {
+    cartIcon.classList.remove('spinning');
+  })
+
   let a = Number(cartNumber.innerHTML),
   b = Number(result.innerHTML);
   cartNumber.innerHTML = a + b;
@@ -58,7 +86,7 @@ minus.addEventListener('click', function() {
 
 
 
-coffeeJar.addEventListener('click', function() {
+coffeeJar.addEventListener('click', () => {
     if (after_of_coffeeJarContainer.width=='0px'){
         coffeeJar.classList.add("active");
         coffeeCup.classList.add('out');
