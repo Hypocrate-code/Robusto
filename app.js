@@ -17,14 +17,83 @@ const cartIcon = document.querySelector('.cart-icon'),
 cartNumber = document.querySelector('#cart-number'),
 buyButton = document.querySelector('.buy-button');
 
+let prices = ['26.00', '32.00', '64.00'];
+const price = document.querySelector('.price');
 
+
+const right = document.querySelector('.right');
+const left = document.querySelector('.left');
 
 
 window.addEventListener('load', () => {
   loader.classList.add('disappear');
   loader.addEventListener('transitionend', () => {
-    loader.style.setProperty('display', 'none')
+    loader.style.display = 'none';
+
   })
+})
+
+left.addEventListener('click', () => {
+
+  let cards = document.querySelector('.cards');
+  let cardz = cards.children;
+  let cars = window.getComputedStyle(cardz[1]);
+  
+  if(cars.animationPlayState == 'running') {
+    return;
+  }
+  let products = document.querySelectorAll('.card');
+
+  products.forEach(card => {
+    card.classList.add('switching-to-right');
+    })
+  cards.addEventListener('animationend', () => {
+    products.forEach(card => {
+      card.classList.remove('switching-to-right');
+      
+    })
+    
+    cards.removeChild(cards.lastElementChild);    
+    cards.removeChild(cards.lastElementChild);
+    
+    let celuiDeLaFin = cards.lastElementChild.cloneNode(true);
+    
+    let celuiDuDebut = cards.firstElementChild.cloneNode(true);
+    
+    cards.insertBefore(celuiDeLaFin, cards.firstElementChild);
+    cards.appendChild(celuiDuDebut);
+
+  }, {once: true})
+});
+
+
+right.addEventListener('click', () => {
+  let cards = document.querySelector('.cards');
+  let cardz = cards.children;
+  let cars = window.getComputedStyle(cardz[1]);
+  
+  if(cars.animationPlayState == 'running') {
+    return;
+  }
+  
+  let products = document.querySelectorAll('.card');
+  products.forEach(card => {
+    card.classList.add('switching-to-left');
+    })
+
+  cards.addEventListener('animationend', () => {
+
+    products.forEach(card => {
+      card.classList.remove('switching-to-left');
+    })
+
+    cards.removeChild(cards.firstElementChild);    
+    cards.removeChild(cards.firstElementChild);
+    let celuiDeLaFin = cards.lastElementChild.cloneNode(true);
+    let celuiDuDebut = cards.firstElementChild.cloneNode(true);
+    cards.insertBefore(celuiDeLaFin, cards.firstElementChild);
+    cards.appendChild(celuiDuDebut);
+  }, {once: true})
 })
 
 
@@ -46,6 +115,9 @@ sizeButtonsArray.forEach(btn => {
         sizeButtonsArray[2].classList.remove('chosen');
       }
       btn.classList.add('chosen');
+      price.innerHTML = '$' + prices[sizeButtonsArray.indexOf(btn)];
+      
+      
     }
   })
 })
@@ -56,10 +128,12 @@ buyButton.addEventListener('click', () => {
   cartIcon.addEventListener('animationend', () => {
     cartIcon.classList.remove('spinning');
   })
-
   let a = Number(cartNumber.innerHTML),
   b = Number(result.innerHTML);
   cartNumber.innerHTML = a + b;
+  if(b===0) {
+
+  }
   result.innerHTML = 0;
   quantity = 0;
 })
@@ -112,5 +186,12 @@ coffeeJarContainer.addEventListener('click', () => {
 
     }
 });
+
+
+
+
+
+
+
 
 
