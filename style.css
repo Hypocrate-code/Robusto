@@ -424,7 +424,8 @@ main {
 .product-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 1.5rem;
     padding: 2rem 7rem 2rem 0rem;
 }
 .title {
@@ -494,7 +495,7 @@ h1::after {
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    transition: transform .5s;
+    transition: transform .4s;
 }
 .front, .back {
     position: absolute;
@@ -516,44 +517,20 @@ h1::after {
     transition-delay: transform .175s;
 }
 .front *:not(svg) {
-    transition-delay: .175s;
+    transition-delay: .15s;
 }
-.front svg {
-    width: 2.4rem;
-    height: 2.4rem;
-    position: absolute;
-    bottom: 1.7rem;
-    right: 6.5rem;
-    fill: var(--latte-brown);
-    transition: all .1s;
-}
-.front:hover svg {
-    animation: arrow-flip .2s infinite alternate;
-}
-@keyframes arrow-flip {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(1rem);
-    }
-}
+
+
 .back {
     transform: rotateX(180deg);
-    padding-top: 2.5rem;
 }
 .returned {
     transform: rotateX(180deg);
 }
-.returned .front,
 .returned .front  * {
-    color: transparent;
-    transition-delay: 0ms;
-    transition: all .25s;
-}
-.returned svg {
-    transform: translateX(5rem);
     filter: opacity(0);
+    transition-delay: 0ms;
+    transition: all .2s;
 }
 
 .bottom-part-container {
@@ -562,6 +539,35 @@ h1::after {
     gap: 2rem;
 }
 
+.front svg,
+.back svg {
+    position: absolute;
+    bottom: 1.7rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    fill: var(--latte-brown);
+    transition: all .3s;
+}
+.front svg {
+    right: 6.5rem;
+    transition: all .2s;
+}
+.front:hover svg,
+.returned:hover .back svg {
+    animation: arrow-shaking .2s infinite alternate;
+}
+.back svg {
+    right: 2.5rem;
+}
+
+@keyframes arrow-shaking {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(1rem);
+    }
+}
 
 /* ========================================== BUYING PART =========================================== */
 
@@ -709,23 +715,56 @@ h1::after {
 .sub-content {
     width: calc(50% - 1rem);
     height: 100%;
-
+    perspective: 1000px;
 }
 
 .sub-content > h4 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-family: 'Roboto', sans-serif;
     margin-bottom: .5rem;
 }
-.sub-content > p {
-    font-size: 1.3rem;
+.sub-content-card {
+    width: 100%;
+    height: 17.1rem;
+    font-size: 1.6rem;
     text-align: justify;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform .4s;
+    cursor: pointer;
+}
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     border-right: .8rem solid var(--latte-brown);
     border-radius: 1rem;
-    padding: .8rem;
-    margin-right: .5rem;
+    padding: 1.1rem;
     background-color: rgba(67, 40, 24, 0.5);
-
+    backface-visibility: hidden;
+    transition: opacity .4s;
+}
+.card-back {
+    transform: rotateX(-180deg);
+}
+.returned .card-front {
+    opacity: 0;
+}
+.sub-content-card svg {
+    position: absolute;
+    width: 2.4rem;
+    height: 2.4rem;
+}
+.card-front svg,
+.card-back svg {
+    bottom: 1rem;
+    right: 1.5rem;
+    fill: var(--latte-brown);
+}
+.card-front:hover svg,
+.card-back:hover svg {
+    animation: arrow-shaking .2s infinite alternate;
 }
 
 /* ======================================= OPTIONAL INFORMATIONS ON THE PRODUCT ================================= */

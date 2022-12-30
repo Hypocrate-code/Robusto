@@ -20,7 +20,8 @@ buyButton = document.querySelector('.buy-button');
 let prices = ['26.00', '32.00', '64.00'];
 const price = document.querySelector('.price');
 
-const productDescription = document.querySelector('.product-description-inner');
+const productDescription = document.querySelector('.product-description-inner'),
+subContentDescription = document.querySelector('.sub-content-card');
 
 const right = document.querySelector('.right');
 const left = document.querySelector('.left');
@@ -35,6 +36,9 @@ window.addEventListener('load', () => {
 
 productDescription.addEventListener('click', () => {
   productDescription.classList.toggle('returned');
+})
+subContentDescription.addEventListener('click', () => {
+  subContentDescription.classList.toggle('returned');
 })
 
 left.addEventListener('click', () => {
@@ -190,12 +194,3 @@ coffeeJarContainer.addEventListener('click', () => {
 
     }
 });
-
-
-
-
-
-
-
-
-
