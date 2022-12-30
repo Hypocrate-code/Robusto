@@ -77,13 +77,12 @@ body {
 }
 .website-background{
     position: absolute;
-    background-image: url(Images/lukasz-rawa-fmc-tFMMiBs-unsplash.jpg);
-    background-size: cover;
+    object-fit: cover;
     width: 100vw;
     height: 179rem;
     inset: 0;
     z-index: -3;
-    filter: opacity(25%) brightness(120%);    
+    filter: opacity(28%) brightness(120%);    
 }
 
 
@@ -153,7 +152,7 @@ button, a {
 }
 
 .coffee-pot-container:hover, .coffee-pot-container:focus-visible {
-    backdrop-filter: brightness(80%);
+    backdrop-filter: brightness(87%);
     outline: none;
 }
 
@@ -317,19 +316,23 @@ a::after {
     display: flex;
     justify-content: space-between;
     list-style-type: none;
+    box-sizing: content-box;
+    padding: 1rem;
 }
 
-
-
-.account-link, .shopping-cart-link {
+.user-buttons a {
     position: relative;
     display: block;
-    width: 5rem;
-    height: 5rem;
+
 }
 .user-icon, .shopping-cart-icon {
-    width: 5rem;
-    height: 5rem;
+    width: 4.8rem;
+    height: 4.8rem;
+    transition: transform .2s;
+}
+.user-icon:hover,
+.shopping-cart-icon:hover {
+    transform: scale(110%);
 }
 #cart-number {
     display: block;
@@ -358,8 +361,7 @@ main {
     width: 115rem;
     z-index: 1;
     background-color: rgba(54, 32, 19, 0.5);
-    /* backdrop-filter: blur(14px); */
-    box-shadow: 0 -10px 1rem 3rem  rgba(54, 32, 19, 0.5);
+    box-shadow: 0 -10px 2rem 3rem  rgba(54, 32, 19, 0.5);
 }
 /* CONTENU DE LA PAGE */
 
@@ -463,7 +465,6 @@ h1::after {
 .description {
     display: flex;
     flex-direction: column;
-    transform: translateY(-5%);
     justify-content: center;
     gap: .8rem;
     height: max-content;
@@ -475,19 +476,86 @@ h1::after {
     color: var(--accent-color);
     filter: brightness(120%);
     width: max-content;
+    transform: translateY(-70%);
 }
 .product-content h3 {
     font-size: 2.4rem;
     letter-spacing: .11rem;
 }
 .product-description {
+    width: 100%;
+    height: 15rem;
+    cursor: pointer;
+    user-select: none;
+    perspective: 1000px;
+}
+.product-description-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform .5s;
+}
+.front, .back {
+    position: absolute;
+    backface-visibility: hidden;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
     font-size: 1.8rem;
     text-align: justify;
-    padding: 0.8rem;
+    padding: 1.4rem;
     font-family: 'Roboto Slab';
-    border-left: .8rem solid rgba(54, 32, 19, 0.9);
+    border-left: .8rem solid rgba(153, 88, 42, 0.7);
+    background-color: rgba(67, 40, 24, 0.5);
+    /* box-shadow: 0 0 1rem #43281874; */
     border-radius: 1rem;
+    letter-spacing: .05rem;
 }
+.front {
+    transition-delay: transform .175s;
+}
+.front *:not(svg) {
+    transition-delay: .175s;
+}
+.front svg {
+    width: 2.4rem;
+    height: 2.4rem;
+    position: absolute;
+    bottom: 1.7rem;
+    right: 6.5rem;
+    fill: var(--latte-brown);
+    transition: all .1s;
+}
+.front:hover svg {
+    animation: arrow-flip .2s infinite alternate;
+}
+@keyframes arrow-flip {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(1rem);
+    }
+}
+.back {
+    transform: rotateX(180deg);
+    padding-top: 2.5rem;
+}
+.returned {
+    transform: rotateX(180deg);
+}
+.returned .front,
+.returned .front  * {
+    color: transparent;
+    transition-delay: 0ms;
+    transition: all .25s;
+}
+.returned svg {
+    transform: translateX(5rem);
+    filter: opacity(0);
+}
+
 .bottom-part-container {
     display: flex;
     width: 100%;
@@ -641,6 +709,7 @@ h1::after {
 .sub-content {
     width: calc(50% - 1rem);
     height: 100%;
+
 }
 
 .sub-content > h4 {
@@ -651,10 +720,12 @@ h1::after {
 .sub-content > p {
     font-size: 1.3rem;
     text-align: justify;
-    border-right: .8rem solid rgba(54, 32, 19, 0.9);
+    border-right: .8rem solid var(--latte-brown);
     border-radius: 1rem;
     padding: .8rem;
     margin-right: .5rem;
+    background-color: rgba(67, 40, 24, 0.5);
+
 }
 
 /* ======================================= OPTIONAL INFORMATIONS ON THE PRODUCT ================================= */
@@ -752,6 +823,9 @@ form {
     height: 3rem;
     width: 3rem;
     fill: var(--cream-brown);
+}
+.right:hover, .left:hover {
+    background-color: var(--really-black-brown);
 }
 .cards {
     display: flex;
@@ -979,7 +1053,7 @@ label[for="light-check"] {
 /* ========================================= OPTIONAL INLINE DESIGN =========================================== */
 
 b {
-    font-weight: bold;
+    font-weight: 600;
 }
 #latte {
     color: var(--latte-brown);

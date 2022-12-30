@@ -20,10 +20,10 @@ buyButton = document.querySelector('.buy-button');
 let prices = ['26.00', '32.00', '64.00'];
 const price = document.querySelector('.price');
 
+const productDescription = document.querySelector('.product-description-inner');
 
 const right = document.querySelector('.right');
 const left = document.querySelector('.left');
-
 
 window.addEventListener('load', () => {
   loader.classList.add('disappear');
@@ -31,6 +31,10 @@ window.addEventListener('load', () => {
     loader.style.display = 'none';
 
   })
+})
+
+productDescription.addEventListener('click', () => {
+  productDescription.classList.toggle('returned');
 })
 
 left.addEventListener('click', () => {
