@@ -35,6 +35,9 @@ body {
     font-family: 'Roboto Slab', serif;
     /* overflow-x: hidden; */
 }
+body.hidden {
+    overflow: hidden;
+}
 .loader {
     position: fixed;
     display: flex;
@@ -79,7 +82,7 @@ body {
     position: absolute;
     object-fit: cover;
     width: 100vw;
-    height: 179rem;
+    height: 210rem;
     inset: 0;
     z-index: -3;
     filter: opacity(28%) brightness(120%);    
@@ -355,7 +358,7 @@ main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2rem;
-    grid-template-rows: 65rem 30rem 1fr;
+    grid-template-rows: 65rem 65rem 1fr;
     padding: 10rem 0;
     position: relative;
     width: 115rem;
@@ -778,6 +781,7 @@ h1::after {
     align-items: center;
     justify-content: center;
     padding: 0 5rem;
+    height: 100%;
 }
 .more p {
     font-size: 1.6rem;
@@ -854,7 +858,7 @@ form {
     height: 6rem;
     border-radius: 50%;
     border: .4rem solid var(--cream-brown);
-    background: var(--black-brown);
+    background: transparent;
     z-index: 999;
 }
 .left svg,
@@ -863,8 +867,11 @@ form {
     width: 3rem;
     fill: var(--cream-brown);
 }
-.right:hover, .left:hover {
-    background-color: var(--really-black-brown);
+.right:hover, 
+.right:focus-visible, 
+.left:hover,
+.left:focus-visible {
+    backdrop-filter: brightness(85%);
 }
 .cards {
     display: flex;
@@ -876,7 +883,11 @@ form {
     border-top: 3px solid var(--really-black-brown);
     border-bottom: 3px solid var(--really-black-brown);
     overflow: hidden;
-} 
+}
+.card:last-child,
+.card:first-child {
+    display: none;
+}
 .card {
     animation-play-state: paused;
     flex-shrink: 0;
@@ -957,28 +968,30 @@ form {
 
 /* ========= ANIMATION PART ========= */
 
-.card:hover img,
-.card:focus-visible img {
+.card:not(:last-child):hover img,
+.card:not(:last-child):focus-visible img {
     transform: translateY(-2.5rem) scale(113%);
 }
-.card:hover h3::after,
-.card:focus-visible h3::after {
+.card:not(:last-child):hover h3::after,
+.card:not(:last-child):focus-visible h3::after {
     transform: scaleX(1);
 }
-.card:hover h3,
-.card:focus-visible h3 {
+.card:not(:last-child):hover h3,
+.card:not(:last-child):focus-visible h3 {
     transform: translateY(0);
 }
-.card:hover h4,
-.card:focus-visible h4 {
+.card:not(:last-child):hover h4,
+.card:not(:last-child):focus-visible h4 {
     transform: translateY(.2rem);
     filter: opacity(1);
     transition: transform .2s 0ms, filter .2s 300ms;
 }
-.card p:hover {
+.card:not(:last-child) p:hover {
     background-position: right;
 }
-
+.card:last-child:focus-visible {
+    outline: none !important;
+}
 
 
 /* ======================================== BAS DE PAGE ============================================= */

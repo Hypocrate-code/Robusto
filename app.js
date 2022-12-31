@@ -17,6 +17,7 @@ const cartIcon = document.querySelector('.cart-icon'),
 cartNumber = document.querySelector('#cart-number'),
 buyButton = document.querySelector('.buy-button');
 
+const sizeButtonsArray = Array.from(document.querySelectorAll('#size-button'));
 let prices = ['26.00', '32.00', '64.00'];
 const price = document.querySelector('.price');
 
@@ -25,6 +26,10 @@ subContentDescription = document.querySelector('.sub-content-card');
 
 const right = document.querySelector('.right');
 const left = document.querySelector('.left');
+let cards, cardz, cars;
+cards = document.querySelector('.cards');
+
+
 
 window.addEventListener('load', () => {
   loader.classList.add('disappear');
@@ -34,101 +39,146 @@ window.addEventListener('load', () => {
   })
 })
 
+const images = document.querySelectorAll('[data-src]');
+
+function loading(img) {
+  const dataSrc = img.getAttribute('data-src');
+  if(!dataSrc){return;}
+  else {
+    img.src = dataSrc;
+  }
+  console.log(dataSrc);
+};
+
+const lazyLoader = new IntersectionObserver(function (images, lazyLoader) {
+  images.forEach(image => {
+    if(!image.isIntersecting){return;}
+    else{
+    loading(image.target);
+    lazyLoader.unobserve(image.target);
+    }
+  });
+}, {rootMargin: '200px'});
+
+images.forEach(image => {
+  lazyLoader.observe(image);
+});
 productDescription.addEventListener('click', () => {
   productDescription.classList.toggle('returned');
-})
+});
 subContentDescription.addEventListener('click', () => {
   subContentDescription.classList.toggle('returned');
-})
+});
 
-left.addEventListener('click', () => {
+function setUpSlider () {
+  cards = document.querySelector('.cards');
+  cardz = cards.children;
+  cars = window.getComputedStyle(cardz[1]);
+  let firstCard = cards.firstElementChild;
+  let lastCard = cards.lastElementChild;
+  firstCard.style.display = 'flex';
+  lastCard.style.display = 'flex';
+};
+function resetSlider () {
+  firstCard = cards.firstElementChild;
+  firstCard.style.display = 'none';
+  lastCard = cards.lastElementChild;
+  lastCard.style.display = 'none';
+}
 
-  let cards = document.querySelector('.cards');
-  let cardz = cards.children;
-  let cars = window.getComputedStyle(cardz[1]);
-  
+function leftFunction() {
   if(cars.animationPlayState == 'running') {
     return;
   }
   let products = document.querySelectorAll('.card');
-
   products.forEach(card => {
     card.classList.add('switching-to-right');
     })
   cards.addEventListener('animationend', () => {
     products.forEach(card => {
       card.classList.remove('switching-to-right');
-      
     })
-    
     cards.removeChild(cards.lastElementChild);    
     cards.removeChild(cards.lastElementChild);
-    
     let celuiDeLaFin = cards.lastElementChild.cloneNode(true);
-    
     let celuiDuDebut = cards.firstElementChild.cloneNode(true);
-    
     cards.insertBefore(celuiDeLaFin, cards.firstElementChild);
     cards.appendChild(celuiDuDebut);
-
+    resetSlider();
   }, {once: true})
-});
+}
 
-
-right.addEventListener('click', () => {
-  let cards = document.querySelector('.cards');
-  let cardz = cards.children;
-  let cars = window.getComputedStyle(cardz[1]);
-  
+function rightFunction() {
   if(cars.animationPlayState == 'running') {
     return;
   }
-  
   let products = document.querySelectorAll('.card');
   products.forEach(card => {
     card.classList.add('switching-to-left');
     })
-
   cards.addEventListener('animationend', () => {
-
     products.forEach(card => {
       card.classList.remove('switching-to-left');
     })
-
     cards.removeChild(cards.firstElementChild);    
     cards.removeChild(cards.firstElementChild);
     let celuiDeLaFin = cards.lastElementChild.cloneNode(true);
     let celuiDuDebut = cards.firstElementChild.cloneNode(true);
     cards.insertBefore(celuiDeLaFin, cards.firstElementChild);
     cards.appendChild(celuiDuDebut);
+    resetSlider();
   }, {once: true})
+}
+
+const scrollTop = document.documentElement.scrollHeight;
+left.addEventListener('click', () => {
+  setUpSlider();
+  leftFunction();
+});
+
+right.addEventListener('click', () => {
+  setUpSlider();
+  rightFunction();
 })
+cards.addEventListener('wheel', (e) => {
+    if(e.deltaY >= 0) {
+    setUpSlider();
+    rightFunction();
+  }
+  else {
+    setUpSlider();
+    leftFunction();
+  }
+})
+cards.addEventListener('mouseenter', () => { 
+  document.body.classList.add('hidden');
+  cards.addEventListener('mouseleave', () => {
+   document.body.classList.remove('hidden');
 
-
-const sizeButtonsArray = Array.from(document.querySelectorAll('#size-button'));
-
-sizeButtonsArray.forEach(btn => {
-  btn.addEventListener('click', event => {
-    if (btn.classList.contains('chosen')) {
-      btn.classList.remove('chosen');
-    }
-    else {
-      if(sizeButtonsArray[0].classList.contains('chosen')) {
-        sizeButtonsArray[0].classList.remove('chosen');
-      }
-      else if (sizeButtonsArray[1].classList.contains('chosen')) {
-        sizeButtonsArray[1].classList.remove('chosen');
-      }
-      else {
-        sizeButtonsArray[2].classList.remove('chosen');
-      }
-      btn.classList.add('chosen');
-      price.innerHTML = '$' + prices[sizeButtonsArray.indexOf(btn)];
-      
-      
-    }
   })
 })
+
+
+sizeButtonsArray.forEach(btn => {
+    btn.addEventListener('click', event => {
+      if (btn.classList.contains('chosen')) {
+        btn.classList.remove('chosen');
+      }
+      else {
+        if(sizeButtonsArray[0].classList.contains('chosen')) {
+          sizeButtonsArray[0].classList.remove('chosen');
+        }
+        else if (sizeButtonsArray[1].classList.contains('chosen')) {
+          sizeButtonsArray[1].classList.remove('chosen');
+        }
+        else {
+          sizeButtonsArray[2].classList.remove('chosen');
+        }
+        btn.classList.add('chosen');
+        price.innerHTML = '$' + prices[sizeButtonsArray.indexOf(btn)];
+      }
+    })
+  })
 
 
 buyButton.addEventListener('click', () => {
