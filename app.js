@@ -149,7 +149,7 @@ cards.addEventListener('wheel', (e) => {
     setUpSlider();
     leftFunction();
   }
-})
+}, {passive: true})
 cards.addEventListener('mouseenter', () => { 
   document.body.classList.add('hidden');
   cards.addEventListener('mouseleave', () => {
