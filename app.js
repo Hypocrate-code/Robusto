@@ -29,7 +29,7 @@ const left = document.querySelector('.left');
 let cards, cardz, cars;
 cards = document.querySelector('.cards');
 
-
+const productImage = document.querySelector('.product-photo');
 
 window.addEventListener('load', () => {
   loader.classList.add('disappear');
@@ -130,7 +130,8 @@ function rightFunction() {
   }, {once: true})
 }
 
-const scrollTop = document.documentElement.scrollHeight;
+// const scrollTop = document.documentElement.scrollHeight;
+
 left.addEventListener('click', () => {
   setUpSlider();
   leftFunction();
@@ -140,22 +141,28 @@ right.addEventListener('click', () => {
   setUpSlider();
   rightFunction();
 })
-cards.addEventListener('wheel', (e) => {
-    if(e.deltaY >= 0) {
-    setUpSlider();
-    rightFunction();
-  }
-  else {
-    setUpSlider();
-    leftFunction();
-  }
-}, {passive: true})
-cards.addEventListener('mouseenter', () => { 
-  document.body.classList.add('hidden');
-  cards.addEventListener('mouseleave', () => {
-   document.body.classList.remove('hidden');
+const main = document.querySelector('main');
+let mouseYInImage, mouseXInImage, percentX, percentY
 
+productImage.addEventListener('click', function () {
+  this.classList.toggle('zoomed');
+  if(!this.classList.contains('zoomed')) {
+    productImage.style.setProperty('background-position', '50% 50%');
+  }
+  productImage.addEventListener('mousemove', (e) => {
+    if(productImage.classList.contains('zoomed')) {
+      mouseYInImage = e.clientY - productImage.offsetTop; 
+      mouseXInImage = e.clientX - main.offsetLeft - productImage.offsetLeft;
+      percentX = Math.floor( mouseXInImage / productImage.offsetWidth * 100);
+      percentY =  Math.floor( mouseYInImage / productImage.offsetHeight * 100);
+      if(percentX>100 || percentX<0 || percentY>100 || percentY<0 ) {return;}
+      productImage.style.setProperty('background-position', percentX +'%' + percentY + '%');
+    }
   })
+})
+productImage.addEventListener('mouseleave', function() {
+  if(this.classList.contains('zoomed')) {this.classList.remove('zoomed');}
+  productImage.style.setProperty('background-position', '50% 50%');
 })
 
 
@@ -175,7 +182,7 @@ sizeButtonsArray.forEach(btn => {
           sizeButtonsArray[2].classList.remove('chosen');
         }
         btn.classList.add('chosen');
-        price.innerHTML = '$' + prices[sizeButtonsArray.indexOf(btn)];
+        price.textContent = '$' + prices[sizeButtonsArray.indexOf(btn)];
       }
     })
   })
