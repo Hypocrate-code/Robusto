@@ -16,9 +16,10 @@ result = document.querySelector('.result');
 const cartIcon = document.querySelector('.cart-icon'),
 cartNumber = document.querySelector('#cart-number'),
 buyButton = document.querySelector('.buy-button');
+let cartIconStyle = window.getComputedStyle(cartIcon);
 
 const sizeButtonsArray = Array.from(document.querySelectorAll('#size-button'));
-let prices = ['26.00', '32.00', '64.00'];
+let prices = ['26.00', '32.00', '41.00'];
 const price = document.querySelector('.price');
 
 const productDescription = document.querySelector('.product-description-inner'),
@@ -31,14 +32,29 @@ cards = document.querySelector('.cards');
 
 const productImage = document.querySelector('.product-photo');
 
+let nameOfProduct = Array.from(document.querySelector('h1').textContent);
+nameOfProduct.pop();
+nameOfProduct = nameOfProduct.join('');
+
+
+
+
+function loop(size, quantity, name) {
+  if(typeof localStorage.getItem([name, size]) == 'undefined' || typeof localStorage.getItem([name, size]) == 'null') {
+    localStorage.setItem([name, size], quantity);
+  }
+  else {
+    let result = Number(localStorage.getItem([name, size])) + quantity;
+    localStorage.setItem([name, size], result);
+  }
+
+};
 window.addEventListener('load', () => {
   loader.classList.add('disappear');
   loader.addEventListener('transitionend', () => {
     loader.style.display = 'none';
-
   })
 })
-
 const images = document.querySelectorAll('[data-src]');
 
 function loading(img) {
@@ -187,20 +203,43 @@ sizeButtonsArray.forEach(btn => {
     })
   })
 
-
 buyButton.addEventListener('click', () => {
-  cartIcon.classList.add('spinning');
-  cartIcon.addEventListener('animationend', () => {
-    cartIcon.classList.remove('spinning');
-  })
   let a = Number(cartNumber.innerHTML),
   b = Number(result.innerHTML);
-  cartNumber.innerHTML = a + b;
-  if(b===0) {
+  if(cartIconStyle.animationPlayState == 'running') {
+    return;
+  }
+  else if(b === 0){
+    cartIcon.style.setProperty('transform', 'translateX(-1rem)');
+    cartIcon.addEventListener('transitionend', () => {
+      cartIcon.classList.add('no-product');
+    }, {once: true})
+    
+    cartIcon.addEventListener('animationend', ()=>{
+        cartIcon.style.removeProperty('transform');
+        cartIcon.classList.remove('no-product');
+      })
+  }
+  else {
+    cartNumber.innerHTML = a + b;
+    cartIcon.classList.add('spinning');
+    cartIcon.addEventListener('animationend', () => {
+      cartIcon.classList.remove('spinning');
+    })
+
+    if(sizeButtonsArray[0].classList.contains('chosen')) {
+      loop('M', b, nameOfProduct);
+    }
+    else if(sizeButtonsArray[1].classList.contains('chosen')) {
+      loop('L', b, nameOfProduct);
+    }
+    else {
+      loop('XL', b, nameOfProduct);
+    }
+    result.innerHTML = 0;
+    quantity = 0;
 
   }
-  result.innerHTML = 0;
-  quantity = 0;
 })
 
 
@@ -226,28 +265,30 @@ minus.addEventListener('click', function() {
 
 
 
-
+let attr = window.getComputedStyle(coffeeDown);
+let atr = window.getComputedStyle(coffeeUp);
 
 coffeeJarContainer.addEventListener('click', () => {
-    if (after_of_coffeeJarContainer.width=='0px'){
-      coffeeJar.classList.add("active");
-      coffeeDown.beginElement();
-      coffeeCup.classList.add('out');
-      coffeeJarContainer.style.setProperty('--animation', 'liquid .7s');
-      coffeeJarContainer.addEventListener('animationend', () => {
-        coffeeSmoke.classList.add('visible');
-      })
-      coffeeJarContainer.setAttribute("aria-expanded", true);
-    }
-    else {
-      coffeeJar.classList.remove("active");
-      coffeeUp.beginElement();
-      coffeeJarContainer.style.setProperty('--animation', 'liquid-reverse 0.4s');
-      coffeeJarContainer.addEventListener('animationend', () => {
-        coffeeCup.classList.remove('out');
-        coffeeSmoke.classList.remove('visible');
-      }, {once: true})
-      coffeeJarContainer.setAttribute("aria-expanded", false);
 
+  if (after_of_coffeeJarContainer.width=='0px'){
+    coffeeJar.classList.add("active");
+    coffeeDown.beginElement();
+    coffeeCup.classList.add('out');
+    coffeeJarContainer.style.setProperty('--animation', 'liquid .7s');
+    coffeeJarContainer.addEventListener('animationend', () => {
+      coffeeSmoke.classList.add('visible');
+      coffeeJarContainer.setAttribute("aria-expanded", true);
+      })
+    }
+  else {
+    coffeeJar.classList.remove("active");
+    coffeeUp.beginElement();
+    coffeeJarContainer.style.setProperty('--animation', 'liquid-reverse 0.4s');
+    coffeeJarContainer.addEventListener('animationend', () => {
+      coffeeCup.classList.remove('out');
+      coffeeSmoke.classList.remove('visible');
+      }, {once: true})
+    coffeeJarContainer.setAttribute("aria-expanded", false);
     }
 });
+
