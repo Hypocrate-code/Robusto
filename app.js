@@ -37,11 +37,9 @@ nameOfProduct.pop();
 nameOfProduct = nameOfProduct.join('');
 
 const cartLink = document.querySelector('[href="user_cart_page/index.html"]');
-indexOfProduct = 0;
-
 
 function initCartScore (num) {
-  if(isNaN(parseInt(num))) {
+  if(isNaN(num)) {
     if(localStorage.length == 0) {
       localStorage.setItem('totalValue', 0);
       cartNumber.textContent = localStorage.getItem('totalValue');
@@ -49,7 +47,6 @@ function initCartScore (num) {
     else {
       cartNumber.textContent = localStorage.getItem('totalValue');
     }
-    cartNumber.textContent = localStorage.getItem('totalValue');
   }
   else {
     let resu = parseInt(localStorage.getItem('totalValue')) + parseInt(num);
@@ -62,7 +59,7 @@ initCartScore();
 
 function loop(name, size, qtt, productImg) {
   ourProduct = {name:name, size:size, quantity: qtt, link:productImg};
-  initCartScore(qtt);
+  initCartScore(Number(qtt));
   let localLength = localStorage.length - 1;
   for(i=0;i<localLength;i++) {
     let tableau = JSON.parse(localStorage[i]);
@@ -264,7 +261,6 @@ buyButton.addEventListener('click', () => {
     result.innerHTML = 0;
   }
 })
-localStorage.clear();
 cartLink.addEventListener('click', ()=>{
   window.location.href ='user_cart_page/index.html';
 }); 
