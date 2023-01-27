@@ -1,0 +1,382 @@
+/* reset css */
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* custom properties */
+
+html {
+    font-size: 62.5%;
+}
+:root {
+    --black-brown: #432818;
+    --really-black-brown: #362013;
+    --latte-brown: #99582A;
+    --cream-brown: #FFE6A7;
+    --accent-color: #339989;
+}
+body {
+    font-size: 2rem;
+    background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash.jpg);
+    width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    background-size: cover;
+    display: grid;
+    grid-template-columns: 60vw 1fr;
+    grid-row: max-content;
+    color: var(--cream-brown);
+    font-family: 'Roboto', serif;
+}
+.loader {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    align-items: center;
+    z-index: 100;
+    height: 100%;
+    inset: 0;
+    background-color: var(--black-brown);
+    transition: .25s;
+}
+.disappear {
+    animation: disappear .3s forwards;
+}
+@keyframes disappear {
+    from {
+        filter: opacity(80%);
+    }
+    to {
+        filter: opacity(0);
+    }
+}
+.dot {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    background-color: var(--cream-brown);
+    animation: loading .2s infinite alternate;
+}
+.dot:nth-child(2) {
+    animation-delay: .1s;
+}
+.dot:nth-child(3) {
+    animation-delay: .2s;
+}
+@keyframes loading {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-4rem);
+    }
+}
+/* ****************************************************************************ACHATS DU CLIENT********************************************************************************** */
+
+.cart-products {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(67, 40, 24, 0.6);
+    gap: 3.5rem;
+    padding: 4rem 4rem 2rem 4rem;
+}
+h1 {
+    width: 100%;
+    font-size: 4.4rem;
+    position: relative;
+}
+h1::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -1rem;
+    width: 100%;
+    height: .25rem;
+    background-color: var(--cream-brown);
+    border-radius: 999px;
+}
+/* *********************WEELY*******************************/
+.weely {
+    height: 62rem;
+    transform: translateY(-.8rem);
+    animation: fade-in .2s ease-in forwards;
+}
+
+/* *********PART OF BODY *********** */
+
+#bubble {
+    animation: bubble 1s ease-in-out infinite alternate;
+}
+@keyframes bubble {
+    from{
+        transform: translateY(0);
+    }
+    to{
+        transform: translateY(1rem);
+    }
+    
+}
+@keyframes wiggling {
+    from{
+        transform: translateY(0);
+    }
+    to{
+        transform: translateY(.4rem);
+    }
+}
+@keyframes wiggling-adaptating {
+    from{
+        transform: scaleY(1);
+    }
+    to{
+        transform: scaleY(1.1);
+    }
+}
+@keyframes fade-in {
+    from{
+        filter: opacity(0);
+    }
+    to{
+        filter: opacity(1);
+    }
+    
+}
+#coffee-cup-inside {
+    animation: wiggling .8s ease-in-out infinite alternate;
+}
+#coffee-liquid {
+    animation: wiggling-adaptating .8s ease-in-out infinite alternate;
+    transform-origin: top;
+    transform-box: fill-box;
+}
+
+/* ********************FIN WEELY*****************************/
+.product {
+    background-color: var(--really-black-brown);
+    box-shadow: 0 0 3rem var(--really-black-brown);
+    padding: 2rem;
+    width: 76rem;
+    height: 27rem;
+    border-radius: 2rem;
+    display: grid;
+    grid-template-columns: max-content max-content 1fr;
+    grid-template-rows: min-content 1fr;
+    gap: 0 2rem;
+    filter: opacity(85%);
+    transition: all .2s;
+}
+.going-up {
+    transition: all .2s ease-in-out !important;
+    transform: translateY(calc(-100% - 3.4rem));
+}
+.begin-anim-ended {
+    transition: filter .2s;
+}
+.not-on-screen {
+    transform: translateX(14rem);
+    filter: opacity(0);
+}
+/* DETAILS DE CHAQUE CARTE */
+
+.product img {
+    width: 15rem;
+    height: 100%;    
+    border-radius: 2rem .5rem .5rem 2rem;
+    grid-area: 1/1/-1/2;
+}
+
+.product .title {
+    grid-area: 1/2/3/3;
+    position: relative;
+
+}
+.title h2{
+    font-size: 4.5rem;
+    font-family: 'Roboto Slab', serif;
+    margin-top: 1rem;
+    width: max-content;
+    position: relative;
+}
+.title h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+.title h2::after {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    content: '';
+    width: calc(100% - 6rem);
+    height: .35rem;
+    background-color: var(--latte-brown);
+    clip-path: polygon(2% 0, 100% 0, 98% 100%, 0% 100%);
+}
+.title>p {
+    font-size: 2.4rem;
+    font-weight: 900;
+    margin-top: .5rem;
+}
+.title p:last-child {
+    font-size: 1.8rem;
+}
+.quantity {
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 1rem;
+    width: 15rem;
+    height: 5rem;
+    position: absolute;
+    right: -18rem;
+    bottom: 3rem;
+}
+.quantifier {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 7.2rem;
+    height: 100%;
+    background-color: var(--cream-brown);
+    border: none;
+    transition: all .1s;
+    font-size: 2.6rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+.quantifier:not(.result):active{
+    outline: none;
+    filter: brightness(70%);
+}
+.plus {
+    border-radius: 0 1rem 1rem 0;
+}
+.minus {
+    border-radius: 1rem 0 0 1rem;
+}
+.quantifier:not(.result):hover,
+.quantifier:not(.result):focus-visible {
+    color: var(--latte-brown);
+    cursor: pointer;
+    filter: brightness(90%);
+}
+.quantifier:focus-visible {
+    outline: none;
+}
+.quantifier:not(.plus) {
+    border-right: 3px solid var(--black-brown);
+}
+
+
+/* icon et animations de la poubelle */
+
+.trash {
+    margin: .5rem calc(100% - 5rem);
+    width: 5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    height: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.trash svg {
+    fill: var(--latte-brown);
+    width: 100%;
+    height: max-content;
+    transition: all .15s;
+}
+.trash svg:first-child {
+    transform-origin: left;
+    width: 3.8rem;
+    transform: translate(-.4rem, -.1rem);
+}
+
+.trash:hover,
+.trash:focus-visible {
+    backdrop-filter: brightness(90%);
+}
+.trash:hover svg:first-child,
+.trash:focus-visible svg:first-child {
+    transform: translate(-.5rem) rotate(-25deg);
+}
+
+/* ****************************************************************************VALIDATION DE L'ACHAT********************************************************************************** */
+
+.cart-validation {
+    background-color: rgba(54, 32, 19, 0.97);
+    padding: 5rem;
+    position: fixed;
+    width: 40vw;
+    right: 0;
+    height: 100vh;
+}
+.cart-validation p {
+    font-size: 1.5rem;
+}
+
+/* ****************************************************************************INITIALISATION FINALE***************************************************************************** */
+
+#latte {
+    color: var(--latte-brown);
+}
+#accent {
+    color: var(--accent-color);
+}
+
+
+@media screen and (max-width: 1700px) {
+    html {
+        font-size: 62.5%;
+    }
+}
+@media screen and (max-width: 1600px) {
+    html {
+        font-size: 59%;
+    }
+
+}
+@media screen and (max-width: 1500px) {
+    html {
+        font-size: 56%;
+    }
+    :root {
+        --scale: 55;
+    }
+}
+@media screen and (max-width: 1320px) {
+    html {
+        font-size: 53%;
+    }
+    .top-navbar {
+        padding: 0 12rem;
+    }
+    :root {
+        --scale: 55;
+    }
+}
+@media screen and (max-width: 1220px) {
+    html {
+        font-size: 50%;
+    }
+
+    :root {
+        --scale: 55;
+    }
+}
+@media screen and (max-width: 1100px) {
+    html {
+        font-size: 47%;
+    }
+
+    :root {
+        --scale: 55;
+    }
+
+}
