@@ -1,5 +1,12 @@
-const productContainer = document.querySelector('.cart-products');
-const loader = document.querySelector('.loader');
+const loader = document.querySelector('.loader'),
+productContainer = document.querySelector('.cart-products'),
+dropDownLanguage = document.querySelector('.drop-down-language-picker'),
+dropDownLanguageButton = document.querySelector('.user-buttons li:first-child>button'),
+dateInput = document.querySelector('.mendatory-informations>div:last-child p:last-child'),
+recap = document.querySelector('.recap-products'),
+subTotal = document.querySelector('.mendatory-informations p:last-child'),
+total = document.querySelector('.mendatory-informations p:last-child #accent'),
+shippings = document.querySelector('#shipping');
 
 window.addEventListener('load', () => {
     loader.classList.add('disappear');
@@ -9,6 +16,7 @@ window.addEventListener('load', () => {
 })
 
 function createAWilly () {
+    productContainer.style.setProperty('backdrop-filter', 'brightness(85%)')
     let weely = document.createElement('div');
     weely.innerHTML = `<svg class="weely" width="982" height="1102" viewBox="0 0 982 1102" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="weely">
@@ -191,10 +199,13 @@ function createAWilly () {
     .to("#monocle", .4, { rotate: 'random(360,-360,60)'}, '-=.5')
     .to("#weely>*", .8, {delay: 1.5, ease: 'back.out(2)',x: origin,y:origin, rotate: origin, transformBox: 'view-box', transformOrigin: 'center'})
     .to("#coffee-cup-right, #coffee-cup-left", .5, {delay: -.8,x: origin,y:origin, rotate: origin, transformBox: 'view-box', transformOrigin: 'center'})
-    .to("#eye", .5, {scale:1})
+    .to("#eye", .5, {scale:1});
 }
-
+let subTotalPrices = 0;
 function init() {
+    let date = new Date();
+    date.setDate(date.getDate() + 4)
+    dateInput.textContent = date.toLocaleDateString('en', {dateStyle: 'long'});
     if(localStorage.getItem('totalValue') == 0) {
         createAWilly();
     }
@@ -210,7 +221,7 @@ function init() {
                 image = image.join('');
                 productCard.innerHTML =`<img src="${image}"/>
                 <div class="title">
-                <h2>${productData.name}</h2>
+                <h2>${productData.name},</h2>
                 <h3>${productData.subName}</h3>
                 <p>Size : <span id="latte">${productData.size}</span></p>
                 <p><span id="accent">$${productData.price * productData.quantity}.00</span></p>
@@ -231,12 +242,45 @@ function init() {
                 </button>
                 `;
                 productContainer.appendChild(productCard);
+                let recapProduct = document.createElement('div');
+                recapProduct.setAttribute('class', 'recap-product');
+                recapProduct.innerHTML = `<h3>${productData.name} ×${productData.quantity}</h3><p><span id="latte">${productData.size}</span></p><p>$${productData.price*productData.quantity}`
+                recap.appendChild(recapProduct);
+                subTotalPrices += parseInt(productData.price*productData.quantity);
             }
         })
+        subTotal.textContent = `$${subTotalPrices}`;
+        total.textContent = `$${subTotalPrices + parseFloat(shippings.textContent)}`;
     };
 }
 init();
 
+dropDownLanguageButton.addEventListener('click', ()=>{
+    if(dropDownLanguage.style.animationPlayState == 'running') {
+        return;
+    }
+    else if(dropDownLanguage.style.display == 'block') {
+        dropDownLanguage.style.setProperty('animation', 'fade-in-top-reverse .15s forwards');
+        dropDownLanguage.addEventListener('animationend', () => {
+            dropDownLanguage.style.setProperty('animation-play-state','paused');
+            dropDownLanguage.style.setProperty('display','none');
+        }, {once: true})
+    }
+    else {
+        dropDownLanguage.style.setProperty('display', 'block');
+        dropDownLanguage.style.setProperty('animation', 'fade-in-top .15s forwards')
+        dropDownLanguage.addEventListener('animationend',()=> {
+            dropDownLanguage.style.setProperty('animation-play-state','paused');
+            document.body.addEventListener('click', ()=>{
+                dropDownLanguage.style.setProperty('animation', 'fade-in-top-reverse .15s forwards');
+                dropDownLanguage.addEventListener('animationend', () => {
+                    dropDownLanguage.style.setProperty('display','none');
+                    dropDownLanguage.style.setProperty('animation-play-state','paused');
+                }, {once: true})
+            }, {once: true})
+        }, {once: true})
+    }
+})
 
 let products = Array.from(productContainer.children);
 const appearingInteresctionObserver = new IntersectionObserver(params => {
@@ -275,13 +319,31 @@ function disappear(key, card) {
     card.classList.add('disappear');
     card.addEventListener('animationend', ()=> {
         togglePropertyGoUp(card);
-        card.style.setProperty('display', 'none');
-        localStorage.getItem("totalValue") == 0 ? createAWilly() : console.log('non');
+        productContainer.removeChild(card);
+        if(localStorage.getItem("totalValue") == 0) {createAWilly()}
     },{once:true})
+}
+function edit(indx, qtt, key) {
+    subTotalPrices = 0;
+    Object.keys(localStorage).forEach(key => {
+        if(key != 'totalValue') {
+            subTotalPrices += JSON.parse(localStorage.getItem(key)).quantity*JSON.parse(localStorage.getItem(key)).price;
+        }
+    })
+    subTotal.textContent = `$${subTotalPrices}`;
+    total.textContent = `$${subTotalPrices + parseFloat(shippings.textContent)}`
+    if(qtt==0) {
+        recap.removeChild(recap.children[indx]);
+    }
+    else {
+        const {name, size, quantity, link, subName, price} = JSON.parse(localStorage.getItem(key));
+        recap.children[indx].children[0].textContent = `${name}  ×${quantity}`;
+        recap.children[indx].children[2].textContent = `$${price*quantity}`;
+    }
 }
 
 trashButtons.forEach(button => {
-    button.addEventListener('click',()=> {disappear(button.getAttribute('data-id'), button.parentNode)})
+    button.addEventListener('click',()=> {disappear(button.getAttribute('data-id'), button.parentNode); edit(Array.from(productContainer.children).indexOf(button.parentNode)-1, 0);})
 })
 
 const plusS = document.querySelectorAll('.plus');
@@ -293,7 +355,10 @@ plusS.forEach(btn => {
         actualProduct.quantity = parseInt(actualProduct.quantity)+1;
         localStorage.setItem('totalValue', parseInt(localStorage.getItem('totalValue'))+1);
         localStorage.setItem(key, JSON.stringify(actualProduct));
-        quantifierResult.textContent = JSON.parse(localStorage.getItem(key)).quantity;
+        quantifierResult.textContent = actualProduct.quantity;
+        edit(Array.from(productContainer.children).indexOf(btn.parentNode.parentNode.parentNode)-1, actualProduct.quantity - 1, key);
+        btn.parentNode.parentNode.children[3].children[0].textContent = `$${actualProduct.price * actualProduct.quantity}.00`;
+        
     })
 })
 const minusS = document.querySelectorAll('.minus');
@@ -302,10 +367,16 @@ minusS.forEach(btn => {
         const quantifierResult = btn.parentNode.children[1];
         const key = btn.parentNode.parentNode.parentNode.children[2].getAttribute('data-id');
         const actualProduct = JSON.parse(localStorage.getItem(key));
-        if(actualProduct.quantity == '1') {disappear(key, btn.parentNode.parentNode.parentNode); return;}
+        if(actualProduct.quantity == '1') {
+            disappear(key, btn.parentNode.parentNode.parentNode); 
+            edit(Array.from(productContainer.children).indexOf(btn.parentNode.parentNode.parentNode)-1, actualProduct.quantity - 1, key);
+            return;
+        }
         actualProduct.quantity = parseInt(actualProduct.quantity)-1;
         localStorage.setItem('totalValue', parseInt(localStorage.getItem('totalValue'))-1);
         localStorage.setItem(key, JSON.stringify(actualProduct));
-        quantifierResult.textContent = JSON.parse(localStorage.getItem(key)).quantity;
+        quantifierResult.textContent = actualProduct.quantity;
+        edit(Array.from(productContainer.children).indexOf(btn.parentNode.parentNode.parentNode)-1, actualProduct.quantity, key);
+        btn.parentNode.parentNode.children[3].children[0].textContent = `$${actualProduct.price * actualProduct.quantity}.00`;
     })
 })
