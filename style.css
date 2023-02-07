@@ -76,10 +76,10 @@ body {
     position: absolute;
     object-fit: cover;
     width: 100vw;
-    height: 240rem;
+    height: 325rem;
     inset: 0;
     z-index: -3;
-    filter: opacity(35%);    
+    filter: opacity(50%);    
 }
 button:focus-visible, a:focus-visible {
     outline: 2px dashed #fff;
@@ -101,7 +101,7 @@ button, a {
     padding: 0 10rem;
     box-shadow: 0 2px 5px var(--really-black-brown);
     background-color: rgba(54, 32, 19, 0.674);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(10px);
 }
 
 /* Tout en rapport avec la navbar sur le coté */
@@ -257,11 +257,7 @@ button, a {
     color: var(--black-brown);
     font-family: 'Roboto', sans-serif;
 }
-#light-mode {
-    background: transparent;
-    border: none;
-}
-a::after {
+.side-navbar-links li a::after {
     content: '';
     display: block;
     position: absolute;
@@ -301,20 +297,79 @@ a::after {
     justify-content: end;
     align-items: center;
     height: 100%;
+    grid-area: 1/3/2/4;
 }
 .user-buttons {
-    width: 12rem;
+    width: 24rem;
     display: flex;
     justify-content: space-between;
-    list-style-type: none;
-    box-sizing: content-box;
+    align-items: center;
+    gap: 1.7rem;
+    width: max-content;
     padding: 1rem;
+    list-style-type: none;
 }
-
 .user-buttons li {
     position: relative;
     display: block;
-
+    height: max-content;
+}
+.user-buttons>li:first-child {
+    height: 6.3rem;
+    transform: translate(1rem, -.1rem);
+}
+.user-buttons li:first-child button,
+.user-buttons li:first-child>div a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 11rem;
+    border-radius: 1rem;
+    height: 100%;
+    background: none;
+    border: none;
+    color: var(--cream-brown);
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: .1rem;
+    transition: all .2s;
+    cursor: pointer;
+}
+.user-buttons li:first-child button:hover,
+.user-buttons li:first-child button:focus-visible,
+.user-buttons li:first-child>div a:hover,
+.user-buttons li:first-child>div a:focus-visible {
+    backdrop-filter: brightness(90%);
+}
+.user-buttons li:first-child>div {
+    display: none;
+    border-radius: 1rem;
+    position: absolute;
+    left: -7rem;
+    bottom: -20rem;
+    width: 25rem;
+    padding: 2rem;
+    background-color: var(--spicy-purple);
+    transition: all .2s;
+    box-shadow: 0 0 2rem var(--really-black-brown);
+    font-family: 'Roboto', sans-serif;
+}
+.user-buttons li:first-child>div>p {
+    font-size: 2.3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+.user-buttons li:first-child ul li {
+    display: flex;
+    justify-content: center;
+}
+.user-buttons li:first-child>div a {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 18rem;
+    padding-left: 1.2rem;
+    text-decoration: none;
 }
 .user-icon, .shopping-cart-icon {
     width: 4.8rem;
@@ -322,8 +377,15 @@ a::after {
     transition: transform .1s;
 }
 .user-icon:hover,
-.shopping-cart-icon:hover {
+.user-icon:focus-visible,
+.shopping-cart-icon:hover,
+.user-buttons>li>a:focus-visible {
     transform: rotate(-17deg);
+}
+.user-buttons li a {
+    display: block;
+    transition: all .2s;
+    user-select: none;
 }
 #cart-number {
     display: block;
@@ -342,30 +404,55 @@ a::after {
     height: 2rem;
     pointer-events: none;
 }
+@keyframes fade-in-top {
+    from {
+        transform: translateY(-1.5rem);
+        filter: opacity(0);
+    }
+    to{
+        transform: translateY(0);
+        filter: opacity(1);
+    }
+}
+@keyframes fade-in-top-reverse {
+    from {
+        transform: translateY(0);
+        filter: opacity(1);
+    }
+    to{
+        transform: translateY(-1.5rem);
+        filter: opacity(0);
+    }
+}
 
 main {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 6rem;
+    grid-template-columns: 1fr;
+    gap: 6rem 0;
     grid-template-rows: 65rem calc(max-content + 8rem) 1fr;
-    padding: 11.5rem 0 18rem;
+    padding: 11.5rem 0 8rem;
     position: relative;
-    width: 115rem;
+    width: 100%;
     z-index: 1;
-    background-color: rgba(54, 32, 19, 0.6);
-    box-shadow: 0 -10px 2rem 4rem  rgba(54, 32, 19, 0.5);
+    background-color: rgba(54, 32, 19, 0.55);
+    /* box-shadow: inset 0 0 15rem var(--really-black   -brown); */
 }
 /* CONTENU DE LA PAGE */
 
 /* PHOTO DU PRODUIT */
 
-
+.product-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 5rem;
+}
 .photo-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    margin-left: 4rem;
+    width: max-content;
+    margin-left: 7rem;
 }
 .product-photo {
     width: 40rem;
@@ -484,6 +571,7 @@ h1::after {
     overflow: hidden;
     width: 100%;
     height: 100%;
+    font-weight: 300;
     font-size: 1.8rem;
     text-align: justify;
     padding: 1.4rem;
@@ -518,6 +606,8 @@ h1::after {
     display: flex;
     width: 100%;
     gap: 2rem;
+    font-weight: 300;
+
 }
 
 .front svg,
@@ -651,7 +741,7 @@ h1::after {
     font-size: 1.6rem;
     font-weight: 800;
     font-family: 'Roboto', sans-serif;
-    color: var(--really-black-brown);
+    color: var(--black-brown);
     background-color: var(--accent-color);
     /* box-shadow: 1rem 1rem 0 -.rem var(--cream-brown); */
     border-radius: 1rem;
@@ -679,6 +769,9 @@ h1::after {
 .cart-icon.spinning {
     animation: cart .8s forwards;
     animation-play-state: running;
+}
+.cart-icon.no-product {
+    animation: nope .3s forwards;
 }
 
 @keyframes cart {
@@ -757,15 +850,17 @@ h1::after {
 .details-container {
     grid-area: 2 / 1 / 3 / 3 ;
     display: grid;
-    grid-template-rows: repeat(7, 8.5rem);
-    grid-template-columns: 1fr 1fr;
     position: relative;
-    padding: 4rem;
-    background: var(--black-brown);
-    margin: 7rem 0;
-    filter: opacity(90%);
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 14rem 1fr 1fr calc(1fr + 8rem);
+    gap: 4rem 2.5rem;
+    margin: 5rem 0 0 0;
+    background:#432818b3;
+    backdrop-filter: blur(3px);
+    padding: 3rem 25rem;
+    box-shadow: 0 0 3rem 1.5rem var(--really-black-brown);
 }
-.details-container::before,
+/* .details-container::before,
 .details-container::after {
     content: '';
     display: block;
@@ -773,19 +868,22 @@ h1::after {
     height: 100%;
     width: 50%;
     background-color: var(--black-brown);
+    background:#432818b8;
+    backdrop-filter: blur(3px);
 }
 .details-container::before {
     left: -50%;
 }
 .details-container::after {
     right: -50%;
-}
+} */
 .details-container h3 {
-    grid-area: 1 / 1 / 2 / 3;
     font-size: 5rem;
-    padding: 1rem;
+    margin: 6rem 0 0rem 0;
     position: relative;
     width: max-content;
+    grid-area: 1/1/2/3;
+    transform: translateX(-4rem);
 }
 .details-container h3::after {
     content: '';
@@ -794,36 +892,203 @@ h1::after {
     width: 100%;
     clip-path: polygon(0 0, 98% 0, 100% 100%, 2% 100%);
     transform: translateX(-2%);
-    bottom: .8rem;
+    bottom: 0rem;
     height: .4rem;
-    background-image: linear-gradient(to right,var(--black-brown), var(--latte-brown), var(--cream-brown));
+    background-image: linear-gradient(to right, var(--accent-color), var(--spicy-purple));
+    background-size: 200%;
 }
-.details-container >* {
-    border: 1px solid #000;
+.double-card-description,
+.single-card-description{
+    height: 100%;
+    position: relative;
+    box-shadow: 0 0 1.7rem .3rem var(--really-black-brown);
+    background-color: var(--cream-brown);
+    color: var(--latte-brown);
+    font-size: 3.6rem;
+    display: flex;
+    align-items: center;
+    padding: 2.5rem 1.5rem;
+    border-radius: .8rem;
+}
+.double-card-description {
+    grid-area: 2/1/3/3;
+    height: max-content;
+    justify-content: space-around;
+    gap: .8rem;
+}
+.double-card-description:last-child {
+    grid-area: 4/1/5/3;
+    margin-bottom: 8rem;
+    height: 38rem;
+}
+.single-card-description{
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 1rem;
+    padding: 3.5rem 3rem;
+}
+.country {
+    width: 20rem;
+    height: min-content;
+}
+.country:first-child {
+    width: 24.5rem;
+}
+.content {
+    width: 48%;
+    line-height: 3.4rem;
+}
+.content h4 {
+    margin-bottom: 1.5rem;
+}
+.content p,
+.single-card-description p {
+    text-align: justify;
+    font-size: 2.5rem;
+    color: #99582ae5;
+    font-family: 'Roboto', sans-serif;
+}
+.bean-colour-top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: .5rem;
+    padding-bottom: .5rem;
+    border-bottom: .2rem solid #4328185b;
+}
+.bean-colour-top * {
+    font-weight: 500;
+    font-size: 2.8rem;
+    font-family: 'Roboto', sans-serif;
+}
+.bean-colour-top h5 {
+    font-family: 'Roboto Slab', serif;
+    letter-spacing: .1rem;
+}
+.bean {
+    position: absolute;
+    transform-origin: center;
+    width: 8rem;
+    height: 8rem;
+    z-index: 1;
+}
+.bean:first-child {
+    top: 0;
+    left: 0;
+    transform: translate(-40%, -40%) rotate(45deg);
+}
+.bean:last-child {
+    bottom: 0;
+    right: 0;
+    transform: translate(30%, 30%) rotate(45deg);
+}
+.single-card-description p {
+    padding: 0 1.5rem;
+    line-height: 3.4rem;
 }
 
-.cart-icon.no-product {
-    animation: nope .3s forwards;
+.single-card-description ul li {
+    position: relative;
+    font-size: 1.8rem;
+    list-style-type: none;
+    height: 3.8rem;
+    padding-top: 1.2rem;
+    font-weight: 400;
 }
+.single-card-description ul li::before {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 1rem;
+    left: -1.5rem;
+    transform: translateY(-15%);
+    height: 1rem;
+    top: 50%;   
+    border-radius: .5rem;
+}
+.light {color: #b59d27;}
+.light::before {background-color: #b59d27;}
+.blonde {color: #b08c43;}
+.blonde::before {background-color: #b08c43;}
+.medium {color: #9c713f ;}
+.medium::before {background-color: #9c713f;}
+.brown {color: #5c3823;}
+.brown::before {background-color: #5c3823;}
+.dark-brown {color: var(--really-black-brown);}
+.dark-brown::before {background-color: var(--really-black-brown);}
+
+.actual {font-weight: 800 !important;}
+/* .actual::after {
+    position: absolute;
+    content: '';
+    display: block;
+    width: .3rem;
+    transform: translateY(-35%);
+    height: calc(100% - 2rem);
+    top: 50%;
+    right: -.8rem;
+    background: var(--spicy-purple);
+    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 85%);
+} */
+
 @keyframes nope {
     0% {translate: -1rem 0;}
     50% {translate: 1.5rem 0;}
     100% {translate: 0;}
 }
-/* ===================================== MORE INFORMATIONS ON THE PRODUCT ================================== */
+@keyframes wiggling-top {
+    0% {
+        transform: translate(-40%, -40%) rotate(45deg);    }
+    33% {
+        transform: translate(-40%, -40%) rotate(35deg);
+    }
+    66% {
+        transform: translate(-40%, -40%) rotate(55deg);
+    }
+    100% {
+        transform: translate(-40%, -40%) rotate(45deg);
+    }
+}
+@keyframes wiggling-bottom {
+    0% {
+        transform: translate(30%, 30%) rotate(45deg);
+    }
+    33% {
+        transform: translate(30%, 30%) rotate(35deg);
+    }
+    66% {
+        transform: translate(30%, 30%) rotate(55deg);
+    }
+    100% {
+        transform: translate(30%, 30%) rotate(45deg);
+    }
+}
+.bean:first-child.wiggling {
+    animation: wiggling-top .4s ease-in-out;
+}
+.bean:last-child.wiggling {
+    animation: wiggling-bottom .4s ease-in-out;
+}
 
+
+/* ===================================== MORE INFORMATIONS ON THE PRODUCT ================================== */
 /* ================================================= other products suggestion ============================================ */
 
 .other-products {
     grid-area: 3 / 1 / 3 / 3;
-    padding: 0 3.25rem;
-    width: 115rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+.cards-title-container {
     position: relative;
 }
 .other-products h2 {
     font-size: 4rem;
     margin-bottom: 1rem;
-
+    width: 105rem;
 }
 .card.switching-to-right {
     animation: switch-to-right .3s forwards;
@@ -835,7 +1100,7 @@ h1::after {
 }
 .card.switching-to-left {
     animation: switch-to-left .3s forwards;
-
+    
 }
 @keyframes switch-to-left {
     to {
@@ -843,14 +1108,14 @@ h1::after {
     }
 }
 .right {
-    right: -2%;
+    right: -8%;
 }
 .left {
-    left: -2%;
+    left: -8%;
 }
 .left, .right {
     position: absolute;
-    top: 50%;
+    top: 27rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -859,6 +1124,7 @@ h1::after {
     border-radius: 50%;
     border: .4rem solid var(--cream-brown);
     background: transparent;
+    transform: translateY(-50%);
     z-index: 999;
 }
 .left svg,
@@ -883,6 +1149,7 @@ h1::after {
     border-top: 3px solid var(--really-black-brown);
     border-bottom: 3px solid var(--really-black-brown);
     overflow: hidden;
+    width: 115rem;
 }
 .card:last-child,
 .card:first-child {
@@ -913,6 +1180,9 @@ h1::after {
     height: 29rem;
     border-radius: 1.5rem;
     transition: all .3s;
+    font-size: 2rem;
+    color: var(--accent-color);
+    background-color: var(--latte-brown);
 }
 
 .card > h3 {
@@ -1003,12 +1273,52 @@ footer {
     align-items: center;
     justify-content: center;
     gap: 4rem;
-    font-size: 2rem;
+    font-size: 2.2rem;
     width: 100vw;
-    height: 30rem;
+    height: min-content;
+    padding: 5.5rem 0;
     background-color: var(--really-black-brown);
 }
-
+footer ul {
+    width: max-content;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-left: 4rem;
+}
+footer ul li:nth-child(even) {
+    margin-left: 3rem;
+    position: relative;
+}
+footer ul li:nth-child(even)::before {
+    display: block;
+    content: '-';
+    position: absolute;
+    left: -1.5rem;
+}
+footer ul li:nth-child(odd) {
+    font-size: 2.6rem;
+    letter-spacing: .05rem;
+    font-family: 'Roboto';
+    font-weight: 500;
+}
+.advises>ol {
+    display: flex;
+    flex-direction: column;
+    gap: 1.05rem;
+    transform: translateX(5rem);
+}
+footer>div>h2 {
+    font-family: 'Roboto';
+    letter-spacing: .2rem;
+}
+#contact>h2 {
+    margin-bottom: 1.6rem;
+}
+.advises>h2 {
+    margin-bottom: 2rem;
+}
 
 /* ===================================== omg test ==================================== */
 

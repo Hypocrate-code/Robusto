@@ -6,8 +6,10 @@ coffeeCup = document.querySelector(".coffee-cup"),
 coffeeSmoke = document.querySelector(".coffee-smoke");
 let after_of_coffeeJarContainer = window.getComputedStyle(coffeeJarContainer, '::after'),
 quantity = 0;
-const coffeeDown = document.getElementById('coffee-down');
-const coffeeUp = document.getElementById('coffee-up');
+const coffeeDown = document.getElementById('coffee-down'),
+coffeeUp = document.getElementById('coffee-up'),
+dropDownLanguage = document.querySelector('.drop-down-language-picker'),
+dropDownLanguageButton = document.querySelector('.user-buttons li:first-child>button');
 
 const plus = document.querySelector('.plus'),
 minus = document.querySelector('.minus'),
@@ -30,9 +32,14 @@ const left = document.querySelector('.left');
 let cards, cardz, cars;
 cards = document.querySelector('.cards');
 
-const productImage = document.querySelector('.product-photo');
+const productImage = document.querySelector('.product-photo'),
+beans = document.querySelectorAll('.bean');
 
 let nameOfProduct = document.querySelector('h1').textContent;
+nameOfProduct = Array.from(nameOfProduct)
+nameOfProduct.pop();
+nameOfProduct = nameOfProduct.join('');
+
 let subName = document.querySelector('h2').textContent;
 
 
@@ -95,6 +102,36 @@ function loading(img) {
     img.src = dataSrc;
   }
 };
+dropDownLanguageButton.addEventListener('click', ()=>{
+  if(dropDownLanguage.style.animationPlayState == 'running') {
+      return;
+  }
+  else if(dropDownLanguage.style.display == 'block') {
+      dropDownLanguage.style.setProperty('animation', 'fade-in-top-reverse .15s forwards');
+      dropDownLanguage.addEventListener('animationend', () => {
+          dropDownLanguage.style.setProperty('animation-play-state','paused');
+          dropDownLanguage.style.setProperty('display','none');
+      }, {once: true})
+  }
+  else {
+      dropDownLanguage.style.setProperty('display', 'block');
+      dropDownLanguage.style.setProperty('animation', 'fade-in-top .15s forwards')
+      dropDownLanguage.addEventListener('animationend',()=> {
+          dropDownLanguage.style.setProperty('animation-play-state','paused');
+          document.body.addEventListener('click', ()=>{
+              dropDownLanguage.style.setProperty('animation', 'fade-in-top-reverse .15s forwards');
+              dropDownLanguage.addEventListener('animationend', () => {
+                  dropDownLanguage.style.setProperty('display','none');
+                  dropDownLanguage.style.setProperty('animation-play-state','paused');
+              }, {once: true})
+          }, {once: true})
+      }, {once: true})
+  }
+})
+beans.forEach(bean => bean.addEventListener('click', ()=> {
+  bean.classList.add('wiggling');
+  bean.addEventListener('animationend', ()=>bean.classList.remove('wiggling'))
+}))
 
 const lazyLoader = new IntersectionObserver(function (images, lazyLoader) {
   images.forEach(image => {
