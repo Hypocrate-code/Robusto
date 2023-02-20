@@ -3,7 +3,8 @@ const loader = document.querySelector('.loader');
 const coffeeJar = document.querySelector(".coffee-pot-icon"),
 coffeeJarContainer = document.querySelector(".coffee-pot-container"),
 coffeeCup = document.querySelector(".coffee-cup"),
-coffeeSmoke = document.querySelector(".coffee-smoke");
+coffeeSmoke = document.querySelector(".coffee-smoke"),
+hamburger = document.querySelector('.hamburger');
 let after_of_coffeeJarContainer = window.getComputedStyle(coffeeJarContainer, '::after'),
 quantity = 0;
 const coffeeDown = document.getElementById('coffee-down'),
@@ -35,12 +36,14 @@ cards = document.querySelector('.cards');
 const productImage = document.querySelector('.product-photo'),
 beans = document.querySelectorAll('.bean');
 
+
 let nameOfProduct = document.querySelector('h1').textContent;
 nameOfProduct = Array.from(nameOfProduct)
 nameOfProduct.pop();
 nameOfProduct = nameOfProduct.join('');
 
 let subName = document.querySelector('h2').textContent;
+const main = document.querySelector('main');
 
 
 const cartLink = document.querySelector('[href="user_cart_page/index.html"]');
@@ -63,6 +66,66 @@ function initCartScore (num) {
 }
 
 initCartScore();
+
+hamburger.addEventListener('click', ()=> {
+  if(hamburger.style.animationPlayState == 'running') {
+    return;
+  }
+  else {
+    document.body.classList.toggle('dark');
+    Array.from(hamburger.children).forEach(line => line.classList.toggle('active'));
+    hamburger.style.setProperty('animation-play-state', 'running');
+    if (hamburger.children[0].classList.contains('active')){
+      coffeeJar.classList.add("active");
+      coffeeDown.beginElement();
+      coffeeCup.classList.add('out');
+      coffeeJarContainer.style.setProperty('--animation', 'liquid .7s');
+      coffeeJarContainer.addEventListener('animationend', () => {
+        coffeeSmoke.classList.add('visible');
+        coffeeJarContainer.setAttribute("aria-expanded", true);
+        })
+      hamburger.setAttribute('aria-expanded', true);
+      }
+    else {
+      coffeeJar.classList.remove("active");
+      coffeeUp.beginElement();
+      coffeeJarContainer.style.setProperty('--animation', 'liquid-reverse 0.4s');
+      coffeeCup.classList.remove('out');
+      coffeeSmoke.classList.remove('visible');
+      coffeeJarContainer.setAttribute("aria-expanded", false);
+      hamburger.setAttribute('aria-expanded', false);
+      }
+
+    hamburger.addEventListener('animationend', ()=> {
+      hamburger.style.setProperty('animation-play-state', 'paused');
+    }, {once: true})
+  }
+})
+
+coffeeJarContainer.addEventListener('click', () => {
+  Array.from(hamburger.children).forEach(line => line.classList.toggle('active'));
+  document.body.classList.toggle('dark');
+  if (after_of_coffeeJarContainer.width=='0px'){
+    coffeeJar.classList.add("active");
+    coffeeDown.beginElement();
+    coffeeCup.classList.add('out');
+    coffeeJarContainer.style.setProperty('--animation', 'liquid .7s');
+    coffeeJarContainer.addEventListener('animationend', () => {
+      coffeeSmoke.classList.add('visible');
+      coffeeJarContainer.setAttribute("aria-expanded", true);
+      })
+    }
+  else {
+    coffeeJar.classList.remove("active");
+    coffeeUp.beginElement();
+    coffeeJarContainer.style.setProperty('--animation', 'liquid-reverse 0.4s');
+    coffeeJarContainer.addEventListener('animationend', () => {
+      coffeeCup.classList.remove('out');
+      coffeeSmoke.classList.remove('visible');
+      }, {once: true})
+    coffeeJarContainer.setAttribute("aria-expanded", false);
+    }
+});
 
 function loop(name, size, qtt, productImg, subName, price) {
   ourProduct = {name:name, size:size, quantity: qtt, link:productImg, subName:subName, price:price};
@@ -224,7 +287,7 @@ right.addEventListener('click', () => {
   setUpSlider();
   rightFunction();
 })
-const main = document.querySelector('main');
+
 let mouseYInImage, mouseXInImage, percentX, percentY
 
 productImage.addEventListener('click', function () {
@@ -327,26 +390,3 @@ minus.addEventListener('click', function() {
 });
 
 
-coffeeJarContainer.addEventListener('click', () => {
-
-  if (after_of_coffeeJarContainer.width=='0px'){
-    coffeeJar.classList.add("active");
-    coffeeDown.beginElement();
-    coffeeCup.classList.add('out');
-    coffeeJarContainer.style.setProperty('--animation', 'liquid .7s');
-    coffeeJarContainer.addEventListener('animationend', () => {
-      coffeeSmoke.classList.add('visible');
-      coffeeJarContainer.setAttribute("aria-expanded", true);
-      })
-    }
-  else {
-    coffeeJar.classList.remove("active");
-    coffeeUp.beginElement();
-    coffeeJarContainer.style.setProperty('--animation', 'liquid-reverse 0.4s');
-    coffeeJarContainer.addEventListener('animationend', () => {
-      coffeeCup.classList.remove('out');
-      coffeeSmoke.classList.remove('visible');
-      }, {once: true})
-    coffeeJarContainer.setAttribute("aria-expanded", false);
-    }
-});
