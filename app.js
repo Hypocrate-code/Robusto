@@ -154,11 +154,11 @@ window.addEventListener('load', () => {
   loader.addEventListener('transitionend', () => {
     loader.style.display = 'none';
   })
-  beansBackground.style.setProperty('height', window.getComputedStyle(document.body).height);
+  // beansBackground.style.setProperty('height', window.getComputedStyle(document.body).height);
 })
 
 window.addEventListener('resize', () => {
-  beansBackground.style.setProperty('height', window.getComputedStyle(document.body).height);
+  // beansBackground.style.setProperty('height', window.getComputedStyle(document.body).height);
 })
 
 const images = document.querySelectorAll('[data-src]');

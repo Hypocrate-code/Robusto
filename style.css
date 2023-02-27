@@ -78,13 +78,13 @@ body {
     filter: opacity(0);
 }
 .website-background{
-    position: absolute;
+    position: fixed;
     object-fit: cover;
     width: 100vw;
     height: 100%;
     inset: 0;
     z-index: -3;
-    filter: opacity(50%);    
+    filter: opacity(45%) brightness(120%);    
 }
 button:focus-visible, a:focus-visible {
     outline: 2px dashed #fff;
@@ -446,6 +446,7 @@ button, a {
     width: 11rem;
     border-radius: 1rem;
     height: 100%;
+    padding: 1rem 0;
     background: none;
     border: none;
     color: var(--cream-brown);
@@ -456,7 +457,8 @@ button, a {
     cursor: pointer;
 }
 .flag{
-    width: 6.5rem;
+    width: 5rem;
+    margin-right: .8rem;
 }
 .user-buttons li:first-child button:hover,
 .user-buttons li:first-child button:focus-visible,
@@ -1501,6 +1503,7 @@ footer>div>h2 {
     }
     .top-navbar {
         padding: 0 12rem;
+        height: 7.5rem;
     }
     :root {
         --scale: 55;
@@ -1532,7 +1535,6 @@ footer>div>h2 {
         flex-direction: column;
         padding: 2rem 14rem;
     }
-    
     .double-card-description {padding: 3.5rem 1.5rem;}
     .double-card-description h4 {font-size: 4.5rem; margin-bottom: 2rem;}
     .double-card-description p,
@@ -1578,6 +1580,11 @@ footer>div>h2 {
 
     :root {
         --scale: 55;
+    }
+    .top-navbar {
+        padding: 1.2rem 10rem;
+        height: max-content;
+        box-shadow: none;
     }
     .coffee-pot-container {
         display: none;
@@ -1625,9 +1632,6 @@ footer>div>h2 {
     body.dark main::after {
         display: block;
     }
-    .top-navbar {
-        box-shadow: none;
-    }
     :root {
         --scale: 55;
     }
@@ -1668,7 +1672,7 @@ footer>div>h2 {
         width: 100%;
     }
     .product-content {
-        padding: 0;
+        padding: 0 4rem;
         gap: 3.5rem;
     }
     .title {
@@ -1869,6 +1873,7 @@ footer>div>h2 {
 @media screen and (max-width: 840px) {
     .top-navbar {
         padding: 0 5rem;
+        height: 9rem;
     }
     .double-card-description:not(.second) {
         flex-direction: column;
@@ -1935,13 +1940,31 @@ footer>div>h2 {
         transform: translateX(-2.5rem);
     }
 }
+@media screen and (max-width: 550px) {
+    html {
+        font-size: 32%;
+    }
+    .product-container {
+        width: 100vw;
+    }
+    .front, .back, .card-back, .card-front, .sub-content {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 454px) {
+    html {
+        font-size: 28%;
+    }
+}
 @media screen and (max-width: 360px) {
     html {
-        font-size: 25%;
+        /* font-size: %; */
     }
     .line {
         height: 2px;
     }
+}
+@media screen and (max-width: 300px) {
 }
 
 
