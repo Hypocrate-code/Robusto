@@ -582,7 +582,6 @@ main::after {
 .product-photo {
     width: 40rem;
     height: 60rem;
-    background-image: url("assets/batlle creek.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     position: relative;
