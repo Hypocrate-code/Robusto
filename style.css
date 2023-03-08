@@ -30,15 +30,13 @@ html {
     --h1-size: 49rem;
 }
 body {
-    width: 100vw;
-    height: min-content;
+    background: url(assets/lukasz-rawa-fmc-tFMMiBs-unsplash.jpg) fixed;
     background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: var(--cream-brown);
     font-family: 'Roboto Slab', serif;
-    overflow-x: hidden;
 }
 
 .loader {
@@ -581,6 +579,7 @@ main::after {
 .product-photo {
     width: 40rem;
     height: 60rem;
+    background-image: url("assets/batlle creek.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     position: relative;
@@ -1421,7 +1420,7 @@ footer {
     justify-content: center;
     gap: 6rem;
     font-size: 1.9rem;
-    width: 100vw;
+    width: 100%;
     height: min-content;
     padding: 4rem;
     background-color: var(--really-black-brown);
@@ -2025,7 +2024,7 @@ footer>div>h2 {
         padding: 1rem 6rem;
     }
     .coffee-cup {
-        width: 100vw;
+        width: 100%;
         transition: 0s;
     }
     .coffee-cup.out {
