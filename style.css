@@ -32,7 +32,6 @@ html {
 body {
     width: 100vw;
     height: min-content;
-    background: url(assets/lukasz-rawa-fmc-tFMMiBs-unsplash.jpg) fixed;
     background-size: cover;
     display: flex;
     flex-direction: column;
