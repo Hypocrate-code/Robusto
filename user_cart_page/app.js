@@ -215,11 +215,7 @@ function init() {
                 let productData = JSON.parse(localStorage.getItem(element));
                 let productCard = document.createElement('div');
                 productCard.setAttribute('class', 'product not-on-screen');
-                let image = productData.link;
-                image = image.split('');
-                image.splice(0,0,'../');
-                image = image.join('');
-                productCard.innerHTML =`<img src="${image}"/>
+                productCard.innerHTML =`<img src="${productData.link}"/>
                 <div class="title">
                 <h2>${productData.name},</h2>
                 <h3>${productData.subName}</h3>
