@@ -29,7 +29,8 @@ html {
     --h1-size: 49rem;
 }
 body {
-    background: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash.jpg) fixed;
+    background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_2000.png);
+    background-attachment: fixed;
     background-color: var(--black-brown);
     background-size: cover;
     color: var(--cream-brown);
@@ -575,7 +576,7 @@ main::after {
 .product-photo {
     width: 40rem;
     height: 60rem;
-    background-image: url("../assets/black.jpg");
+    background-image: url("../assets/black_450.png");
     background-size: 100%;
     background-repeat: no-repeat;
     position: relative;
@@ -1469,6 +1470,9 @@ footer>div>h2 {
     html {
         font-size: 56%;
     }
+    body {
+        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1500.png);
+    }
     :root {
         --scale: 55;
     }
@@ -1617,6 +1621,9 @@ footer>div>h2 {
 }
 @media screen and (max-width: 1018px) {
     html {font-size: 44%;}
+    body {
+        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1000.png);
+    }
     .drop-down-language-picker {
         bottom: -23.5rem;
     }
@@ -1953,6 +1960,9 @@ footer>div>h2 {
     html {
         font-size: 39%;
     }
+    body {
+        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_500.png);
+    }
     .front, .back, .card-back, .card-front, .sub-content {
         width: 100%;
     }
@@ -2023,6 +2033,9 @@ footer>div>h2 {
 /* 414px résolution cheloue jules  */
 
 @media screen and (max-width: 380px) {
+    body {
+        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_400.png);
+    }
     .details-container {
         padding: 1rem 6rem;
     }
