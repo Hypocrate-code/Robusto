@@ -29,11 +29,12 @@ html {
     --h1-size: 49rem;
 }
 body {
-    background: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash.jpg) fixed;
+    background: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_2000.png) fixed;
     background-color: var(--black-brown);
     background-size: cover;
     color: var(--cream-brown);
     font-family: 'Roboto Slab', serif;
+    min-height: 100vh;
 }
 
 .loader {
@@ -393,7 +394,7 @@ button, a {
 }
 .item2 svg {
     width: 25rem;
-    /* height: 2rem; */
+    height: 100%;
 }
 
 /* bouton compte utilisateur et panier */
@@ -428,7 +429,7 @@ button, a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 11rem;
+    width: 16rem;
     border-radius: 1rem;
     height: 100%;
     padding: 1rem 0;
@@ -440,6 +441,10 @@ button, a {
     letter-spacing: .1rem;
     transition: all .2s;
     cursor: pointer;
+    text-decoration: none;
+}
+.user-buttons li:first-child button {
+    width: 11rem;
 }
 .flag{
     width: 5rem;
@@ -473,14 +478,6 @@ button, a {
 .user-buttons li:first-child ul li {
     display: flex;
     justify-content: center;
-}
-.user-buttons li:first-child>div a {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    width: 18rem;
-    padding-left: 1.2rem;
-    text-decoration: none;
 }
 .user-icon, .shopping-cart-icon {
     width: 4.8rem;
@@ -575,7 +572,7 @@ main::after {
 .product-photo {
     width: 40rem;
     height: 60rem;
-    background-image: url("../assets/batlle\ creek.jpg");
+    background-image: url("../assets/batlle\ creek_450.png");
     background-size: 100%;
     background-repeat: no-repeat;
     position: relative;
@@ -1473,6 +1470,9 @@ footer>div>h2 {
     html {
         font-size: 56%;
     }
+    body {
+        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1500.png);
+    }
     :root {
         --scale: 55;
     }
@@ -1624,6 +1624,9 @@ footer>div>h2 {
     html {font-size: 44%;}
     .drop-down-language-picker {
         bottom: -23.5rem;
+    }
+    body {
+        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1000.png);
     }
 }
 @media screen and (max-width: 934px) {
@@ -1954,6 +1957,9 @@ footer>div>h2 {
     html {
         font-size: 39%;
     }
+    body {
+        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_500.png);
+    }
     .front, .back, .card-back, .card-front, .sub-content {
         width: 100%;
     }
@@ -2021,11 +2027,12 @@ footer>div>h2 {
     }
 }
 
-/* 414px résolution cheloue jules  */
-
 @media screen and (max-width: 380px) {
     .details-container {
         padding: 1rem 6rem;
+    }
+    body {
+        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_400.png);
     }
     .coffee-cup {
         width: 100%;
@@ -2069,6 +2076,9 @@ footer>div>h2 {
         height: 3.5rem;
         padding-top: .7rem;
     }
+    .product-photo {
+        background-image: url(../assets/batlle\ creek_300.png);
+    }
 }
 @media screen and (max-width: 250px) {
     html {
@@ -2110,4 +2120,3 @@ b {
 #accent {
     color: var(--accent-color);
 }
-

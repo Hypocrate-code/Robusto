@@ -100,6 +100,25 @@ hamburger.addEventListener('click', ()=> {
     }, {once: true})
   }
 })
+const contactAnchor = document.querySelector('a[href="#contact"]');
+contactAnchor.addEventListener('click', () => {
+  if(window.innerWidth<=380) {
+    document.body.classList.remove('dark');
+    Array.from(hamburger.children).forEach(line => line.classList.remove('active'));
+    hamburger.style.setProperty('animation-play-state', 'running');
+    coffeeJar.classList.remove("active");
+    coffeeUp.beginElement();
+    coffeeJarContainer.style.setProperty('--animation', 'liquid-reverse 0.4s');
+    coffeeCup.classList.remove('out');
+    coffeeSmoke.classList.remove('visible');
+    coffeeJarContainer.setAttribute("aria-expanded", false);
+    hamburger.setAttribute('aria-expanded', false);
+    hamburger.addEventListener('animationend', ()=> {
+      hamburger.style.setProperty('animation-play-state', 'paused');
+    }, {once: true})
+  }
+})
+
 
 coffeeJarContainer.addEventListener('click', () => {
   Array.from(hamburger.children).forEach(line => line.classList.toggle('active'));
@@ -362,13 +381,13 @@ buyButton.addEventListener('click', () => {
     })
 
     if(sizeButtonsArray[0].classList.contains('chosen')) {
-      loop(nameOfProduct, 'M', b, 'assets/batlle creek.jpg', subName, prices[0]);
+      loop(nameOfProduct, 'M', b, '../assets/batlle creek_300.png', subName, prices[0]);
     }
     else if(sizeButtonsArray[1].classList.contains('chosen')) {
-      loop(nameOfProduct,'L', b, 'assets/batlle creek.jpg', subName, prices[1]);
+      loop(nameOfProduct,'L', b, '../assets/batlle creek_300.png', subName, prices[1]);
     }
     else {
-      loop(nameOfProduct,'XL', b, 'assets/batlle creek.jpg', subName, prices[2]);
+      loop(nameOfProduct,'XL', b, '../assets/batlle creek_300.png', subName, prices[2]);
     }
     quantity = 0;
     result.innerHTML = 0;
@@ -397,5 +416,3 @@ plus.addEventListener('click', function() {
 minus.addEventListener('click', function() {
   test(quantity);
 });
-
-
