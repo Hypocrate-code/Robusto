@@ -16,7 +16,7 @@ window.addEventListener('load', () => {
 })
 
 function createAWilly () {
-    productContainer.style.setProperty('backdrop-filter', 'brightness(85%)')
+    productContainer.classList.add('got-a-weely')
     let weely = document.createElement('div');
     weely.innerHTML = `<svg class="weely" width="982" height="1102" viewBox="0 0 982 1102" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="weely">
@@ -224,7 +224,7 @@ function init() {
                 <h2>${productData.name},</h2>
                 <h3>${productData.subName}</h3>
                 <p>Size : <span id="latte">${productData.size}</span></p>
-                <p><span id="accent">$${productData.price * productData.quantity}.00</span></p>
+                <p><span id="accent">$${productData.price * productData.quantity}</span></p>
                 <div class="quantity">
                 <button class="quantifier minus">-</button>
                 <p class="quantifier result">${productData.quantity}</p>
@@ -246,7 +246,7 @@ function init() {
                 recapProduct.setAttribute('class', 'recap-product');
                 recapProduct.innerHTML = `<h3>${productData.name} ×${productData.quantity}</h3><p><span id="latte">${productData.size}</span></p><p>$${productData.price*productData.quantity}`
                 recap.appendChild(recapProduct);
-                subTotalPrices += parseInt(productData.price*productData.quantity);
+                subTotalPrices += parseFloat(productData.price*productData.quantity);
             }
         })
         subTotal.textContent = `$${subTotalPrices}`;
@@ -357,7 +357,7 @@ plusS.forEach(btn => {
         localStorage.setItem(key, JSON.stringify(actualProduct));
         quantifierResult.textContent = actualProduct.quantity;
         edit(Array.from(productContainer.children).indexOf(btn.parentNode.parentNode.parentNode)-1, actualProduct.quantity - 1, key);
-        btn.parentNode.parentNode.children[3].children[0].textContent = `$${actualProduct.price * actualProduct.quantity}.00`;
+        btn.parentNode.parentNode.children[3].children[0].textContent = `$${actualProduct.price * actualProduct.quantity}`;
         
     })
 })
@@ -377,6 +377,6 @@ minusS.forEach(btn => {
         localStorage.setItem(key, JSON.stringify(actualProduct));
         quantifierResult.textContent = actualProduct.quantity;
         edit(Array.from(productContainer.children).indexOf(btn.parentNode.parentNode.parentNode)-1, actualProduct.quantity, key);
-        btn.parentNode.parentNode.children[3].children[0].textContent = `$${actualProduct.price * actualProduct.quantity}.00`;
+        btn.parentNode.parentNode.children[3].children[0].textContent = `$${actualProduct.price * actualProduct.quantity}`;
     })
 })

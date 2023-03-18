@@ -22,19 +22,14 @@ html {
     --spicy-purple : #5f2c82;
 }
 body {
-    font-size: 2rem;
-    background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash.jpg);
+    background: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1500.png) fixed;
     background-color: var(--black-brown);
-    width: 100vw;
-    min-height: 100vh;
-    height: 100%;
     background-size: cover;
-    display: grid;
-    grid-template-columns: 60vw 1fr;
-    grid-row: max-content;
     color: var(--cream-brown);
+    display: grid;
+    grid-template-columns: calc(100% - 40vw) 1fr;
     font-family: 'Roboto', serif;
-    overflow-x: hidden;
+    font-size: 2rem;
 }
 .loader {
     position: fixed;
@@ -89,21 +84,25 @@ body {
     grid-template-columns: repeat(3, 1fr);
     position: fixed;
     top: 0;
-    width: 100vw;
-    height: 8rem;
-    padding: 0 10rem;
+    width: 100%;
+    height: calc(max-content + 1rem);
+    min-height: 35px;
+    padding: .5rem 10rem;
     box-shadow: 0 2px 1rem var(--really-black-brown);
     background-color: rgba(54, 32, 19, 0.674);
     backdrop-filter: blur(10px);
 }
 
 /* logo ROBUSTO */
-
 .item2 {
     display: flex;
     justify-content: center;
     align-items: center;
     grid-area: 1/2/2/3;
+}
+.item2 svg {
+    width: 25rem;
+    height: auto;
 }
 
 /* bouton compte utilisateur et panier */
@@ -122,7 +121,6 @@ body {
     align-items: center;
     gap: 1.7rem;
     width: max-content;
-    padding: 1rem;
     list-style-type: none;
 }
 .user-buttons li {
@@ -139,9 +137,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 11rem;
+    width: 16rem;
     border-radius: 1rem;
     height: 100%;
+    padding: 1rem 0;
     background: none;
     border: none;
     color: var(--cream-brown);
@@ -150,6 +149,14 @@ body {
     letter-spacing: .1rem;
     transition: all .2s;
     cursor: pointer;
+    text-decoration: none;
+}
+.user-buttons li:first-child button {
+    width: 11rem;
+}
+.flag{
+    width: 5rem;
+    margin-right: .8rem;
 }
 .user-buttons li:first-child button:hover,
 .user-buttons li:first-child button:focus-visible,
@@ -157,35 +164,33 @@ body {
 .user-buttons li:first-child>div a:focus-visible {
     backdrop-filter: brightness(90%);
 }
-.user-buttons li:first-child>div {
+.drop-down-language-picker {
     display: none;
     border-radius: 1rem;
     position: absolute;
     left: -7rem;
-    bottom: -20rem;
-    width: 25rem;
+    bottom: -330%;
+    width: 22rem;
     padding: 2rem;
     background-color: var(--spicy-purple);
     transition: all .2s;
     box-shadow: 0 0 2rem var(--really-black-brown);
+    font-family: 'Roboto', sans-serif;
 }
 .user-buttons li:first-child>div>p {
     font-size: 2.3rem;
+    white-space: break-spaces;
     margin-bottom: 1rem;
     font-weight: 600;
-
 }
 .user-buttons li:first-child ul li {
     display: flex;
     justify-content: center;
 }
-.user-buttons li:first-child>div a {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    width: 18rem;
-    padding-left: 1.2rem;
-    text-decoration: none;
+.user-buttons li a {
+    display: block;
+    transition: all .2s;
+    user-select: none;
 }
 .user-icon {
     width: 4.8rem;
@@ -193,14 +198,29 @@ body {
     transition: transform .1s;
 }
 .user-icon:hover,
+.user-icon:focus-visible,
+.shopping-cart-icon:hover,
 .user-buttons>li>a:focus-visible {
     transform: rotate(-17deg);
 }
-.user-buttons li a {
+#cart-number {
     display: block;
-    transition: all .2s;
-    user-select: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--latte-brown);
+    transform: translate(30%, -30%);
+    border-radius: 1rem;
+    width: max-content;
+    padding: .25rem .8rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--cream-brown);
+    height: 2rem;
+    pointer-events: none;
 }
+
 
 /* ****************************************************************************ACHATS DU CLIENT********************************************************************************** */
 
@@ -208,10 +228,12 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: rgba(67, 40, 24, 0.55);
     gap: 3.5rem;
     padding: 10rem 4rem 2rem 4rem;
     transition: all .2s;
+}
+.cart-products.got-a-weely {
+    padding-bottom: 0;
 }
 h1 {
     width: 100%;
@@ -230,7 +252,7 @@ h1::after {
 }
 /* *********************WEELY*******************************/
 .weely {
-    height: 56.6rem;
+    height: 56rem;
     transform: translateY(-.8rem);
     animation: fade-in .2s ease-in forwards;
 }
@@ -360,7 +382,7 @@ h1::after {
     width: 15rem;
     height: 5rem;
     position: absolute;
-    right: -23rem;
+    left: 20vw;
     bottom: 3rem;
 }
 .quantifier {
@@ -436,13 +458,12 @@ h1::after {
 /* ****************************************************************************VALIDATION DE L'ACHAT********************************************************************************** */
 
 .cart-validation {
-    display: grid;
     position: relative;
-    grid-template-rows: 5.6rem min-content 5rem 15.5rem 15.5rem;
-    width: 40vw;
+    width: 100%;
     min-height: 100vh;
+    min-height: 100dvh;
     padding: 10.5rem 4rem 2rem 4rem;
-    background-color: rgba(54, 32, 19, 0.97);
+    background-color: #362013d3;
     box-shadow: -1rem 0 4rem var(--really-black-brown);
 }
 .cart-validation::before,
@@ -491,26 +512,31 @@ h1::after {
 }
 .cart-validation label {
     display: flex;
-    justify-content: space-between;
+    width: 100%;
+    justify-content: end;
     align-items: center;
     user-select: none;
     font-size: 2.2rem;
+    gap: 1rem;
 }
 .cart-validation label input {
+    display: block;
     font-family: 'Roboto', sans-serif;
     color: var(--spicy-purple);
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 1.8rem;
     padding: .9rem 1.3rem;
     text-transform: uppercase;
     border: none;
     letter-spacing: .1rem;
-    width: 23rem;
     background-color: var(--cream-brown);
     border-radius: .5rem;
     transition: all .2s;
+    max-width: 18rem;
 }
 .cart-validation label button {
+    flex-grow: 1;
+    display: block;
     padding: .8rem 2rem;
     border-radius: .5rem;
     color: var(--cream-brown);
@@ -521,6 +547,7 @@ h1::after {
     background-color: var(--latte-brown);
     cursor: pointer;
     transition: all .2s;
+    max-width: 13rem;
 }
 .cart-validation label input:focus,
 .cart-validation>label>input:hover,
@@ -532,13 +559,14 @@ h1::after {
     font-size: 1.6rem;
     text-transform: capitalize;
 }
-.cart-validation label button:hover {
+.cart-validation label button:hover,
+.cart-validation label button:focus-visible {
     background-color: transparent;
     border-radius: .8rem;
 }
 .recap-products {
-    min-height: 22rem;
-    padding-top: 1.5rem;
+    margin: 3rem 0 2rem;
+    min-height: 17rem;
     display: flex;
     flex-direction: column;
     gap: 1.8rem;
@@ -572,8 +600,7 @@ h1::after {
     font-size: 2rem;
 }
 .mendatory-informations {
-    grid-area: -3/1/-2/2;
-    margin: 2.5rem 0;
+    margin: 2.5rem 0 1.5rem;
 }
 .mendatory-informations div:not(:nth-child(3)) p {
     font-size: 1.8rem;
@@ -593,7 +620,6 @@ h1::after {
     font-size: 1.5rem;
 }
 .cart-validation>div:last-child {
-    grid-area: -2/1/-1/2;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -623,7 +649,7 @@ h1::after {
 }
 .cart-validation div:last-child a:focus-visible,
 .cart-validation div:last-child a:hover {
-    background-position: right;
+    background-position: 90%;
     border-radius: .7rem;
 }
 
@@ -667,6 +693,7 @@ footer ul li:nth-child(odd) {
     flex-direction: column;
     gap: 1.05rem;
     transform: translateX(5rem);
+    width: calc(100% - 5rem);
 }
 footer>div>h2 {
     font-family: 'Roboto';
@@ -721,41 +748,172 @@ footer>div>h2 {
     }
 
 }
+@media screen and (min-width: 1500px) {
+    body {
+        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_2000.png);
+    }
+}
 @media screen and (max-width: 1500px) {
     html {
         font-size: 56%;
     }
-    :root {
-        --scale: 55;
+    body {
+        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1500.png);
     }
 }
-@media screen and (max-width: 1320px) {
+@media screen and (max-width: 1350px) {
     html {
         font-size: 53%;
     }
     .top-navbar {
         padding: 0 12rem;
-    }
-    :root {
-        --scale: 55;
+        height: 7.5rem;
     }
 }
-@media screen and (max-width: 1220px) {
+@media screen and (max-width: 1230px) {
     html {
         font-size: 50%;
     }
-
-    :root {
-        --scale: 55;
+}
+@media screen and (max-width: 1180px) {
+    html {
+        font-size: calc(0.55vw + 0.1rem);
+    }
+    body {
+        grid-template-columns: calc(100% - 35vw) 1fr;
+    }
+    .top-navbar {
+        padding: 1.2rem 10rem;
+        height: min-content;
+        box-shadow: none;
+      }
+    .cart-validation>div:last-child {
+        justify-content: center;
+        gap: 1rem;
+    }    
+    .cart-validation div:last-child a {
+        height: 5.7rem;
+        font-size: 2.5rem;
+    }
+    .cart-validation div:last-child a svg {
+        height: 100%;
+    }
+    .recap-product {
+        grid-template-columns: 1fr 6rem 0.5fr;
     }
 }
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1000px) {
     html {
-        font-size: 47%;
+        font-size: 45%;
     }
-
-    :root {
-        --scale: 55;
+    body {
+        display: block;
+        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1000.png);
     }
+    .weely {
+        width: 100%;
+        margin: 5rem 0;
+    }
+    .cart-validation, .recap-products {
+        min-height: min-content;
+    }
+    .cart-validation {
+        padding-bottom: 6rem;
+    }
+    .product {
+        width: 70%;
+    }
+    .cart-products {
+        min-height: 80vh;
+    }
+}
+@media screen and (max-width: 900px) {
+    .product {
+        width: 70vw;
+    }
+}
 
+
+
+
+
+
+@media screen and (max-width: 840px) {
+    .top-navbar {
+        padding: 0 5rem;
+        height: 8vh;
+        min-height: calc(35px + 2rem);
+    }
+    html {font-size: 45%;}
+}
+@media screen and (max-width: 736px) {
+    html {
+        font-size: 40%;
+    }
+}
+@media screen and (max-width: 660px) {
+    body {
+        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_500.png);
+    }
+    footer {
+        flex-direction: column;
+        gap: 4rem;
+        padding: 6rem;
+        width: 100%;
+    }
+    .advises li {
+        font-size: 3rem;
+        width: 100% !important;
+    }
+    #contact li:nth-child(even) {
+        font-size: 3rem;
+        width: calc(100% - 3rem);
+
+    }
+    .advises, #contact {
+        width: 100%
+    }
+    #contact>ul {
+        width: calc(100% - 4rem);
+    }
+    #contact li:nth-child(odd) {
+        font-size: 3.3rem;
+    }
+    .advises>ol {
+        margin-left: 2rem;
+        width: calc(100% - 2rem);
+    }
+}
+@media screen and (max-width: 454px) {
+    html {
+        font-size: 1.5vw;
+    }
+}
+@media screen and (max-width: 380px) {
+    body {
+        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_400.png);
+    }
+    .logo-robusto svg {
+        height: 5.5rem;
+        width: auto;
+    }
+    .user-buttons li svg {
+        width: 4.5rem;
+        height: auto;
+    }
+    .user-buttons>li>button {
+        font-size: 0 !important;
+        width: max-content;
+    }
+    .user-buttons>li>button>img {
+        width: 6rem;
+    }
+    .cart-products {
+        padding-top: 15rem;
+    }
+}
+@media screen and (max-width: 250px) {
+    .logo-robusto svg {
+        width: 20rem;
+    }
 }
