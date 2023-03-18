@@ -356,13 +356,13 @@ buyButton.addEventListener('click', () => {
     })
 
     if(sizeButtonsArray[0].classList.contains('chosen')) {
-      loop(nameOfProduct, 'M', b, '../assets/black_300', subName, prices[0]);
+      loop(nameOfProduct, 'M', b, '../assets/black_300.png', subName, prices[0]);
     }
     else if(sizeButtonsArray[1].classList.contains('chosen')) {
-      loop(nameOfProduct,'L', b, '../assets/black_300', subName, prices[1]);
+      loop(nameOfProduct,'L', b, '../assets/black_300.png', subName, prices[1]);
     }
     else {
-      loop(nameOfProduct,'XL', b, '../assets/black_300', subName, prices[2]);
+      loop(nameOfProduct,'XL', b, '../assets/black_300.png', subName, prices[2]);
     }
     quantity = 0;
     result.innerHTML = 0;
