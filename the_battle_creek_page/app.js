@@ -167,17 +167,11 @@ function loop(name, size, qtt, productImg, subName, price) {
       localStorage.setItem(newIndex+1, JSON.stringify(ourProduct));
     }
   };
-const baliseMeta = document.querySelector('meta[name="viewport"]')
 window.addEventListener('load', () => {
   loader.classList.add('disappear');
   loader.addEventListener('transitionend', () => {
     loader.style.display = 'none';
   })
-  // beansBackground.style.setProperty('height', window.getComputedStyle(document.body).height);
-})
-
-window.addEventListener('resize', () => {
-  // beansBackground.style.setProperty('height', window.getComputedStyle(document.body).height);
 })
 
 const images = document.querySelectorAll('[data-src]');
@@ -234,12 +228,12 @@ images.forEach(image => {
   lazyLoader.observe(image);
 });
 productDescription.addEventListener('click', () => {
-  if(parseInt(window.getComputedStyle(document.body).width) > 934) {
+  if(window.innerWidth > 934) {
     productDescription.classList.toggle('returned');
   }
 });
 subContentDescription.addEventListener('click', () => {
-  if(parseInt(window.getComputedStyle(document.body).width) > 934) {
+  if(window.innerWidth > 934) {
     subContentDescription.classList.toggle('returned');
   }
 });
@@ -316,7 +310,7 @@ right.addEventListener('click', () => {
   rightFunction();
 })
 
-let mouseYInImage, mouseXInImage, percentX, percentY
+let mouseYInImage, mouseXInImage, percentX, percentY;
 
 productImage.addEventListener('click', function () {
   this.classList.toggle('zoomed');
@@ -394,7 +388,7 @@ buyButton.addEventListener('click', () => {
   }
 })
 cartLink.addEventListener('click', ()=>{
-  window.location.href ='user_cart_page/index.html';
+  window.location.href ='../user_cart_page/index.html';
 }); 
 
 function test (valeurTest) {

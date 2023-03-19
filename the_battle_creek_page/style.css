@@ -1473,9 +1473,6 @@ footer>div>h2 {
     body {
         background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1500.png);
     }
-    :root {
-        --scale: 55;
-    }
 }
 @media screen and (max-width: 1370px) {
     html {
@@ -1484,9 +1481,6 @@ footer>div>h2 {
     .top-navbar {
         padding: 0 12rem;
         height: 7.5rem;
-    }
-    :root {
-        --scale: 55;
     }
 }
 @media screen and (max-width: 1325px) {
@@ -1504,9 +1498,6 @@ footer>div>h2 {
     .details-container {
         padding: 2rem 20rem;
 
-    }
-    :root {
-        --scale: 55;
     }
 }
 @media screen and (max-width: 1165px) {
@@ -1556,10 +1547,6 @@ footer>div>h2 {
 @media screen and (max-width: 1100px) {
     html {
         font-size: 50%;
-    }
-
-    :root {
-        --scale: 55;
     }
     .top-navbar {
         padding: 1.2rem 10rem;
@@ -1616,9 +1603,6 @@ footer>div>h2 {
     body.dark main::after {
         display: block;
     }
-    :root {
-        --scale: 55;
-    }
 }
 @media screen and (max-width: 1018px) {
     html {font-size: 44%;}
@@ -1632,9 +1616,6 @@ footer>div>h2 {
 @media screen and (max-width: 934px) {
     html {
         font-size: 45%;
-    }
-    :root {
-        --scale: 55;
     }
     .product-container {
         flex-direction: column;
@@ -2091,7 +2072,7 @@ footer>div>h2 {
         height: 1px;
     }
     .logo-robusto svg {
-        width: 20rem;
+        width: 22rem;
     }
     .hamburger {
         height: 5.5rem;
