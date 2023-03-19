@@ -148,7 +148,6 @@ function loop(name, size, qtt, productImg, subName, price) {
       localStorage.setItem(newIndex+1, JSON.stringify(ourProduct));
     }
   };
-const baliseMeta = document.querySelector('meta[name="viewport"]')
 window.addEventListener('load', () => {
   loader.classList.add('disappear');
   loader.addEventListener('transitionend', () => {
@@ -210,12 +209,12 @@ images.forEach(image => {
   lazyLoader.observe(image);
 });
 productDescription.addEventListener('click', () => {
-  if(parseInt(window.getComputedStyle(document.body).width) > 934) {
+  if(window.innerWidth > 934) {
     productDescription.classList.toggle('returned');
   }
 });
 subContentDescription.addEventListener('click', () => {
-  if(parseInt(window.getComputedStyle(document.body).width) > 934) {
+  if(window.innerWidth > 934) {
     subContentDescription.classList.toggle('returned');
   }
 });
@@ -291,7 +290,7 @@ right.addEventListener('click', () => {
   rightFunction();
 })
 
-let mouseYInImage, mouseXInImage, percentX, percentY
+let mouseYInImage, mouseXInImage, percentX, percentY;
 
 productImage.addEventListener('click', function () {
   this.classList.toggle('zoomed');
@@ -368,8 +367,26 @@ buyButton.addEventListener('click', () => {
     result.innerHTML = 0;
   }
 })
+const contactAnchor = document.querySelector('a[href="#contact"]');
+contactAnchor.addEventListener('click', () => {
+  if(window.innerWidth<=380) {
+    document.body.classList.remove('dark');
+    Array.from(hamburger.children).forEach(line => line.classList.remove('active'));
+    hamburger.style.setProperty('animation-play-state', 'running');
+    coffeeJar.classList.remove("active");
+    coffeeUp.beginElement();
+    coffeeJarContainer.style.setProperty('--animation', 'liquid-reverse 0.4s');
+    coffeeCup.classList.remove('out');
+    coffeeSmoke.classList.remove('visible');
+    coffeeJarContainer.setAttribute("aria-expanded", false);
+    hamburger.setAttribute('aria-expanded', false);
+    hamburger.addEventListener('animationend', ()=> {
+      hamburger.style.setProperty('animation-play-state', 'paused');
+    }, {once: true})
+  }
+})
 cartLink.addEventListener('click', ()=>{
-  window.location.href ='user_cart_page/index.html';
+  window.location.href ='../user_cart_page/index.html';
 }); 
 
 function test (valeurTest) {
