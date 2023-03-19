@@ -6,7 +6,16 @@ dateInput = document.querySelector('.mendatory-informations>div:last-child p:las
 recap = document.querySelector('.recap-products'),
 subTotal = document.querySelector('.mendatory-informations p:last-child'),
 total = document.querySelector('.mendatory-informations p:last-child #accent'),
-shippings = document.querySelector('#shipping');
+shippings = document.querySelector('#shipping'),
+coffeeJar = document.querySelector(".coffee-pot-icon"),
+coffeeJarContainer = document.querySelector(".coffee-pot-container"),
+coffeeCup = document.querySelector(".coffee-cup"),
+coffeeSmoke = document.querySelector(".coffee-smoke"),
+hamburger = document.querySelector('.hamburger');
+let after_of_coffeeJarContainer = window.getComputedStyle(coffeeJarContainer, '::after'),
+quantity = 0;
+const coffeeDown = document.getElementById('coffee-down'),
+coffeeUp = document.getElementById('coffee-up');
 
 window.addEventListener('load', () => {
     loader.classList.add('disappear');
@@ -250,6 +259,64 @@ function init() {
     };
 }
 init();
+hamburger.addEventListener('click', ()=> {
+    if(hamburger.style.animationPlayState == 'running') {
+      return;
+    }
+    else {
+      document.body.classList.toggle('dark');
+      Array.from(hamburger.children).forEach(line => line.classList.toggle('active'));
+      hamburger.style.setProperty('animation-play-state', 'running');
+      if (hamburger.children[0].classList.contains('active')){
+        coffeeJar.classList.add("active");
+        coffeeDown.beginElement();
+        coffeeCup.classList.add('out');
+        coffeeJarContainer.style.setProperty('--animation', 'liquid .7s');
+        coffeeJarContainer.addEventListener('animationend', () => {
+          coffeeSmoke.classList.add('visible');
+          coffeeJarContainer.setAttribute("aria-expanded", true);
+          })
+        hamburger.setAttribute('aria-expanded', true);
+        }
+      else {
+        coffeeJar.classList.remove("active");
+        coffeeUp.beginElement();
+        coffeeJarContainer.style.setProperty('--animation', 'liquid-reverse 0.4s');
+        coffeeCup.classList.remove('out');
+        coffeeSmoke.classList.remove('visible');
+        coffeeJarContainer.setAttribute("aria-expanded", false);
+        hamburger.setAttribute('aria-expanded', false);
+        }
+  
+      hamburger.addEventListener('animationend', ()=> {
+        hamburger.style.setProperty('animation-play-state', 'paused');
+      }, {once: true})
+    }
+  })
+coffeeJarContainer.addEventListener('click', () => {
+  Array.from(hamburger.children).forEach(line => line.classList.toggle('active'));
+  document.body.classList.toggle('dark');
+  if (after_of_coffeeJarContainer.width=='0px'){
+    coffeeJar.classList.add("active");
+    coffeeDown.beginElement();
+    coffeeCup.classList.add('out');
+    coffeeJarContainer.style.setProperty('--animation', 'liquid .7s');
+    coffeeJarContainer.addEventListener('animationend', () => {
+      coffeeSmoke.classList.add('visible');
+      coffeeJarContainer.setAttribute("aria-expanded", true);
+      })
+    }
+  else {
+    coffeeJar.classList.remove("active");
+    coffeeUp.beginElement();
+    coffeeJarContainer.style.setProperty('--animation', 'liquid-reverse 0.4s');
+    coffeeJarContainer.addEventListener('animationend', () => {
+      coffeeCup.classList.remove('out');
+      coffeeSmoke.classList.remove('visible');
+      }, {once: true})
+    coffeeJarContainer.setAttribute("aria-expanded", false);
+    }
+});
 
 dropDownLanguageButton.addEventListener('click', ()=>{
     if(dropDownLanguage.style.animationPlayState == 'running') {
@@ -277,7 +344,24 @@ dropDownLanguageButton.addEventListener('click', ()=>{
         }, {once: true})
     }
 })
-
+const contactAnchor = document.querySelector('a[href="#contact"]');
+contactAnchor.addEventListener('click', () => {
+  if(window.innerWidth<=380) {
+    document.body.classList.remove('dark');
+    Array.from(hamburger.children).forEach(line => line.classList.remove('active'));
+    hamburger.style.setProperty('animation-play-state', 'running');
+    coffeeJar.classList.remove("active");
+    coffeeUp.beginElement();
+    coffeeJarContainer.style.setProperty('--animation', 'liquid-reverse 0.4s');
+    coffeeCup.classList.remove('out');
+    coffeeSmoke.classList.remove('visible');
+    coffeeJarContainer.setAttribute("aria-expanded", false);
+    hamburger.setAttribute('aria-expanded', false);
+    hamburger.addEventListener('animationend', ()=> {
+      hamburger.style.setProperty('animation-play-state', 'paused');
+    }, {once: true})
+  }
+})
 let products = Array.from(productContainer.children);
 const appearingInteresctionObserver = new IntersectionObserver(params => {
     let time = 50;

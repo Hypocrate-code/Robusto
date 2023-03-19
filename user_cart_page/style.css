@@ -12,6 +12,7 @@
 
 html {
     font-size: 62.5%;
+    scroll-behavior: smooth;
 }
 :root {
     --black-brown: #432818;
@@ -20,6 +21,13 @@ html {
     --cream-brown: #FFE6A7;
     --accent-color: #339989;
     --spicy-purple : #5f2c82;
+    --scale: 55;
+}
+button:focus-visible, a:focus-visible {
+    outline: 2px dashed #fff;
+}
+button, a {
+    cursor: pointer;
 }
 body {
     background: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1500.png) fixed;
@@ -92,7 +100,291 @@ body {
     background-color: rgba(54, 32, 19, 0.674);
     backdrop-filter: blur(10px);
 }
+/* 1. icône de la navbar */
 
+.item1{
+    display: flex;
+    align-items: center;
+}
+.hamburger {
+    display: none;
+    position: relative;
+    width: 7rem;
+    height: 6rem;
+    border-radius: 1rem;
+    background-color: transparent;
+    border: none;
+}
+.hamburger:hover,
+.hamburger:focus-visible {
+    backdrop-filter: brightness(90%);
+}
+.line {
+    display: block;
+    position: absolute;
+    width: 5rem;
+    height: 3px;
+    background-color: var(--cream-brown);
+    border-radius: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 !important;
+}
+
+.line.middle {
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    animation: middle-line-reverse .35s ease-out forwards;
+
+}
+.line.middle.active {
+    animation: middle-line .35s ease-out forwards;
+}
+.line.top {
+    top: 1.2rem;
+    animation: top-line-reverse .35s ease-out forwards;
+}
+.line.top.active {
+    animation: top-line .35s ease-out forwards;
+}
+.line.bottom {
+    bottom: 1.2rem;
+    animation: bottom-line-reverse .35s ease-out forwards;
+}
+.line.bottom.active {
+    animation: bottom-line .35s ease-out forwards;
+}
+.header {
+    display: none;
+}
+@keyframes top-line {
+    40% {
+        top: 50%;
+    }
+    70% {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+}
+@keyframes middle-line {
+    0% {
+        filter: opacity(1);
+    }
+    50% {
+        filter: opacity(0);
+    }
+    100% {
+        filter: opacity(0);
+    }
+}
+@keyframes bottom-line {
+
+    40% {
+        bottom: 50%;
+    }
+    70% {
+        bottom: 50%;
+        transform: translate(-50%, 50%) rotate(0deg);
+    }
+    100% {
+        bottom: 50%;
+        transform: translate(-50%, 50%) rotate(-45deg);
+    }
+}
+@keyframes top-line-reverse {
+    0% {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+    50% {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        top: 1.2rem;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+}
+@keyframes middle-line-reverse {
+    0% {
+        filter: opacity(0);
+    }
+    50% {
+        filter: opacity(0);
+    }
+    55% {
+        filter: opacity(1);
+    }
+}
+@keyframes bottom-line-reverse {
+    0% {
+        bottom: 50%;
+        transform: translate(-50%, 50%) rotate(-45deg);
+    }
+    50% {
+        bottom: 50%;
+        transform: translate(-50%, 50%) rotate(0deg);
+    }
+    100% {
+        bottom: 1.2rem;
+        transform: translate(-50%, 50%) rotate(0deg);
+    }
+}
+.coffee-pot-container {
+    display: flex;
+    align-items: center;
+    width: 7rem;
+    height: 100%;
+    position: relative;
+    border: none;
+    border-radius: 20px;
+    background-color: transparent;
+    transition: backdrop-filter .1s;
+}
+
+.coffee-pot-container:hover, 
+.coffee-pot-container:focus-visible {
+    backdrop-filter: brightness(90%);
+    outline: none;
+}
+
+.coffee-pot-icon {
+    width: 6rem;
+    height: 100%;
+    transition: transform .2s cubic-bezier(.66,.43,.65,.41);
+    transition-delay: .2s;
+}
+.coffee-pot-icon.active {
+    transform: rotate(90deg);
+    transition: transform .2s;
+    transition-delay: .2s;
+}
+.coffee-pot-container::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: .5rem;
+    border-top-right-radius: 80%;
+    background-color: var(--latte-brown);
+    position: absolute;
+    top: 5.5rem;
+    left: 6.1rem;
+    z-index: -1;
+    transform-origin: top;
+    animation: var(--animation, none) forwards;
+}
+
+/* animation du café qui coule */
+
+@keyframes liquid {
+    0%{
+        width: 0rem;
+    }    
+    50%{
+        width: 0rem;
+        transform: scaleY(0);
+    }
+    100%{
+        transform: scaleY(var(--scale));
+        width: .5rem;
+    }
+}
+@keyframes liquid-reverse {
+    0%{
+        transform: scaleY(var(--scale)) translateY(0%);
+        width: .5rem;
+    }
+    99.9%{
+        transform: scaleY(var(--scale)) translateY(100%);
+        width: .5rem;
+    }
+    100%{
+        display: none;
+    }
+}
+
+
+
+
+/* navbar gobelet à café */
+
+.coffee-cup {
+    position: fixed;
+    top: 15rem;
+    z-index: 2;
+    left: -40rem;
+    width: 40rem;
+    height: max-content;
+    transition: transform .2s;
+    transition-delay: 0s;
+
+}
+.coffee-smoke {
+    height: 10rem;
+    transform: translate(8%, 50%);
+    filter: opacity(0);
+    transition: filter .5s, transform .5s;
+
+}
+.coffee-smoke.visible {
+    filter: opacity(0.3);
+    transition: filter .3s, transform .3s;
+    transform: translate(8%, 0%);
+}
+.coffee-cup-image {
+    width: 100%;
+    height: 38rem;
+}
+.side-navbar-links {
+    position: absolute;
+    top: 26.5rem;
+    right: 5rem;
+    width: max-content;
+    font-size: 2.2rem;
+    list-style-type: none;
+    text-align: end;
+
+}
+.side-navbar-links li{
+    margin-bottom: 1.8rem;
+}
+.side-navbar-links li:first-child{
+    display: none;
+}
+.side-navbar-links li a{
+    position: relative;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--black-brown);
+    font-family: 'Roboto', sans-serif;
+}
+.side-navbar-links li a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: -.5rem;
+    top: .2rem;
+    width: .2rem;
+    background-color: var(--latte-brown);
+    height: 90%;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform .2s;
+}
+
+
+.side-navbar-links li:hover a::after {
+    transform: scaleY(1);
+}
+
+.coffee-cup.out {
+    transform: translate(74%, 0%);
+    transition-delay: 0s;
+}
 /* logo ROBUSTO */
 .item2 {
     display: flex;
@@ -786,7 +1078,57 @@ footer>div>h2 {
         padding: 1.2rem 10rem;
         height: min-content;
         box-shadow: none;
-      }
+    }
+    .coffee-pot-container {
+        display: none;
+    }
+    .coffee-smoke, .coffee-cup-image {
+        display: none;
+    }
+    .coffee-cup {
+        background-image: linear-gradient(125deg, var(--latte-brown), var(--black-brown));
+        background-size: 200%;
+        height: 100vh;
+        top: 0;
+        z-index: 1;
+        box-shadow: 0 0 2rem var(--black-brown);
+        width: 35rem;
+        left: -35rem;
+    }
+    .coffee-cup.out {
+        transform: translate(100%, 0%);
+    }
+    .hamburger {
+        display: block;
+    }
+    .user-buttons>*:last-child {
+        display: none;
+    }
+    .side-navbar-links {
+        width: max-content;
+    }
+    .side-navbar-links li:first-child {
+        display: block;
+    }
+    .side-navbar-links li a {
+        color: var(--cream-brown);
+        font-size: 3.5rem;
+    }
+    .side-navbar-links li a::after {
+        content: '';
+        display: block;
+        position: absolute;
+        right: -1.5rem;
+        top: .2rem;
+        width: .3rem;
+        border-radius: 1rem;
+        background-color: var(--black-brown);
+        height: 90%;
+        transform: scale(1);
+    }
+    body.dark main::after {
+        display: block;
+    }
     .cart-validation>div:last-child {
         justify-content: center;
         gap: 1rem;
@@ -805,6 +1147,9 @@ footer>div>h2 {
 @media screen and (max-width: 1000px) {
     html {
         font-size: 45%;
+    }
+    .drop-down-language-picker {
+        bottom: -22.5rem;
     }
     body {
         display: block;
@@ -843,6 +1188,9 @@ footer>div>h2 {
         padding: 0 5rem;
         height: 8vh;
         min-height: calc(35px + 2rem);
+    }
+    .drop-down-language-picker {
+        left: -10rem;
     }
     html {font-size: 45%;}
 }
@@ -888,17 +1236,42 @@ footer>div>h2 {
     html {
         font-size: 1.5vw;
     }
+    .line {
+        height: 2px;
+    }
 }
 @media screen and (max-width: 380px) {
     body {
         background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_400.png);
+    }
+    .coffee-cup {
+        width: 100%;
+        transition: 0s;
+        left: -100%;
+    }
+    .side-navbar-links {
+        right: 50%;
+        transform: translateX(50%);
+    }
+    .side-navbar-links li {
+        text-align: center;
+        margin-bottom: 5rem;
+    }
+    .side-navbar-links li a {
+        font-size:  6rem;
+    }
+    .side-navbar-links li a::after {
+        height: 2px;
+        width: 100%;
+        top: 105%;
+        right: 0;
     }
     .logo-robusto svg {
         height: 5.5rem;
         width: auto;
     }
     .user-buttons li svg {
-        width: 4.5rem;
+        width: 6.5rem;
         height: auto;
     }
     .user-buttons>li>button {
@@ -913,7 +1286,19 @@ footer>div>h2 {
     }
 }
 @media screen and (max-width: 250px) {
+    html {
+        font-size: 1.8vw;
+    }
+    .line {
+        height: 1px;
+    }
     .logo-robusto svg {
-        width: 20rem;
+        width: 22rem;
+    }
+    .hamburger {
+        height: 5.5rem;
+    }
+    .hamburger div {
+        width: 4rem;
     }
 }
