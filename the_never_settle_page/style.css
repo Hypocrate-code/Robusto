@@ -1148,12 +1148,11 @@ h1::after {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    flex: 0;
-    width: min-content;
 }
 .packs {
     width: auto;
-    height: 25rem;
+    height: auto;
+    max-width: 45rem;
 }
 @keyframes nope {
     0% {translate: -1rem 0;}
@@ -1316,7 +1315,7 @@ h1::after {
     color: var(--black-brown);
     position: relative;
     transform: translateY(1.25rem);
-    transition: all .3s;
+    transition: transform .3s;
     transition-delay: .3s;
 }
 .card > h3::after {
@@ -1688,6 +1687,8 @@ footer>div>h2 {
         display: flex;
         flex-direction: column;
         gap: 2rem;
+        width: 93%;
+        margin: 0 auto;
     }
     .front, .back, .card-front, .card-back {
         display: block;
@@ -1725,6 +1726,7 @@ footer>div>h2 {
     }
     .packaging-size {
         height: max-content;
+        max-width: 77rem;
     }
     #size-button {
         width: 20rem;
@@ -1768,6 +1770,7 @@ footer>div>h2 {
         letter-spacing: .3rem;
         font-weight: 700;
         box-shadow: none;
+        max-width: 77rem;
     }
     .buy-button svg {
         height: 75%;
@@ -1872,9 +1875,6 @@ footer>div>h2 {
     .single-card-description>ul>li {
         font-size: 3rem !important;
     }
-    .packs {
-        width: 22rem;
-    }
 }
 @media (pointer: coarse) {
     .product-photo.zoomed, .product-photo:hover {
@@ -1901,7 +1901,7 @@ footer>div>h2 {
         display: flex;
         flex-direction: column;
         height: max-content;
-        padding: 4rem 0;
+        padding: 4rem 2rem;
         gap: 3rem;
     }
     .country {
@@ -1913,14 +1913,6 @@ footer>div>h2 {
     .double-card-description.second h5 {
         font-size: 4.5rem;
         margin: 0 0 1rem;
-    }
-    .pack-item {
-        width: 100%;
-    }
-    .packs {
-        height: 40rem;
-        width: 100%;
-        transform: translateX(-2.5rem);
     }
     .details-container  {
         padding: 1rem 8rem;
@@ -2009,13 +2001,7 @@ footer>div>h2 {
         width: 65%;
     }
 }
-
-/* 414px résolution cheloue jules  */
-
 @media screen and (max-width: 380px) {
-    body {
-        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_400.png);
-    }
     .details-container {
         padding: 1rem 6rem;
     }

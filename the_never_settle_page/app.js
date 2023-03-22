@@ -42,7 +42,7 @@ nameOfProduct = Array.from(nameOfProduct)
 nameOfProduct.pop();
 nameOfProduct = nameOfProduct.join('');
 
-let subName = document.querySelector('h2').textContent;
+let subName = "the black one./l'ébène";
 const main = document.querySelector('main'),
 cartLink = document.querySelector('[href="../user_cart_page/index.html"]'),
 beansBackground = document.querySelector('.website-background');
