@@ -649,7 +649,7 @@ h1::after {
 }
 .title h3 {
     font-family: 'Roboto Slab', serif;
-    font-size: calc(2.5rem * var(--scale-down-text));
+    font-size: 2.5rem;
     margin-bottom: 2rem;
 }
 .title h2::after {
@@ -663,12 +663,12 @@ h1::after {
     clip-path: polygon(2% 0, 100% 0, 98% 100%, 0% 100%);
 }
 .title>p {
-    font-size: calc(2.4rem * var(--scale-down-text));
+    font-size: 2.4rem;
     font-weight: 900;
     margin-top: .5rem;
 }
 #unit-price {
-    font-size: calc(1.8rem * var(--scale-down-text));
+    font-size: 1.8rem;
 }
 .quantity {
     display: flex;
@@ -1269,6 +1269,9 @@ footer>div>h2 {
         width: 100%;
         object-fit: cover;
     }
+    .title h3 {font-size: 3.1rem;}
+    .title p {font-size: 2.7rem;}
+    #unit-price {font-size: 2.3rem;}
     .trash {
         margin: 0;
         position: fixed;
@@ -1348,6 +1351,9 @@ footer>div>h2 {
         width: 35rem;
         margin-inline: auto;
     }
+    .title h3 {font-size: 3.5rem; font-weight: 500;}
+    .title p {font-size: 3rem;}
+    #unit-price {font-size: 2.5rem;}
     .line {
         height: 1px;
     }
