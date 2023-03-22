@@ -29,8 +29,7 @@ html {
     --h1-size: 49rem;
 }
 body {
-    background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_2000.png);
-    background-attachment: fixed;
+    background: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_2000.png) fixed;
     background-color: var(--black-brown);
     background-size: cover;
     color: var(--cream-brown);
@@ -1016,6 +1015,15 @@ h1::after {
     height: .4rem;
     background-image: linear-gradient(to right, var(--accent-color), var(--spicy-purple));
     background-size: 200%;
+}
+.details-container>div {
+    transform: translateY(10rem);
+    filter: opacity(0);
+    transition: transform .2s, filter .2s;
+}
+.details-container> div.active {
+    transform: none;
+    filter: none;
 }
 .double-card-description,
 .single-card-description{
@@ -2069,6 +2077,9 @@ h1::after {
     }
 }
 @media screen and (max-width: 380px) {
+    body {
+        background-size: 100rem;
+    }
     .details-container {
         padding: 1rem 6rem;
     }

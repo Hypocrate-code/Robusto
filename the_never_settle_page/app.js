@@ -148,7 +148,26 @@ function loop(name, size, qtt, productImg, subName, price) {
       localStorage.setItem(newIndex+1, JSON.stringify(ourProduct));
     }
   };
+
+const descriptionCards = Array.from(document.querySelectorAll('.details-container>div'));
 window.addEventListener('load', () => {
+  if(window.innerWidth<=1000) {
+    descriptionCards.forEach(card=>card.classList.add('active'))
+  }
+  else {
+    const comingFromBottomCard = new IntersectionObserver(function (descriptionCards, comingFromBottomCard) {
+      descriptionCards.forEach(descriptionCard => {
+        if(!descriptionCard.isIntersecting){return;}
+        else{
+          descriptionCard.target.classList.add('active');
+          comingFromBottomCard.unobserve(descriptionCard.target);
+        }
+      });
+    }, {rootMargin: '-55px'});
+    descriptionCards.forEach(descriptionCard => {
+      comingFromBottomCard.observe(descriptionCard);
+    });
+  }
   loader.classList.add('disappear');
   loader.addEventListener('transitionend', () => {
     loader.style.display = 'none';
@@ -199,15 +218,15 @@ const lazyLoader = new IntersectionObserver(function (images, lazyLoader) {
   images.forEach(image => {
     if(!image.isIntersecting){return;}
     else{
-    loading(image.target);
-    lazyLoader.unobserve(image.target);
+      loading(image.target);
+      lazyLoader.unobserve(image.target);
     }
   });
 }, {rootMargin: '400px'});
-
 images.forEach(image => {
   lazyLoader.observe(image);
 });
+
 productDescription.addEventListener('click', () => {
   if(window.innerWidth > 934) {
     productDescription.classList.toggle('returned');
