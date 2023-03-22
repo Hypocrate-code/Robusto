@@ -224,26 +224,27 @@ function init() {
                 let productData = JSON.parse(localStorage.getItem(element));
                 let productCard = document.createElement('div');
                 productCard.setAttribute('class', 'product not-on-screen');
-                productCard.innerHTML =`<img src="${productData.link}"/>
+                productCard.innerHTML =`
+                <img src="${productData.link}"/>
                 <div class="title">
-                <h2>${productData.name},</h2>
-                <h3>${productData.subName}</h3>
-                <p>Size : <span id="latte">${productData.size}</span></p>
-                <p><span id="accent">$${productData.price * productData.quantity}</span></p>
-                <div class="quantity">
-                <button class="quantifier minus">-</button>
-                <p class="quantifier result">${productData.quantity}</p>
-                <button class="quantifier plus">+</button>
-                </div>
-                <p>Unit price : $${productData.price}</p>
+                    <h2>${productData.name},</h2>
+                    <h3>${productData.subName.split('/')[0]}</h3>
+                    <p>Size : <span id="latte">${productData.size}</span></p>
+                    <p><span id="accent">$${productData.price * productData.quantity}</span></p>
+                    <p id="unit-price">Unit price : $${productData.price}</p>
+                    <div class="quantity">
+                        <button class="quantifier minus">-</button>
+                        <p class="quantifier result">${productData.quantity}</p>
+                        <button class="quantifier plus">+</button>
+                    </div>
                 </div>
                 <button class="trash" data-id="${element}">
-                <svg width="448" height="96" viewBox="0 0 448 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M135.2 18.1204C140.6 7.32685 151.7 0.593262 163.8 0.593262H284.2C296.3 0.593262 307.4 7.32685 312.8 18.1204L320 32.2808H416C433.7 32.2808 448 46.4411 448 63.9683C448 81.4954 433.7 95.6558 416 95.6558H32C14.3 95.6558 0 81.4954 0 63.9683C0 46.4411 14.3 32.2808 32 32.2808H128L135.2 18.1204Z" />
-                </svg>
-                <svg width="384" height="381" viewBox="0 0 384 381" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M384 0.750092H-3.05176e-05V317.625C-3.05176e-05 352.58 28.6999 381 63.9999 381H320C355.3 381 384 352.58 384 317.625V0.750092ZM79.9999 79.9686C79.9999 71.2546 87.1999 64.1249 95.9999 64.1249C104.8 64.1249 112 71.2546 112 79.9686V301.781C112 310.495 104.8 317.625 95.9999 317.625C87.1999 317.625 79.9999 310.495 79.9999 301.781V79.9686ZM176 79.9686C176 71.2546 183.2 64.1249 192 64.1249C200.8 64.1249 208 71.2546 208 79.9686V301.781C208 310.495 200.8 317.625 192 317.625C183.2 317.625 176 310.495 176 301.781V79.9686ZM272 79.9686C272 71.2546 279.2 64.1249 288 64.1249C296.8 64.1249 304 71.2546 304 79.9686V301.781C304 310.495 296.8 317.625 288 317.625C279.2 317.625 272 310.495 272 301.781V79.9686Z"/>
-                </svg>
+                    <svg width="448" height="96" viewBox="0 0 448 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M135.2 18.1204C140.6 7.32685 151.7 0.593262 163.8 0.593262H284.2C296.3 0.593262 307.4 7.32685 312.8 18.1204L320 32.2808H416C433.7 32.2808 448 46.4411 448 63.9683C448 81.4954 433.7 95.6558 416 95.6558H32C14.3 95.6558 0 81.4954 0 63.9683C0 46.4411 14.3 32.2808 32 32.2808H128L135.2 18.1204Z" />
+                    </svg>
+                    <svg width="384" height="381" viewBox="0 0 384 381" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M384 0.750092H-3.05176e-05V317.625C-3.05176e-05 352.58 28.6999 381 63.9999 381H320C355.3 381 384 352.58 384 317.625V0.750092ZM79.9999 79.9686C79.9999 71.2546 87.1999 64.1249 95.9999 64.1249C104.8 64.1249 112 71.2546 112 79.9686V301.781C112 310.495 104.8 317.625 95.9999 317.625C87.1999 317.625 79.9999 310.495 79.9999 301.781V79.9686ZM176 79.9686C176 71.2546 183.2 64.1249 192 64.1249C200.8 64.1249 208 71.2546 208 79.9686V301.781C208 310.495 200.8 317.625 192 317.625C183.2 317.625 176 310.495 176 301.781V79.9686ZM272 79.9686C272 71.2546 279.2 64.1249 288 64.1249C296.8 64.1249 304 71.2546 304 79.9686V301.781C304 310.495 296.8 317.625 288 317.625C279.2 317.625 272 310.495 272 301.781V79.9686Z"/>
+                    </svg>
                 </button>
                 `;
                 productContainer.appendChild(productCard);
@@ -459,4 +460,18 @@ minusS.forEach(btn => {
         edit(Array.from(productContainer.children).indexOf(btn.parentNode.parentNode.parentNode)-1, actualProduct.quantity, key);
         btn.parentNode.parentNode.children[3].children[0].textContent = `$${actualProduct.price * actualProduct.quantity}`;
     })
+})
+const submitButtonPromoCode = document.querySelector('button[type="submit"]');
+const inputPromoCode = document.querySelector('input');
+submitButtonPromoCode.addEventListener('click', ()=> {
+    let code = inputPromoCode.value;
+    if(code=='Camille' || code=='CAMILLE' || code=='camille') {
+        alert('Your code was applied');
+        total.textContent = '$0'
+        subTotal.textContent = '$0'
+    }
+    else {
+        alert('Your code was invalid');
+    }
+    inputPromoCode.value = '';
 })

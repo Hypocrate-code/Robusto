@@ -22,6 +22,9 @@ html {
     --accent-color: #339989;
     --spicy-purple : #5f2c82;
     --scale: 55;
+    --scale-up-text: 1;
+    --scale-down-text: 1;
+    /* i should have used em & rem instead of those */
 }
 button:focus-visible, a:focus-visible {
     outline: 2px dashed #fff;
@@ -37,7 +40,7 @@ body {
     display: grid;
     grid-template-columns: calc(100% - 40vw) 1fr;
     font-family: 'Roboto', serif;
-    font-size: 2rem;
+    font-size: calc(2rem * var(--scale-up-text));
 }
 .loader {
     position: fixed;
@@ -601,7 +604,7 @@ h1::after {
 .product {
     background-color: var(--really-black-brown);
     box-shadow: 0 0 3rem var(--really-black-brown);
-    padding: 2rem;
+    padding: calc(2rem * var(--scale-up-text));
     width: 82rem;
     height: 26rem;
     border-radius: 2rem;
@@ -610,7 +613,7 @@ h1::after {
     grid-template-rows: min-content 1fr;
     gap: 0 2rem;
     filter: opacity(85%);
-    transition: all .2s;
+    transition: all .3s;
 }
 .going-up {
     transition: all .2s ease-in-out !important;
@@ -620,7 +623,7 @@ h1::after {
     transition: filter .2s;
 }
 .not-on-screen {
-    transform: translateX(14rem);
+    transform: translateY(5rem);
     filter: opacity(0);
 }
 /* DETAILS DE CHAQUE CARTE */
@@ -638,7 +641,7 @@ h1::after {
 
 }
 .title h2{
-    font-size: 4rem;
+    font-size: calc(4rem * var(--scale-down-text));
     font-family: 'Roboto Slab', serif;
     margin-top: 1rem;
     width: max-content;
@@ -646,7 +649,7 @@ h1::after {
 }
 .title h3 {
     font-family: 'Roboto Slab', serif;
-    font-size: 2.5rem;
+    font-size: calc(2.5rem * var(--scale-down-text));
     margin-bottom: 2rem;
 }
 .title h2::after {
@@ -660,12 +663,12 @@ h1::after {
     clip-path: polygon(2% 0, 100% 0, 98% 100%, 0% 100%);
 }
 .title>p {
-    font-size: 2.4rem;
+    font-size: calc(2.4rem * var(--scale-down-text));
     font-weight: 900;
     margin-top: .5rem;
 }
-.title p:last-child {
-    font-size: 1.8rem;
+#unit-price {
+    font-size: calc(1.8rem * var(--scale-down-text));
 }
 .quantity {
     display: flex;
@@ -717,7 +720,7 @@ h1::after {
 /* icon et animations de la poubelle */
 
 .trash {
-    margin: .5rem calc(100% - 5rem);
+    margin: .5rem 0 .5rem calc(100% - 5rem);
     width: 5rem;
     padding: 1rem;
     border-radius: 1rem;
@@ -782,14 +785,14 @@ h1::after {
     position: relative;
     padding: .4rem;
     justify-content: space-between;
-    font-size: 2rem;
+    font-size: calc(2rem * var(--scale-up-text));
     width: 100%;
 }
 .cart-validation h2 {
     width: 100%;
     position: relative;
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
+    font-size: calc(3.5rem * var(--scale-up-text));
+    margin-bottom: calc(1.5rem * var(--scale-up-text));
 }
 .cart-validation h2::after {
     content: '';
@@ -808,7 +811,7 @@ h1::after {
     justify-content: end;
     align-items: center;
     user-select: none;
-    font-size: 2.2rem;
+    font-size: calc(2.2rem * var(--scale-up-text));
     gap: 1rem;
 }
 .cart-validation label input {
@@ -816,7 +819,7 @@ h1::after {
     font-family: 'Roboto', sans-serif;
     color: var(--spicy-purple);
     font-weight: 700;
-    font-size: 1.8rem;
+    font-size: calc(1.8rem * var(--scale-up-text));
     padding: .9rem 1.3rem;
     text-transform: uppercase;
     border: none;
@@ -824,7 +827,7 @@ h1::after {
     background-color: var(--cream-brown);
     border-radius: .5rem;
     transition: all .2s;
-    max-width: 18rem;
+    max-width: calc(18rem * var(--scale-up-text));
 }
 .cart-validation label button {
     flex-grow: 1;
@@ -832,9 +835,9 @@ h1::after {
     padding: .8rem 2rem;
     border-radius: .5rem;
     color: var(--cream-brown);
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: .1rem;
-    font-size: 1.7rem;
+    font-size: calc(1.7rem * var(--scale-up-text));
     border: .3rem solid var(--latte-brown);
     background-color: var(--latte-brown);
     cursor: pointer;
@@ -848,7 +851,7 @@ h1::after {
     border-radius: .8rem;
 }
 .cart-validation label input::placeholder {
-    font-size: 1.6rem;
+    font-size: calc(1.6rem * var(--scale-up-text));
     text-transform: capitalize;
 }
 .cart-validation label button:hover,
@@ -857,7 +860,7 @@ h1::after {
     border-radius: .8rem;
 }
 .recap-products {
-    margin: 3rem 0 2rem;
+    margin: calc(3rem * var(--scale-up-text)) 0 calc(2rem * var(--scale-up-text));
     min-height: 17rem;
     display: flex;
     flex-direction: column;
@@ -867,7 +870,6 @@ h1::after {
     display: grid;
     position: relative;
     grid-template-columns: 1fr 6rem 1fr;
-
 }
 .recap-product::after {
     content: '';
@@ -878,7 +880,6 @@ h1::after {
     width: 100%;
     top: 130%;
     height: 1px;
-
 }
 .recap-product *:last-child {
     text-align: end;
@@ -889,13 +890,13 @@ h1::after {
 }
 .recap-product h3 {
     font-weight: 400;
-    font-size: 2rem;
+    font-size: calc(2rem * var(--scale-up-text));
 }
 .mendatory-informations {
-    margin: 2.5rem 0 1.5rem;
+    margin: calc(2rem * var(--scale-up-text)) 0 calc(1.5rem * var(--scale-up-text));
 }
 .mendatory-informations div:not(:nth-child(3)) p {
-    font-size: 1.8rem;
+    font-size: calc(1.8rem * var(--scale-up-text));
 }
 .mendatory-informations>div:first-child::after {
     content: '';
@@ -909,7 +910,7 @@ h1::after {
     transform: translateX(-1.5rem)
 }
 .mendatory-informations>div:last-child>p {
-    font-size: 1.5rem;
+    font-size: calc(1.5rem * var(--scale-up-text));
 }
 .cart-validation>div:last-child {
     flex-direction: column;
@@ -923,7 +924,7 @@ h1::after {
     padding: 1.4rem;
     font-family: 'Roboto', sans-serif;
     border-radius: .5rem;
-    font-size: 2.8rem;
+    font-size: calc(2.8rem * var(--scale-up-text));
     background-image: linear-gradient(to right, var(--accent-color), var(--spicy-purple));
     background-size: 400%;
     color: var(--cream-brown);
@@ -937,7 +938,7 @@ h1::after {
     background-image: linear-gradient(to right, #D6A411, var(--spicy-purple));
     color: #fff;
     align-content: center;
-    font-size: 1.5rem;
+    font-size: calc(1.5rem * var(--scale-up-text));
 }
 .cart-validation div:last-child a:focus-visible,
 .cart-validation div:last-child a:hover {
@@ -951,7 +952,8 @@ footer {
     justify-content: center;
     gap: 6rem;
     font-size: 2rem;
-    width: 100vw;
+    width: auto;
+    grid-area: 2/1/3/3;
     height: min-content;
     padding: 4rem 0;
     background-color: var(--really-black-brown);
@@ -1061,6 +1063,18 @@ footer>div>h2 {
         padding: 0 12rem;
         height: 7.5rem;
     }
+    .cart-validation>div:last-child {
+        justify-content: center;
+        gap: 1rem;
+    }    
+    .cart-validation div:last-child a {
+        height: calc(5.7rem * var(--scale-up-text));
+        font-size: calc(2.8rem * var(--scale-up-text));
+        line-height: calc(5.7rem * var(--scale-up-text) - 2.8rem);
+    }
+    .cart-validation div:last-child a svg {
+        height: 100%;
+    }
 }
 @media screen and (max-width: 1230px) {
     html {
@@ -1073,6 +1087,9 @@ footer>div>h2 {
     }
     body {
         grid-template-columns: calc(100% - 35vw) 1fr;
+    }
+    .user-icon {
+        display: none;
     }
     .top-navbar {
         padding: 1.2rem 10rem;
@@ -1129,17 +1146,6 @@ footer>div>h2 {
     body.dark main::after {
         display: block;
     }
-    .cart-validation>div:last-child {
-        justify-content: center;
-        gap: 1rem;
-    }    
-    .cart-validation div:last-child a {
-        height: 5.7rem;
-        font-size: 2.5rem;
-    }
-    .cart-validation div:last-child a svg {
-        height: 100%;
-    }
     .recap-product {
         grid-template-columns: 1fr 6rem 0.5fr;
     }
@@ -1148,12 +1154,20 @@ footer>div>h2 {
     html {
         font-size: 45%;
     }
-    .drop-down-language-picker {
-        bottom: -22.5rem;
-    }
     body {
         display: block;
         background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1000.png);
+    }
+    :root {
+        --scale-up-text: 1.5;
+    }
+    .cart-validation > div:last-child {
+        height: auto;
+        width: 90%;
+        margin-inline: auto;
+    }
+    .drop-down-language-picker {
+        bottom: -22.5rem;
     }
     .weely {
         width: 100%;
@@ -1163,7 +1177,7 @@ footer>div>h2 {
         min-height: min-content;
     }
     .cart-validation {
-        padding-bottom: 6rem;
+        padding: 6rem 4rem;
     }
     .product {
         width: 70%;
@@ -1171,18 +1185,16 @@ footer>div>h2 {
     .cart-products {
         min-height: 80vh;
     }
+    label input,
+    label button {
+        height: 5.5rem;
+    }
 }
 @media screen and (max-width: 900px) {
     .product {
         width: 70vw;
     }
 }
-
-
-
-
-
-
 @media screen and (max-width: 840px) {
     .top-navbar {
         padding: 0 5rem;
@@ -1198,6 +1210,9 @@ footer>div>h2 {
     html {
         font-size: 40%;
     }
+    .quantity {
+        left: 25rem;
+    }
 }
 @media screen and (max-width: 660px) {
     body {
@@ -1207,29 +1222,58 @@ footer>div>h2 {
         flex-direction: column;
         gap: 4rem;
         padding: 6rem;
-        width: 100%;
+    }
+    footer h2 {
+        font-size: 3.7rem;
     }
     .advises li {
-        font-size: 3rem;
+        font-size: 2.6rem;
         width: 100% !important;
     }
     #contact li:nth-child(even) {
-        font-size: 3rem;
-        width: calc(100% - 3rem);
-
+        font-size: 2.6rem;
     }
     .advises, #contact {
-        width: 100%
+        width: 55rem;
     }
     #contact>ul {
         width: calc(100% - 4rem);
     }
     #contact li:nth-child(odd) {
-        font-size: 3.3rem;
+        font-size: 2.9rem;
     }
     .advises>ol {
         margin-left: 2rem;
-        width: calc(100% - 2rem);
+        width: calc(100% - 7rem);
+    }
+    .product {
+        width: 92%;
+    }
+}
+@media screen and (max-width: 500px) {
+    .quantity {
+        position: initial;
+        margin-top: 2rem;
+        justify-content: center;
+    }
+    .product {
+        height: auto;
+        width: auto;
+        grid-template-columns: 20rem 1fr;
+        grid-template-rows: 30rem 1fr;
+        position: relative;
+    }
+    .product img {
+        grid-area: 1/1/3/2;
+        height: auto;
+        width: 100%;
+        object-fit: cover;
+    }
+    .trash {
+        margin: 0;
+        position: fixed;
+        bottom: 4rem;
+        right: 4rem;
     }
 }
 @media screen and (max-width: 454px) {
@@ -1242,7 +1286,7 @@ footer>div>h2 {
 }
 @media screen and (max-width: 380px) {
     body {
-        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_400.png);
+        background-size: 100rem;
     }
     .coffee-cup {
         width: 100%;
@@ -1284,10 +1328,25 @@ footer>div>h2 {
     .cart-products {
         padding-top: 15rem;
     }
+    .cart-validation > div:last-child {
+        width: 100%;
+        margin: 0;
+    }
 }
 @media screen and (max-width: 250px) {
     html {
         font-size: 1.8vw;
+    }
+    :root {
+        --scale-down-text: 1.1;
+    }
+    .product {
+        display: flex;
+        flex-direction: column;
+    }
+    .product img {
+        width: 35rem;
+        margin-inline: auto;
     }
     .line {
         height: 1px;
@@ -1300,5 +1359,17 @@ footer>div>h2 {
     }
     .hamburger div {
         width: 4rem;
+    }
+    #contact, .advises {
+        width: auto;
+    }
+}
+@media (pointer: coarse) {
+    .cart-validation label button:focus {
+        background-color: var(--latte-brown);
+    }
+    .cart-validation label button:active {
+        background-color: transparent;
+        border-radius: .8rem;
     }
 }
