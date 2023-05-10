@@ -53,20 +53,36 @@ body {
 .dot {
     width: 6rem;
     transform-origin: center;
-    animation: loading1 .25s infinite alternate, spinning-beans 1.5s ease-in infinite;
+    animation: loading .25s infinite alternate, spinning-beans 1s ease-in infinite;
 }
 .dot:nth-child(2) {
-    animation-name: loading2;
+    animation-name: loading2, spinning-beans2;
 }
 .dot:nth-child(3) {
-    animation-name: loading3;
+    animation-name: loading3, spinning-beans3;
 }
-@keyframes loading1 {
+@keyframes loading {
     from {
         translate: 0 0;
     }
     to {
         translate: 0 -4rem;
+    }
+}
+@keyframes loading2 {
+    from {
+        translate: 0 0;
+    }
+    to {
+        translate: 0 -8rem;
+    }
+}
+@keyframes loading3 {
+    from {
+        translate: 0 0;
+    }
+    to {
+        translate: 0 -12rem;
     }
 }
 @keyframes spinning-beans {
@@ -81,6 +97,34 @@ body {
     }
     to {
         rotate: 360deg;
+    }
+}
+@keyframes spinning-beans2 {
+    from {
+        rotate: 120deg;
+    }
+    33% {
+        rotate: 240deg;
+    }
+    66% {
+        rotate: 360deg;
+    }
+    to {
+        rotate: 0deg;
+    }
+}
+@keyframes spinning-beans3 {
+    from {
+        rotate: 240deg;
+    }
+    33% {
+        rotate: 360deg;
+    }
+    66% {
+        rotate: 0deg;
+    }
+    to {
+        rotate: 120deg;
     }
 }
 .disappear {
@@ -523,18 +567,19 @@ h1>span {
     margin: 2rem auto;
     display: block;
     width: max-content;
-    background-color: var(--accent-color);
-    padding: 1rem 2rem;
+    background-image: linear-gradient(45deg, var(--accent-color), var(--spicy-purple));
+    background-size: 200%;
+    font-size: 1.92rem;
+    padding: .61em 1.2em;
     text-decoration: none;
     font-family: var(--sans-serif-font), sans-serif;
     color: var(--cream-brown);
     border: none;
     border-radius: 999px;
-    font-weight: 500;
-    font-size: 1.7rem;
-    letter-spacing: .1rem;
+    font-weight: 600;
+    letter-spacing: .115rem;
     position: relative;
-    transition: scale .2s ease-in-out;
+    transition: scale .2s ease-in-out, background-position .3s ease-in-out;
     animation: wiggling 2s infinite;
 }
 @keyframes wiggling {
@@ -556,6 +601,7 @@ h1>span {
 }
 #hero-section a:hover {
     animation-play-state: paused;
+    background-position: right;
 }
 #hero-section a:active {
     scale: .95;
@@ -624,7 +670,7 @@ h1>span:nth-child(2)>span:nth-child(3) {
 h2:not(footer h2) {
     font-family: var(--sans-serif-font), sans-serif;
     letter-spacing: .2rem;
-    font-size: 5.5rem;
+    font-size: 5.1rem;
     width: max-content;
     margin: 4rem auto;
     font-weight: 700;
@@ -691,6 +737,7 @@ h2.invi::before, h2.invi::after {
 }
 #menu h2 {
     grid-area: 1/1/2/3;
+    margin-bottom: 1rem;
 }
 .num {
     margin: 1em;
@@ -1002,10 +1049,10 @@ h2.invi::before, h2.invi::after {
     }
 }
 .right {
-    right: -52.5%;
+    right: -60.5%;
 }
 .left {
-    left: -52.5%;
+    left: -60.5%;
 }
 .left, .right {
     position: absolute;
@@ -1082,14 +1129,14 @@ h2.invi::before, h2.invi::after {
 }
 
 .card > h3 {
-    font-size: 2.6rem;
+    font-size: 2.67rem;
     font-weight: 800;
     height: auto;
     color: var(--black-brown);
     position: relative;
     transform: translateY(1.35rem);
     transition: transform .3s;
-    transition-delay: .3s;
+    /* transition-delay: .3s; */
 }
 .card > h3::after {
     content: '';
@@ -1106,16 +1153,16 @@ h2.invi::before, h2.invi::after {
 .card > h4 {
     font-family: var(--sans-serif-font), sans-serif;
     font-size: 1.7rem;
-    font-weight: 800;
+    font-weight: 600;
     color: var(--latte-brown);
     transform: translateY(-1rem);
     filter: opacity(0);
-    transition: transform .3s 200ms, filter .2s 0ms;
+    transition: transform .3s 0ms, filter .2s 0ms;
 }
 .card p {
     position: absolute;
     bottom: -2rem;
-    height: 3.9rem;
+    height: 4rem;
     left: 50%;
     transform: translateX(-50%);
     font-family: var(--sans-serif-font);
@@ -1126,7 +1173,7 @@ h2.invi::before, h2.invi::after {
     font-size: 1.9rem;
     letter-spacing: 1px;
     color: var(--cream-brown);
-    padding: 0.8rem;
+    padding: 0.85rem;
     background-image: linear-gradient(to right, var(--accent-color), var(--spicy-purple));
     background-size: 300%;
     transition: all .3s;
@@ -1150,7 +1197,7 @@ h2.invi::before, h2.invi::after {
 .card:not(:last-child):focus-visible h4 {
     transform: translateY(.2rem);
     filter: opacity(1);
-    transition: transform .2s 0ms, filter .2s 300ms;
+    transition: transform .2s 0ms, filter .2s 0ms;
 }
 .card:not(:last-child) p:hover {
     background-position: right;
