@@ -29,6 +29,7 @@ html {
     --scale: 51;
     --sans-serif-font: 'Figtree';
     --serif-font: 'Roboto Slab';
+    --handwritten-font: 'Patrick Hand';
 }
 body {
     background: url(assets/lukasz-rawa-fmc-tFMMiBs-unsplash_2000.png) fixed;
@@ -544,10 +545,10 @@ section:not(#other-products) {
     padding-inline: 6em;
 }
 h1 {
-    font-size: 10.5rem;
+    font-size: 11rem;
     line-height: 105%;
     letter-spacing: .12rem;
-    font-family: var(--sans-serif-font), sans-serif;
+    font-family: var(--handwritten-font), cursive;
     --play-state: paused;
     margin: 3rem auto 0;
     max-width: 130rem;
@@ -562,6 +563,18 @@ h1>span {
     position: relative;
     height: 64rem;
     /* height: calc(100dvh - 9rem); */
+}
+.coffee-splash-bg {
+    transform: scaleX(-1) rotate(30deg);
+    width: 80%;
+    /* height: 90%; */
+    /* object-fit: cover; */
+    position: absolute;
+    z-index: -1;
+    top: -8vw;
+    left: 6rem;
+    opacity: 0.5;
+    filter: contrast(110%) brightness(80%);
 }
 #hero-section a {
     margin: 2rem auto;
@@ -613,7 +626,7 @@ h1>span {
     width: 35em;
     max-width: 100%;
     font-weight: 300;
-    margin: 0 auto;
+    margin: .4em auto .8em;
     line-height: 150%;
     /* transform: translateY(10%);
     filter: opacity(0);
@@ -1512,6 +1525,9 @@ footer a {
     }
 }
 @media screen and (max-width: 900px) {
+    #hero-section svg {
+        right: 5%;
+    }
     #other-products h2 {
         width: max-content;
         font-size: 6rem !important;
@@ -1592,8 +1608,14 @@ footer a {
         margin: 1em auto 0;
         width: max-content;
     }
-    #menu h3 {
-        margin: 1.2em auto;
+    #menu h3:not(.where h3) {
+        margin: 2em auto 1em !important;
+    }
+    .where h3 {
+        margin: 1em auto .5em !important;        
+    }
+    .where>div {
+        margin-bottom: 5em;
     }
     .weely {
         margin-top: 5em;
@@ -1609,6 +1631,12 @@ footer a {
         left: 50%;
         transform: translateX(-50%);
     }
+    .which {
+        font-size: 1.25em;
+    }
+    .drinks {
+        margin: 1em 0;
+    }
     .drinks::before, .degustation::after {
         width: 45%;
         height: 1em;
@@ -1618,9 +1646,6 @@ footer a {
     }
     .degustation::after {
         top: 0;
-    }
-    .drinks {
-        margin: 1em 0;
     }
 }
 @media (pointer: coarse) {
@@ -1642,13 +1667,17 @@ footer a {
         text-align: center;
         padding-top: .4rem;
     }
+    #hero-section {
+        height: max-content;
+        padding-bottom: 0 !important;
+    }
     #hero-section div {
         flex-direction: column ;
     }
     #hero-section svg {
-        transform: none !important;
+        position: initial;
+        display: block;
         width: 50rem;
-        margin: 5rem auto;
     }
     #mouse {
         display: none;
@@ -1660,6 +1689,10 @@ footer a {
     }
     body {
         background-image: url(assets/lukasz-rawa-fmc-tFMMiBs-unsplash_500.png);
+    }
+    #hero-section p {
+        font-size: 2.1em;
+        width: 64%;
     }
     .cards {
         width: 90%;
