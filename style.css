@@ -612,11 +612,11 @@ h1>span {
         transform: none;
     }
 }
-#hero-section a:hover {
+#hero-section a:hover, form button:hover {
     animation-play-state: paused;
     background-position: right;
 }
-#hero-section a:active {
+#hero-section a:active, form button:active {
     scale: .95;
 }
 #hero-section p {
@@ -1221,15 +1221,14 @@ h2.invi::before, h2.invi::after {
 .contact {
     position: relative;
 }
-.contact::after:hover {
-    transform: scaleX(85%);
-}
 .contact form {
     --len: 32em;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     padding: 0 4em;
+    font-size: 1rem;
+    width: max-content;
 }
 form input, textarea {
     display: block;
@@ -1238,7 +1237,7 @@ form input, textarea {
     height: 2.5em;
     padding: .5em;
     border-radius: .2em;
-    font-size: 1.7em;
+    font-size: 1.9em;
     font-family: var(--sans-serif-font), sans-serif;
     color: var(--black-brown);
     font-weight: 500;
@@ -1251,20 +1250,73 @@ form input:focus, textarea:focus {
     border-radius: .3em;
 }
 .email {
-    width: 35rem;
+    width: 19em;
 }
 .email-subject {
-    width: 45rem;
+    width: 24em;
 }
 textarea {
     resize: none;
     height: 8em;
     width: var(--len);
-    margin: 1.5em 0;
-    font-size: 2em;
+    margin: 1em 0 .2em;
 }
 form *::placeholder {
     color: var(--latte-brown);
+}
+form button {
+    width: 8.5em;
+    overflow: hidden;
+    height: 2.2em;
+    border-radius: .2em;
+    background-image: linear-gradient(105deg, var(--accent-color), var(--spicy-purple));
+    background-size: 200%;
+    font-size: 1.92rem;
+    font-family: var(--sans-serif-font), sans-serif;
+    color: var(--cream-brown);
+    border: none;
+    font-weight: 600;
+    letter-spacing: .05em;
+    transition: background-position 200ms ease-in, scale 100ms ease-out;
+    margin-left: calc(var(--len) - 8.85em);
+    padding-right: .5em;
+    position: relative;
+}
+form button svg {
+    fill: var(--cream-brown);
+    width: 1.1em;
+}
+form button svg:not(.click) {
+    transform: translate(.4em, .2em);
+    transition: transform .15s ease-out;
+    transition-delay: 100ms;
+}
+form button:hover .click {
+    opacity: 1;
+    transition-delay: 200ms;
+}
+.click {
+    position: absolute;
+    top: .5em;
+    right: 1.5em;
+    opacity: 0;
+    transition: opacity 150ms ease-in;
+    animation: click 1.2s infinite;
+}
+@keyframes click {
+    80% {
+        rotate: 0deg;
+    }
+    90% {
+        rotate: -30deg;
+    }
+    to {
+        rotate: 0deg;
+    }
+}
+form button:hover svg:not(.click) {
+    transform: translate(1.5em, -2em);
+    transition-delay: 0s;
 }
 
 .links-container {
@@ -1273,10 +1325,11 @@ form *::placeholder {
     justify-content: center;
     gap: 6rem;
     height: 7rem;
-    margin: 4.5rem 0;
+    margin: 4.5em 0;
+    font-size: .9rem;
 }
 .links-container a {
-    width: 7rem;
+    width: 7em;
     fill: var(--accent-color);
     filter: brightness(120%);
 }
@@ -1284,8 +1337,8 @@ form *::placeholder {
     transform: translateY(-12%);
 }
 .links-container svg {
-    height: 7rem;
-    width: 7rem;
+    height: 7em;
+    width: 7em;
     transition: transform .2s;
 }
 
