@@ -1724,6 +1724,9 @@ footer a {
         height: max-content;
         padding-bottom: 0 !important;
     }
+    #hero-section a {
+        font-size: 2.3em;
+    }
     #hero-section div {
         flex-direction: column ;
     }
