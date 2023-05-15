@@ -1797,6 +1797,9 @@ footer a {
     #hero-section {
         font-size: .8rem;
     }
+    #hero-section a {
+        font-size: 2.85em;
+    }
     .line {
         height: 2px;
     }
