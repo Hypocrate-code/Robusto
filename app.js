@@ -290,3 +290,10 @@ if (window.innerWidth > 450) {
       .to("#coffee-cup-right, #coffee-cup-left", .5, {delay: -.8,x: origin,y:origin, rotate: origin, transformBox: 'view-box', transformOrigin: 'center'})
       .to("#eye", .5, {scale:1});
 }
+var map = L.map('map').setView([55.975077998323215, -3.1711523180413126], 10);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+L.marker([55.975077998323215, -3.1711523180413126],{ color: "red"}).addTo(map)

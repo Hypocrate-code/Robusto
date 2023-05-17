@@ -725,7 +725,7 @@ h2.invi::before, h2.invi::after {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: max-content 57em 37em auto;
-    font-size: .8rem;
+    font-size: .72rem;
     margin-top: 5rem;
     max-width: 120rem;
     margin: 0 auto;
@@ -1037,19 +1037,20 @@ h2.invi::before, h2.invi::after {
     flex-direction: column;
     width: 100%;
     margin: 0 0;
+    font-size: .97rem;
 }
 .cards-title-container {
     position: relative;
 }
 #other-products #accent {
-    letter-spacing: .13rem;
+    letter-spacing: .13em;
 }
 .card.switching-to-right {
     animation: switch-to-right .3s forwards;
 }
 @keyframes switch-to-right {
     to {
-        transform: translateX(27rem);
+        transform: translateX(27em);
     }
 }
 .card.switching-to-left {
@@ -1058,33 +1059,34 @@ h2.invi::before, h2.invi::after {
 }
 @keyframes switch-to-left {
     to {
-        transform: translateX(-27rem);
+        transform: translateX(-27em);
     }
 }
 .right {
-    right: -60.5%;
+    right: -60%;
 }
 .left {
-    left: -60.5%;
+    left: -60%;
 }
 .left, .right {
     position: absolute;
-    top: 37.5rem;
+    top: 26em;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 5rem;
-    height: 5rem;
+    width: 3.6em;
+    height: 3.6em;
     border-radius: 50%;
-    border: .4rem solid var(--cream-brown);
+    border: .28em solid var(--cream-brown);
     background: transparent;
     transform: translateY(-50%);
     z-index: 999;
 }
 .left svg,
 .right svg {
-    height: 3rem;
-    width: 3rem;
+    --percent : 70%;
+    height: var(--percent);
+    width: var(--percent);
     fill: var(--cream-brown);
 }
 .right:hover, 
@@ -1099,13 +1101,13 @@ h2.invi::before, h2.invi::after {
     align-items: center;
     position: relative;
     justify-content: center;
-    padding: 3rem 0 4.5rem 0;
-    gap: 2.5rem;
+    padding: 3em 0 4.5em 0;
+    gap: 2.5em;
     border-top: 3px solid var(--really-black-brown);
     border-bottom: 3px solid var(--really-black-brown);
     overflow: hidden;
-    width: 108rem;
-    border-radius: .4rem;
+    width: 108em;
+    border-radius: .4em;
 }
 .card:last-child,
 .card:first-child {
@@ -1116,38 +1118,37 @@ h2.invi::before, h2.invi::after {
     flex-shrink: 0;
     flex-grow: 0;
     flex-basis: 1;
-    width: 24.6rem;
+    width: 24.6em;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
     height: 100%;
     background-color: rgba(255, 230, 167, 0.7);
-    border-radius: 1.5rem;
-    padding: 2.75rem 0;
+    border-radius: 1.5em;
+    padding: 2.75em 0;
     cursor: pointer;
     text-decoration: none;
     position: relative;
-    box-shadow: 0 0 1rem .5rem var(--really-black-brown);
+    box-shadow: 0 0 1em .5em var(--really-black-brown);
     transition: all .2s;
 }
 
 .card > img {
-    height: 29rem;
-    border-radius: 1.5rem;
+    height: 29em;
+    border-radius: 1.5em;
     transition: all .3s;
-    font-size: 2rem;
     color: var(--cream-brown);
     background-color: var(--latte-brown);
 }
 
 .card > h3 {
-    font-size: 2.67rem;
+    font-size: 2.67em;
     font-weight: 800;
     height: auto;
     color: var(--black-brown);
     position: relative;
-    transform: translateY(1.35rem);
+    transform: translateY(.55em);
     transition: transform .3s;
     /* transition-delay: .3s; */
 }
@@ -1165,28 +1166,28 @@ h2.invi::before, h2.invi::after {
 }
 .card > h4 {
     font-family: var(--sans-serif-font), sans-serif;
-    font-size: 1.7rem;
+    font-size: 1.7em;
     font-weight: 600;
     color: var(--latte-brown);
-    transform: translateY(-1rem);
+    transform: translateY(-.8em);
     filter: opacity(0);
     transition: transform .3s 0ms, filter .2s 0ms;
 }
 .card p {
     position: absolute;
-    bottom: -2rem;
-    height: 4rem;
+    bottom: -1em;
+    height: 2.1em;
     left: 50%;
     transform: translateX(-50%);
     font-family: var(--sans-serif-font);
-    font-weight: 500;
-    width: 17.5rem;
-    border-radius: 1.8rem;
+    font-weight: 400;
+    width: 9em;
+    border-radius: 2em;
     text-align: center;
-    font-size: 1.9rem;
+    font-size: 1.9em;
     letter-spacing: 1px;
     color: var(--cream-brown);
-    padding: 0.85rem;
+    padding: 0.45em;
     background-image: linear-gradient(to right, var(--accent-color), var(--spicy-purple));
     background-size: 300%;
     transition: all .3s;
@@ -1196,7 +1197,7 @@ h2.invi::before, h2.invi::after {
 
 .card:not(:last-child):hover img,
 .card:not(:last-child):focus-visible img {
-    transform: translateY(-2.5rem) scale(113%);
+    transform: translateY(-2.5em) scale(113%);
 }
 .card:not(:last-child):hover h3::after,
 .card:not(:last-child):focus-visible h3::after {
@@ -1208,9 +1209,9 @@ h2.invi::before, h2.invi::after {
 }
 .card:not(:last-child):hover h4,
 .card:not(:last-child):focus-visible h4 {
-    transform: translateY(.2rem);
+    transform: translateY(.1em);
     filter: opacity(1);
-    transition: transform .2s 0ms, filter .2s 0ms;
+    transition: transform .2s 100ms, filter .2s 100ms;
 }
 .card:not(:last-child) p:hover {
     background-position: right;
@@ -1220,15 +1221,26 @@ h2.invi::before, h2.invi::after {
 }
 .contact {
     position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background-image: linear-gradient(45deg, var(--black-brown), var(--really-black-brown));
+    border-top: solid .8em var(--really-black-brown);
+    margin-top: 5rem;
+    padding-inline: 10em !important;
+}
+.contact h2 {
+    grid-area: 1/1/2/3;
+    margin-top: 1.5rem;
 }
 .contact form {
-    --len: 32em;
+    --len: 100%;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    padding: 0 4em;
+    padding: 0 8em 0 2em;
     font-size: 1rem;
-    width: max-content;
+    width: var(--len);
 }
 form input, textarea {
     display: block;
@@ -1249,6 +1261,26 @@ form input:focus, textarea:focus {
     border-right: solid .5em var(--latte-brown);
     border-radius: .3em;
 }
+.map-container {
+    height: 100%;
+    padding: 0 2em 0 8em;
+}
+.map-container h3 {
+    text-align: center;
+    font-size: 3em;
+    padding-top: .22em;
+    height: 1.9em;
+    margin: 0 auto;
+    color: var(--cream-brown);
+    background-color: var(--latte-brown);
+    border-bottom-left-radius: .2em;
+    border-bottom-right-radius: .2em;
+}
+#map {
+    width: 100%;
+    margin: 0 auto;
+    height: calc(100% - 5.7rem);
+}
 .email {
     width: 19em;
 }
@@ -1267,7 +1299,8 @@ form *::placeholder {
 form button {
     width: 8.5em;
     overflow: hidden;
-    height: 2.2em;
+    height: 2.3em;
+    padding-bottom: .13em;
     border-radius: .2em;
     background-image: linear-gradient(105deg, var(--accent-color), var(--spicy-purple));
     background-size: 200%;
@@ -1278,27 +1311,30 @@ form button {
     font-weight: 600;
     letter-spacing: .05em;
     transition: background-position 200ms ease-in, scale 100ms ease-out;
-    margin-left: calc(var(--len) - 8.85em);
     padding-right: .5em;
     position: relative;
 }
 form button svg {
     fill: var(--cream-brown);
     width: 1.1em;
+    height: 1.1em;
 }
 form button svg:not(.click) {
     transform: translate(.4em, .2em);
     transition: transform .15s ease-out;
     transition-delay: 100ms;
 }
-form button:hover .click {
+form button:hover .click,
+form:focus-within .click {
     opacity: 1;
     transition-delay: 200ms;
 }
 .click {
     position: absolute;
     top: .5em;
-    right: 1.5em;
+    right: 1.3em;
+    width: 1.3em;
+    height: 1.3em;
     opacity: 0;
     transition: opacity 150ms ease-in;
     animation: click 1.2s infinite;
@@ -1314,19 +1350,19 @@ form button:hover .click {
         rotate: 0deg;
     }
 }
-form button:hover svg:not(.click) {
+form button:hover svg:not(.click),
+form:focus-within svg:not(.click) {
     transform: translate(1.5em, -2em);
     transition-delay: 0s;
 }
-
 .links-container {
     display: flex;
-    width: 100%;
     justify-content: center;
     gap: 6rem;
     height: 7rem;
     margin: 4.5em 0;
-    font-size: .9rem;
+    font-size: .85rem;
+    grid-column: span 2;
 }
 .links-container a {
     width: 7em;
@@ -1398,6 +1434,7 @@ footer ul li:nth-child(odd) {
 }
 #contact>h2 {
     margin-bottom: 1.6rem;
+    letter-spacing: .055em;
 }
 .advises>h2 {
     margin-bottom: 2rem;
@@ -1484,9 +1521,6 @@ footer a {
 @media screen and (max-width: 1165px) {
     #menu {
         font-size: .8em;
-    }
-    .contact form {
-        --len: 100%
     }
 }
 @media screen and (max-width: 1100px) {
@@ -1700,10 +1734,27 @@ footer a {
     .degustation::after {
         top: 0;
     }
+    .contact {
+        display: block;
+        /* height: 92em !important; */
+    }
+    #map {
+        height: 30em;
+        margin-top: 2.5em;
+    }
+    .map-container>* {
+        width: 100%;
+    }
 }
 @media (pointer: coarse) {
     .to-top {
         background-color: var(--black-brown);
+    }
+    form button svg {
+        display: none;
+    }
+    form button:active {
+        background-position: left;
     }
 }
 @media screen and (max-width: 736px) {
