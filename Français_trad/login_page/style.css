@@ -1,0 +1,85 @@
+/* reset css */
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* custom properties */
+
+html {
+    font-size: 62.5%;
+}
+:root {
+    --black-brown: #432818;
+    --really-black-brown: #362013;
+    --latte-brown: #99582A;
+    --cream-brown: #FFE6A7;
+    --accent-color: #339989;
+    --sans-serif-font: 'Roboto';
+    --serif-font: 'Roboto Slab';
+}
+
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--black-brown);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--cream-brown);
+    font-family: var(--serif-font), serif;
+}
+.connexion-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 40rem;
+    height: 50rem;
+    border-radius: 3rem;
+    filter: opacity(95%);
+    box-shadow: 0 0 10px 5px var(--really-black-brown);
+    background-color: rgba(67, 40, 24, 0.9);
+}
+.login {
+    margin-top: 2rem;
+}
+h2 {
+    font-size: 2rem;
+    font-family: var(--sans-serif-font), sans-serif;
+}
+form {
+    display: flex;
+    height: 20rem;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 1.5rem;
+    align-items: flex-start;
+}
+input[type="submit"] {
+    border-radius: 999px;
+    border: .3rem solid var(--cream-brown);
+    padding: 1rem 2rem;
+    font-size: 1.5rem;    
+    color: var(--cream-brown);
+    font-weight: 700;
+    background: none;
+}
+
+.website-background{
+    position: absolute;
+    background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash.jpg);
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    inset: 0;
+    z-index: -3;
+    filter: opacity(15%) brightness(200%);    
+}
