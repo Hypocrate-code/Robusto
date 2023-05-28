@@ -14,10 +14,30 @@ let cards, cardz, cars;
 cards = document.querySelector('.cards');
 const coffeeOnScroll = document.querySelector('.to-top'),
 liquidOnScroll = coffeeOnScroll.querySelector('#coffee'),
+cartNumber = document.querySelector('#cart-number'),
 overFlowed = document.querySelectorAll('h1>span>span');
 
 let timing = 0;
 
+
+function initCartScore (num) {
+  if(isNaN(num)) {
+    if(localStorage.length == 0) {
+      localStorage.setItem('totalValue', 0);
+      cartNumber.textContent = localStorage.getItem('totalValue');
+    }
+    else {
+      cartNumber.textContent = localStorage.getItem('totalValue');
+    }
+  }
+  else {
+    let resu = parseInt(localStorage.getItem('totalValue')) + parseInt(num);
+    localStorage.setItem('totalValue', resu);
+    cartNumber.textContent = localStorage.getItem('totalValue');
+  }
+}
+
+initCartScore();
 
 window.addEventListener('scroll', () => {
   const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
@@ -211,6 +231,37 @@ function leftFunction() {
   }, {once: true})
 }
 
+const dropDownLanguage = document.querySelector('.drop-down-language-picker'),
+dropDownLanguageButton = document.querySelector('.user-buttons li:first-child>button');
+
+
+dropDownLanguageButton.addEventListener('click', ()=>{
+  if(dropDownLanguage.style.animationPlayState == 'running') {
+      return;
+  }
+  else if(dropDownLanguage.style.display == 'block') {
+      dropDownLanguage.style.setProperty('animation', 'fade-in-top-reverse .15s forwards');
+      dropDownLanguage.addEventListener('animationend', () => {
+          dropDownLanguage.style.setProperty('animation-play-state','paused');
+          dropDownLanguage.style.setProperty('display','none');
+      }, {once: true})
+  }
+  else {
+      dropDownLanguage.style.setProperty('display', 'block');
+      dropDownLanguage.style.setProperty('animation', 'fade-in-top .15s forwards')
+      dropDownLanguage.addEventListener('animationend',()=> {
+          dropDownLanguage.style.setProperty('animation-play-state','paused');
+          document.body.addEventListener('click', ()=>{
+              dropDownLanguage.style.setProperty('animation', 'fade-in-top-reverse .15s forwards');
+              dropDownLanguage.addEventListener('animationend', () => {
+                  dropDownLanguage.style.setProperty('display','none');
+                  dropDownLanguage.style.setProperty('animation-play-state','paused');
+              }, {once: true})
+          }, {once: true})
+      }, {once: true})
+  }
+})
+
 function rightFunction() {
   if(cars.animationPlayState == 'running') {
     return;
@@ -290,10 +341,15 @@ if (window.innerWidth > 450) {
       .to("#coffee-cup-right, #coffee-cup-left", .5, {delay: -.8,x: origin,y:origin, rotate: origin, transformBox: 'view-box', transformOrigin: 'center'})
       .to("#eye", .5, {scale:1});
 }
-var map = L.map('map').setView([55.975077998323215, -3.1711523180413126], 10);
+const map = L.map('map').setView([55.975077998323215, -3.1711523180413126], 9);
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+// L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+// }).addTo(map);
+L.tileLayer('https://{s}.tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey={apikey}', {
+	attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	apikey: '6cf7dd4c3f06484ba127decaa95f4961',
+	maxZoom: 22
 }).addTo(map);
 
 L.marker([55.975077998323215, -3.1711523180413126],{ color: "red"}).addTo(map)

@@ -1920,7 +1920,8 @@ h1::after {
         font-size: calc(1.9rem * 1.4);
         letter-spacing: 1.5px;
         padding: calc(0.8rem * 1.4);
-        background-position: right;
+        background-position: center;
+        background-size: 300%;
     }
     .card:hover img, .card:focus img{
         transform: translateY(calc(-2.5rem * 1.4)) scale(113%) !important;
