@@ -772,7 +772,7 @@ h2.invi::before, h2.invi::after {
 #menu {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: max-content 57em 37em auto;
+    grid-template-rows: max-content 57em 31em auto;
     font-size: .72rem;
     margin-top: 5rem;
     max-width: 120rem;
@@ -888,7 +888,7 @@ h2.invi::before, h2.invi::after {
     content: '';
     display: block;
     position: absolute;
-    height: 185%;
+    height: 200%;
     width: .8rem;
     border-radius: 1em;
     left: 0em;
@@ -904,7 +904,7 @@ h2.invi::before, h2.invi::after {
     align-items: center;
     gap: .5em;
     margin-bottom: 1em;
-    font-size: 3.5em;
+    font-size: 3.2em;
     font-weight: 400;
 }
 .drinks ul li:hover #bar {
@@ -1758,9 +1758,10 @@ footer a {
     }
     #menu h3:not(.where h3) {
         margin: 2em auto 1em !important;
+        font-size: 3.8rem;
     }
     .where h3 {
-        margin: 1em auto .5em !important;        
+        margin: 1em auto .5em !important;
     }
     .where>div {
         margin-bottom: 5em;
@@ -1815,6 +1816,11 @@ footer a {
 @media (pointer: coarse) {
     .to-top {
         background-color: var(--black-brown);
+    }
+    form button {
+        width: 6.5em;
+        font-size: 2.15rem;
+        padding: 0;
     }
     form button svg {
         display: none;
@@ -1878,6 +1884,18 @@ footer a {
         gap: 4rem;
         padding: 6rem;
         width: 100%;
+    }
+    footer h2 {
+        font-size: 4rem;
+    }
+    .contact form {
+        font-size: 1.3rem;
+    }
+    .email-subject {
+        width: 18em;
+    }
+    .email {
+        width: 15em;
     }
     .advises li {
         font-size: 3rem;
