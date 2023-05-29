@@ -222,15 +222,40 @@ function leftFunction() {
       card.classList.remove('switching-to-right');
     })
     cards.removeChild(cards.lastElementChild);    
-    cards.removeChild(cards.lastElementChild);
     let celuiDeLaFin = cards.lastElementChild.cloneNode(true);
-    let celuiDuDebut = cards.firstElementChild.cloneNode(true);
     cards.insertBefore(celuiDeLaFin, cards.firstElementChild);
+    resetSlider();
+  }, {once: true})
+}
+
+function rightFunction() {
+  if(cars.animationPlayState == 'running') {
+    return;
+  }
+  let products = document.querySelectorAll('.card');
+  products.forEach(card => {
+    card.classList.add('switching-to-left');
+    })
+  cards.addEventListener('animationend', () => {
+    products.forEach(card => {
+      card.classList.remove('switching-to-left');
+    })
+    cards.removeChild(cards.firstElementChild);
+    let celuiDuDebut = cards.firstElementChild.cloneNode(true);
     cards.appendChild(celuiDuDebut);
     resetSlider();
   }, {once: true})
 }
 
+left.addEventListener('click', () => {
+  setUpSlider();
+  leftFunction();
+});
+
+right.addEventListener('click', () => {
+  setUpSlider();
+  rightFunction();
+})
 const dropDownLanguage = document.querySelector('.drop-down-language-picker'),
 dropDownLanguageButton = document.querySelector('.user-buttons li:first-child>button');
 
@@ -261,43 +286,11 @@ dropDownLanguageButton.addEventListener('click', ()=>{
       }, {once: true})
   }
 })
-
-function rightFunction() {
-  if(cars.animationPlayState == 'running') {
-    return;
-  }
-  let products = document.querySelectorAll('.card');
-  products.forEach(card => {
-    card.classList.add('switching-to-left');
-    })
-  cards.addEventListener('animationend', () => {
-    products.forEach(card => {
-      card.classList.remove('switching-to-left');
-    })
-    cards.removeChild(cards.firstElementChild);    
-    cards.removeChild(cards.firstElementChild);
-    let celuiDeLaFin = cards.lastElementChild.cloneNode(true);
-    let celuiDuDebut = cards.firstElementChild.cloneNode(true);
-    cards.insertBefore(celuiDeLaFin, cards.firstElementChild);
-    cards.appendChild(celuiDuDebut);
-    resetSlider();
-  }, {once: true})
-}
-
-left.addEventListener('click', () => {
-  setUpSlider();
-  leftFunction();
-});
-
-right.addEventListener('click', () => {
-  setUpSlider();
-  rightFunction();
-})
 if (window.innerWidth > 450) {
   let TL = gsap.timeline({repeat:-1});
-      TL.to("#coffee-cup-right, #coffee-cup-left", 0, {x: origin,y:origin, rotate: origin, transformBox: 'view-box', transformOrigin: 'center'})
-      .to('#head, #monocle', {delay:.6,y: -28, duration: .4, ease: "back.in(1.7)", yoyoEase: true})
-      .to("#tube", {rotate: 12,duration: .35 ,transformBox: "view-box",ease: "back.out(4)", transformOrigin: "bottom"})
+  TL.to("#coffee-cup-right, #coffee-cup-left", 0, {x: origin,y:origin, rotate: origin, transformBox: 'view-box', transformOrigin: 'center'})
+  .to('#head, #monocle', {delay:.6,y: -28, duration: .4, ease: "back.in(1.7)", yoyoEase: true})
+  .to("#tube", {rotate: 12,duration: .35 ,transformBox: "view-box",ease: "back.out(4)", transformOrigin: "bottom"})
       .to("#mustache", {y: -28, duration: .3,delay: -.4, ease: "back.out(1.7)", yoyoEase: true})
       .to("#bow-tie", {y: -28, duration: .3,delay: -.2, ease: "back.out(1.7)", yoyoEase: true})
       .to("#body, #left-arm, #coffee-cup-right, #coffee-cup-left, #right-hand", {y: -28, duration: .3, stagger: 0.1,ease: "back.out(4)"}, "-=0.2")

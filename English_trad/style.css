@@ -32,7 +32,7 @@ html {
     --handwritten-font: 'Patrick Hand';
 }
 body {
-    background: url(assets/lukasz-rawa-fmc-tFMMiBs-unsplash_2000.png) fixed;
+    background: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_2000.png) fixed;
     background-color: var(--black-brown);
     background-size: cover;
     color: var(--cream-brown);
@@ -496,7 +496,7 @@ button, a {
     position: absolute;
     left: -7rem;
     bottom: -330%;
-    width: 25rem;
+    width: 22rem;
     padding: 2rem;
     background-color: var(--spicy-purple);
     transition: all .2s;
@@ -703,7 +703,7 @@ h1>span:nth-child(2)>* {
     animation-delay: .35s ;
 } */
 
-h1>span:nth-child(2)>span:nth-child(3) {
+h1>span:nth-child(2)>span:nth-child(1) {
     color: var(--latte-brown);
 }
 .invi {
@@ -888,7 +888,7 @@ h2.invi::before, h2.invi::after {
     content: '';
     display: block;
     position: absolute;
-    height: 170%;
+    height: 185%;
     width: .8rem;
     border-radius: 1em;
     left: 0em;
@@ -961,7 +961,7 @@ h2.invi::before, h2.invi::after {
     position: absolute;
     font-size: 1.5em;
     top: .1em;
-    left: 100%;
+    left: 110%;
     font-weight: 700;
     color: var(--accent-color);
 }
@@ -1000,7 +1000,7 @@ h2.invi::before, h2.invi::after {
     background-color: var(--latte-brown);
 }
 .weely {
-    height: 44em;
+    height: 50em;
     display: block;
     margin: 0 auto;
     width: auto;
@@ -1550,7 +1550,7 @@ footer a {
         font-size: 56%;
     }
     body {
-        background-image: url(assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1500.png);
+        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1500.png);
     }
 }
 @media screen and (max-width: 1370px) {
@@ -1635,7 +1635,7 @@ footer a {
 @media screen and (max-width: 1018px) {
     html {font-size: 44%;}
     body {
-        background-image: url(assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1000.png);
+        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1000.png);
     }
     .drop-down-language-picker {
         bottom: -22.5rem;
@@ -1674,7 +1674,6 @@ footer a {
     }
     #other-products {
         width: 100%;
-
     }
     .cards {
         flex-wrap: wrap;
@@ -1723,6 +1722,9 @@ footer a {
     }
     .card:hover img, .card:focus img{
         transform: translateY(calc(-2.5rem * 1.4)) scale(113%) !important;
+    }
+    .card:nth-last-child(1) {
+        display: flex !important;
     }
 }
 @media screen and (max-width: 840px) {
@@ -1862,7 +1864,7 @@ footer a {
         font-size: 39%;
     }
     body {
-        background-image: url(assets/lukasz-rawa-fmc-tFMMiBs-unsplash_500.png);
+        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_500.png);
     }
     #hero-section p {
         font-size: 2.1em;
