@@ -7,6 +7,7 @@
     margin: 0;
     padding: 0;
     -webkit-tap-highlight-color: transparent;
+    /* outline: 1px solid red; */
 }
 button:focus, a:focus {
     outline: none;
@@ -579,6 +580,7 @@ main {
     width: 100%;
     z-index: 1;
     transition: filter .3s ease;
+    overflow-x: hidden;
 }
 main::after {
     content: '';
@@ -1948,6 +1950,9 @@ footer a {
     h1 {
         letter-spacing: .04em;
         padding: 0 .1em;
+    }
+    body {
+        background-size: 200%;
     }
     #other-products h2 {
         font-size: 5rem !important;

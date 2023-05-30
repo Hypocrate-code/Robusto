@@ -579,6 +579,7 @@ main {
     width: 100%;
     z-index: 1;
     transition: filter .3s ease;
+    overflow-x: hidden;
 }
 main::after {
     content: '';
@@ -1949,6 +1950,9 @@ footer a {
     #hero-section a {
         font-size: 2.35em;
         text-align: center;
+    }
+    body {
+        background-size: 200%;
     }
     .line {
         height: 2px;

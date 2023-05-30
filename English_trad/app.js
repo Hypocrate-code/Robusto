@@ -139,25 +139,30 @@ window.addEventListener('load', () => {
   loader.classList.add('disappear');
   loader.addEventListener('transitionend', () => {
     loader.style.display = 'none';
-    document.body.style.overflowY = 'visible'
+    document.body.style.overflowY = 'visible';
     Array.from(overFlowed).forEach((span)=>{
       span.style.animationPlayState = 'running';
     })
   })
   const onScrollElements = Array.from(document.querySelectorAll('.invi'))
-  const onScroll = new IntersectionObserver(function (onScrollElements, onScroll) {
+  if(window.innerWidth < 500) {
+    onScrollElements.forEach(el => el.classList.remove('invi'))
+  }
+  else {
+    const onScroll = new IntersectionObserver(function (onScrollElements, onScroll) {
+      onScrollElements.forEach(el => {
+        if(!el.isIntersecting){return;}
+        else{
+        el.target.classList.remove('invi');
+        onScroll.unobserve(el.target);
+        }
+      });
+    }, {rootMargin: '-35px'});
+    
     onScrollElements.forEach(el => {
-      if(!el.isIntersecting){return;}
-      else{
-      el.target.classList.remove('invi');
-      onScroll.unobserve(el.target);
-      }
+      onScroll.observe(el);
     });
-  }, {rootMargin: '-35px'});
-  
-  onScrollElements.forEach(el => {
-    onScroll.observe(el);
-  });
+  }
 })
 window.addEventListener('resize',()=>{
   if (window.innerWidth <= 736) {
