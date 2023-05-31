@@ -31,7 +31,7 @@ html {
     --serif-font: 'Roboto Slab';
 }
 body {
-    background: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_2000.png) fixed;
+    background: url(../../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_2000.png) fixed;
     background-color: var(--black-brown);
     background-size: cover;
     color: var(--cream-brown);
@@ -581,7 +581,7 @@ main::after {
 .product-photo {
     width: 40rem;
     height: 60rem;
-    background-image: url("../assets/black_450.png");
+    background-image: url("../../assets/black_450.png");
     background-size: 100%;
     background-repeat: no-repeat;
     position: relative;
@@ -1537,7 +1537,7 @@ h1::after {
         font-size: 56%;
     }
     body {
-        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1500.png);
+        background-image: url(../../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1500.png);
     }
 }
 @media screen and (max-width: 1370px) {
@@ -1671,7 +1671,7 @@ h1::after {
 @media screen and (max-width: 1018px) {
     html {font-size: 44%;}
     body {
-        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1000.png);
+        background-image: url(../../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1000.png);
     }
     .drop-down-language-picker {
         bottom: -23.5rem;
@@ -2011,7 +2011,7 @@ h1::after {
         font-size: 39%;
     }
     body {
-        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_500.png);
+        background-image: url(../../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_500.png);
     }
     .front, .back, .card-back, .card-front, .sub-content {
         width: 100%;

@@ -729,6 +729,25 @@ h1>span:nth-child(2)>span:nth-child(1) {
     /* transform: scaleX(0);
     animation: fade .25s ease-out .85s forwards; */
 }
+.whole_world {
+    width: 85%;
+    margin: 7em auto 2em;
+    display: block;
+    height: auto;
+}
+#first_travel_part, #second_travel_part, #third_travel_part {
+    stroke-dasharray: var(--totalLenght) var(--totalLenght);
+    stroke-dashoffset: var(--totalLenght);
+}
+#first_travel_part {
+    --totalLenght: 2211.154541015625;
+}
+#second_travel_part {
+    --totalLenght: 3634.492431640625;
+}
+#third_travel_part {
+    --totalLenght: 560.8914794921875;
+}
 /* ================================================= other products suggestion ============================================ */
 h2:not(footer h2) {
     font-family: var(--sans-serif-font), sans-serif;

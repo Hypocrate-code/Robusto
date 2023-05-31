@@ -311,25 +311,43 @@ right.addEventListener('click', () => {
 
 let mouseYInImage, mouseXInImage, percentX, percentY;
 
-productImage.addEventListener('click', function () {
+function actualize_bg_position(e) {
+  const data_of_image = productImage.getBoundingClientRect();
+  mouseYInImage = e.clientY - data_of_image.top;
+  mouseXInImage = e.clientX - main.offsetLeft - data_of_image.left;
+  percentX = Math.floor( mouseXInImage / data_of_image.width * 100);
+  percentY =  Math.floor( mouseYInImage / data_of_image.height * 100);
+  if(percentX>100 || percentX<0 || percentY>100 || percentY<0 ) {return;}
+  productImage.style.setProperty('background-position', percentX +'%' + percentY + '%');
+}
+function resetZoom() {
+  productImage.style.setProperty('transition', 'transform 200ms, background-position 200ms, background-size 200ms');
+  productImage.style.setProperty('background-position', '50% 50%');
+  productImage.addEventListener('transitionend',()=>{
+    productImage.style.setProperty('transition', 'transform 200ms, background-position 0ms, background-size 200ms')
+  })
+}
+productImage.addEventListener('click', function (e) {
   this.classList.toggle('zoomed');
   if(!this.classList.contains('zoomed')) {
-    productImage.style.setProperty('background-position', '50% 50%');
+    resetZoom();
+  }
+  else {
+    productImage.style.setProperty('transition', 'transform 200ms, background-position 200ms, background-size 200ms');
+    actualize_bg_position(e)
+    productImage.addEventListener('transitionend',()=>{
+      productImage.style.setProperty('transition', 'transform 200ms, background-position 0ms, background-size 200ms')
+    })
   }
   productImage.addEventListener('mousemove', (e) => {
     if(productImage.classList.contains('zoomed')) {
-      mouseYInImage = e.clientY - productImage.offsetTop; 
-      mouseXInImage = e.clientX - main.offsetLeft - productImage.offsetLeft;
-      percentX = Math.floor( mouseXInImage / productImage.offsetWidth * 100);
-      percentY =  Math.floor( mouseYInImage / productImage.offsetHeight * 100);
-      if(percentX>100 || percentX<0 || percentY>100 || percentY<0 ) {return;}
-      productImage.style.setProperty('background-position', percentX +'%' + percentY + '%');
+      actualize_bg_position(e);
     }
   })
 })
 productImage.addEventListener('mouseleave', function() {
   if(this.classList.contains('zoomed')) {this.classList.remove('zoomed');}
-  productImage.style.setProperty('background-position', '50% 50%');
+  resetZoom();
 });
 
 

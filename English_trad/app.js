@@ -292,6 +292,22 @@ dropDownLanguageButton.addEventListener('click', ()=>{
   }
 })
 
+const firstTravel = document.querySelector('#first_travel_part'),
+firstLen = firstTravel.getTotalLength(),
+secondTravel = document.querySelector('#second_travel_part'),
+secondLen = secondTravel.getTotalLength(),
+thirdTravel = document.querySelector('#third_travel_part'),
+thirdLen = thirdTravel.getTotalLength();
+
+
+const worldMapTL = gsap.timeline({repeat: -1});
+  worldMapTL.to(firstTravel, 1 ,{strokeDashoffset: 0})
+  .to(secondTravel, 2.5, {strokeDashoffset: 0})
+  .to(thirdTravel, .75, {strokeDashoffset: 0})
+  .to(firstTravel, 1 ,{strokeDashoffset: -1 * firstLen})
+  .to(secondTravel, 2.5 ,{strokeDashoffset: -1 * secondLen})
+  .to(thirdTravel, .75 ,{strokeDashoffset: -1 * thirdLen})
+  
 if (window.innerWidth > 450) {
   let TL = gsap.timeline({repeat:-1});
       TL.to("#coffee-cup-right, #coffee-cup-left", 0, {x: origin,y:origin, rotate: origin, transformBox: 'view-box', transformOrigin: 'center'})
