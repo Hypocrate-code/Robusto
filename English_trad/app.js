@@ -19,7 +19,6 @@ overFlowed = document.querySelectorAll('h1>span>span');
 
 let timing = 0;
 
-
 function initCartScore (num) {
   if(isNaN(num)) {
     if(localStorage.length == 0) {
@@ -146,22 +145,54 @@ window.addEventListener('load', () => {
   })
   const onScrollElements = Array.from(document.querySelectorAll('.invi'))
   if(window.innerWidth < 500) {
-    onScrollElements.forEach(el => el.classList.remove('invi'))
+    onScrollElements.forEach(el => el.classList.remove('invi'));
   }
   else {
     const onScroll = new IntersectionObserver(function (onScrollElements, onScroll) {
       onScrollElements.forEach(el => {
         if(!el.isIntersecting){return;}
         else{
-        el.target.classList.remove('invi');
-        onScroll.unobserve(el.target);
+          el.target.classList.remove('invi');
+          onScroll.unobserve(el.target);
         }
       });
-    }, {rootMargin: '-35px'});
+    }, {rootMargin: '-35px'}),
+    durationOfDotsAnim = .25,
+    firstTravel = document.querySelector('#first_travel_part'),
+    firstLen = firstTravel.getTotalLength(),
+    secondTravel = document.querySelector('#second_travel_part'),
+    secondLen = secondTravel.getTotalLength(),
+    thirdTravel = document.querySelector('#third_travel_part');
     
     onScrollElements.forEach(el => {
       onScroll.observe(el);
     });
+    const worldMapTL = gsap.timeline();
+    worldMapTL.to('.el', 0, {scale: 0, transformOrigin: 'center'})
+    worldMapTL.to('#el_ethiopie', {duration: durationOfDotsAnim, transformOrigin: 'center', scale: 1})
+    .to(firstTravel, 2,{strokeDashoffset: 0, delay: -.1})
+    .to('#el_viet_nam', {duration: durationOfDotsAnim, transformOrigin: 'center', scale: 1, delay: -1.5})
+    .to(firstTravel, .25 ,{strokeDasharray: `${firstLen - 250} 50 50 50 50 50`, delay: -.4})
+    .to(secondTravel, 0, {strokeDasharray: `50 50 50 50 ${secondLen - 200} ${secondLen}`})
+    .to(secondTravel, 4, {strokeDashoffset: 0})
+    .to('#el_guatemala', {duration: durationOfDotsAnim, scale: 1, transformOrigin: 'center' ,delay: -4})
+    .to('#el_costa_rica', {duration: durationOfDotsAnim, scale: 1, transformOrigin: 'center', delay: -3.7})
+    .to('#el_peru', {duration: durationOfDotsAnim, scale: 1, transformOrigin: 'center', delay: -3.3})
+    .to('#el_bresil', {duration: durationOfDotsAnim, scale: 1, transformOrigin: 'center', delay: -3})
+    .to('#el_edim', {duration: durationOfDotsAnim, scale: 1, transformOrigin: 'center', delay: -1.2})
+    .to(thirdTravel, 1.2, {strokeDashoffset: 0})
+    .to('#el_canaries', {duration: durationOfDotsAnim, scale: 1, transformOrigin: 'center', delay: -.7})
+    const robusto_map = Array.from(document.querySelectorAll('.whole_world'));
+  
+    const mapObserver = new IntersectionObserver(function (robusto_map, mapObserver) {
+      robusto_map.forEach(map=>{
+        if(!map.isIntersecting){return}
+        else {
+          worldMapTL.play();
+        }
+      })
+    }, {rootMargin: `-${robusto_map[0].clientHeight/1.8}px`});
+    mapObserver.observe(robusto_map[0]);
   }
 })
 window.addEventListener('resize',()=>{
@@ -292,22 +323,40 @@ dropDownLanguageButton.addEventListener('click', ()=>{
   }
 })
 
-const firstTravel = document.querySelector('#first_travel_part'),
-firstLen = firstTravel.getTotalLength(),
-secondTravel = document.querySelector('#second_travel_part'),
-secondLen = secondTravel.getTotalLength(),
-thirdTravel = document.querySelector('#third_travel_part'),
-thirdLen = thirdTravel.getTotalLength();
+const hoverableCountries = document.querySelectorAll('.hover-country'),
+mapTitle = document.querySelector('#columbo>h3:not(.map-title)');
 
+function setCountryInfos (bool) {
+  if (bool) {
+    hoverableCountries.forEach(country=>country.style.setProperty('transform', ''));
+  }
+  mapTitle.innerHTML = this.getAttribute('data-infos');
+  this.style.setProperty('transform', this.getAttribute('data-transform'));
+  if (bool) {
+    this.addEventListener('click', function () {
+      this.style.setProperty('transform', '');
+      mapTitle.innerHTML = '1979 <span id="accent">-</span> 1991';
+      return;
+    })
+  }
+  this.addEventListener('mouseleave',function () {
+    this.style.setProperty('transform', '');
+    mapTitle.innerHTML = '1979 <span id="accent">-</span> 1991';
+  })
+}
 
-const worldMapTL = gsap.timeline({repeat: -1});
-  worldMapTL.to(firstTravel, 1 ,{strokeDashoffset: 0})
-  .to(secondTravel, 2.5, {strokeDashoffset: 0})
-  .to(thirdTravel, .75, {strokeDashoffset: 0})
-  .to(firstTravel, 1 ,{strokeDashoffset: -1 * firstLen})
-  .to(secondTravel, 2.5 ,{strokeDashoffset: -1 * secondLen})
-  .to(thirdTravel, .75 ,{strokeDashoffset: -1 * thirdLen})
-  
+const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+
+if (isCoarsePointer) {
+  hoverableCountries.forEach(country => {
+    country.addEventListener('click', setCountryInfos, true, {once: false})
+  })
+} else {
+  hoverableCountries.forEach(country => {
+    country.addEventListener('mouseover', setCountryInfos, false)
+  })
+}
+
 if (window.innerWidth > 450) {
   let TL = gsap.timeline({repeat:-1});
       TL.to("#coffee-cup-right, #coffee-cup-left", 0, {x: origin,y:origin, rotate: origin, transformBox: 'view-box', transformOrigin: 'center'})
