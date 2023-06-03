@@ -327,34 +327,41 @@ dropDownLanguageButton.addEventListener('click', ()=>{
 const hoverableCountries = document.querySelectorAll('.hover-country'),
 mapTitle = document.querySelector('#columbo>h3:not(.map-title)');
 
-function setCountryInfos (bool) {
+function setCountryInfos(bool, t) {
   if (bool) {
-    hoverableCountries.forEach(country=>country.style.setProperty('transform', ''));
-  }
-  mapTitle.innerHTML = this.getAttribute('data-infos');
-  this.style.setProperty('transform', this.getAttribute('data-transform'));
-  if (bool) {
-    this.addEventListener('click', function () {
-      this.style.setProperty('transform', '');
+    if (t.getAttribute('data-infos') == mapTitle.innerHTML) {
+      t.style.setProperty('transform', '');
       mapTitle.innerHTML = '1979 <span id="accent">-</span> 1991';
-      return;
+    }
+    else {
+      hoverableCountries.forEach(country=>country.style.setProperty('transform', ''));
+      mapTitle.innerHTML = t.getAttribute('data-infos');
+      t.style.setProperty('transform', t.getAttribute('data-transform'));
+    }
+  }
+  else {
+    mapTitle.innerHTML = t.getAttribute('data-infos');
+    t.style.setProperty('transform', t.getAttribute('data-transform'));
+    t.addEventListener('mouseleave', function () {
+      t.style.setProperty('transform', '');
+      mapTitle.innerHTML = '1979 <span id="accent">-</span> 1991';
     })
   }
-  this.addEventListener('mouseleave',function () {
-    this.style.setProperty('transform', '');
-    mapTitle.innerHTML = '1979 <span id="accent">-</span> 1991';
-  })
 }
 
-const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
+const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
 if (isCoarsePointer) {
   hoverableCountries.forEach(country => {
-    country.addEventListener('click', setCountryInfos, true, {once: false})
+    country.addEventListener('click', ()=> {
+      setCountryInfos(true,  country)
+    })
   })
 } else {
   hoverableCountries.forEach(country => {
-    country.addEventListener('mouseover', setCountryInfos, false)
+    country.addEventListener('mouseover', ()=> {
+      setCountryInfos(false,  country)
+    })
   })
 }
 
@@ -418,3 +425,11 @@ L.tileLayer('https://{s}.tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey={
 }).addTo(map);
 
 L.marker([55.975077998323215, -3.1711523180413126],{ color: "red"}).addTo(map)
+
+const photoColumbo = document.querySelector('#photo-columbo');
+photoColumbo.addEventListener('mouseover',function () {
+  this.style.setProperty('--scaleforba', '.9')
+  photoColumbo.addEventListener('mouseleave',function () {
+    this.style.setProperty('--scaleforba', '1')
+  }, {once: true})
+})

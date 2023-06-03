@@ -31,7 +31,7 @@ html {
     --sans-serif-font: 'Figtree';
     --serif-font: 'Roboto Slab';
     --handwritten-font: 'Patrick Hand';
-    --country-color: #aa5f29;
+    --country-color: #ab6737;
 }
 body {
     background: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_2000.png) fixed;
@@ -753,7 +753,7 @@ h1>span:nth-child(2)>span:nth-child(1) {
 h2:not(footer h2) {
     font-family: var(--sans-serif-font), sans-serif;
     letter-spacing: .2rem;
-    font-size: 5.1rem;
+    font-size: 4.9rem;
     width: max-content;
     margin: 4rem auto;
     font-weight: 700;
@@ -1031,6 +1031,38 @@ h2.invi::before, h2.invi::after {
 #columbo {
     font-size: 1rem;
 }
+#columbo>div {
+    display: grid;
+    grid-template-columns: 35em 1fr;
+    gap: 0 5em;
+    grid-template-rows: 8em 1fr;
+    width: max-content;
+    margin: 6rem auto;
+    position: relative;
+}
+#columbo>div::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 5rem;
+    z-index: -1;
+    bottom: 0;
+    background-color: #f5db98;
+    clip-path: polygon(0 0, 100% 0, 100% 19%, 39.5em 19%, 35em 100%, 0 100%);
+    border-top-right-radius: 2em;
+    transition: transform 1s ease-out;
+    transform: none;
+    transform-origin: left;
+}
+#columbo>div.invi::after {
+    transform: scaleX(0);
+    opacity: 1;
+}
+#columbo>div.invi {
+    opacity: 1;
+    transform: none;
+}
 #columbo>div h3 {
     font-size: 5em;
     letter-spacing: .02em;
@@ -1045,32 +1077,31 @@ h2.invi::before, h2.invi::after {
     width: 60%;
     height: .5rem;
     background-color: var(--accent-color);
-    border-radius: 1em;
+    /* border-radius: 1em; */
     display: block;
-    animation: none;
     width: 80%;
+    transition: transform .4s ease;
+    transform-origin: left;
+    transform: none;
+    clip-path: polygon(0 0, 98% 0, 100% 100%, 2% 100%);
 }
-#columbo>div {
-    display: grid;
-    grid-template-columns: 35em 1fr;
-    gap: 0 5em;
-    grid-template-rows: 8em 1fr;
-    width: max-content;
-    margin: 0 auto;
+#columbo>div h3.invi::after {
+    transform: scaleX(0);
 }
 #columbo>div>div>p {
     font-family: var(--serif-font);
     width: 50rem;
     font-size: 1.7em;
     font-weight: 300;
-    transition: all .15s ease-out;
-    margin-bottom: 2em;
-    line-height: 140%;
+    transition: all .4s ease-out;
+    margin-bottom: 2.8em;
+    line-height: 145%;
 }
 #photo-columbo {
+    --scaleforba: 1;
     width: 35em;
     grid-area: 1/1/3/2;
-    height: 42em;
+    height: 40em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1089,26 +1120,46 @@ h2.invi::before, h2.invi::after {
     width: 12.5em;
     height: 12.5em;
     background-color: #f9e8be;
+    transition: scale .25s ease;
+    scale: var(--scaleforba);
 }
 #photo-columbo::before {
     clip-path: polygon(0% 0%, 0% 100% ,100% 0%);
     top: 0;
     left: 0;
+    transform-origin: top left;
 }
 #photo-columbo::after {
     clip-path: polygon(0% 100%, 100% 0% ,100% 100%);
     bottom: 0;
     right: 0;
+    transform-origin: bottom right;
 }
 #photo-columbo img {
     width: 30em;
-    height: 37em;
+    height: 35em;
     object-fit: cover;
 }
 #columbo>h3 {
     text-align: center;
     font-size: 4em;
     font-family: var(--sans-serif-font);
+}
+#columbo h4 {
+    font-family: var(--sans-serif-font);
+    font-size: 3em;
+    font-weight: 600;
+    letter-spacing: .03em;
+}
+#columbo>div>div>p:nth-child(3) {
+    font-weight: 600;
+    font-size: 3em;
+    width: auto;
+    font-family: var(--handwritten-font);
+    letter-spacing: .1rem;
+    margin: 0 0 0 .5em;
+    color: var(--accent-color);
+    filter: brightness(120%);
 }
 .map-title {
     margin: 1em auto;
@@ -1125,7 +1176,7 @@ h2.invi::before, h2.invi::after {
     flex-direction: column;
     width: max-content;
     margin: 0 auto;
-    font-size: .97rem;
+    font-size: .94rem;
     position: relative;
 }
 #other-products #accent {
@@ -1306,10 +1357,11 @@ h2.invi::before, h2.invi::after {
     outline: none !important;
 }
 .contact {
-    --len: 86%;
+    --len: 82%;
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    font-size: .95rem;
     gap: 0;
     margin-top: 1.5rem;
     padding-inline: 10em !important;
@@ -1324,7 +1376,7 @@ h2.invi::before, h2.invi::after {
     flex-direction: column;
     gap: 1.5rem;
     padding: 0 8em 0 2em;
-    font-size: 1rem;
+    font-size: 1em;
     width: var(--len);
     background-color: var(--transparent-brown);
     box-shadow: 0 0 4em 2em var(--transparent-brown);
@@ -1357,7 +1409,7 @@ form input:focus, textarea:focus {
 }
 .map-container h3 {
     text-align: center;
-    font-size: 3.2em;
+    font-size: 2.8em;
     font-weight: 500;
     padding-top: .24em;
     height: 1.8em;
@@ -1371,7 +1423,7 @@ form input:focus, textarea:focus {
 #map {
     width: 100%;
     margin: 0 auto;
-    height: calc(100% - 5.7rem);
+    height: calc(100% - 6.4em);
 }
 .email {
     width: 19em;
@@ -1673,6 +1725,14 @@ footer a {
     body.dark main::after {
         display: block;
     }
+    .contact {
+        grid-template-columns: 50% 50%;
+        padding: 0;
+    }
+    .map-container, .contact form {
+        /* padding: 0; */
+        width: 100%;
+    }
 }
 @media screen and (max-width: 1018px) {
     html {font-size: 44%;}
@@ -1686,19 +1746,6 @@ footer a {
 @media screen and (max-width: 934px) {
     html {
         font-size: 45%;
-    }
-    #columbo>div {
-        display: flex;
-        flex-direction: column;
-        gap: 5em;
-        margin-bottom: 6rem;
-        justify-content: center;
-        align-items: center;
-        height: auto;
-        width: auto;
-    }
-    #columbo img {
-        margin: 0 auto;
     }
 }
 @media screen and (max-width: 900px) {
@@ -1723,19 +1770,19 @@ footer a {
         display: none;
     }
     .card {
-        width: calc(24.6rem * 1.4);
-        height: calc(40rem * 1.4);
-        border-radius: calc(1.5rem  * 1.4);
-        padding: calc(2.75rem * 1.4) 0;
+        width: calc(24.6rem * 1.3);
+        height: calc(40rem * 1.3);
+        border-radius: calc(1.5rem  * 1.3);
+        padding: calc(2.75rem * 1.3) 0;
         box-shadow: 0 0 1rem .5rem var(--really-black-brown);
     }    
     .card > img {
-        height: calc(29rem * 1.4);
-        border-radius: calc(1.5rem  * 1.4);
-        transform: translateY(calc(-2.5rem * 1.4)) scale(113%);
+        height: calc(29rem * 1.3);
+        border-radius: calc(1.5rem  * 1.3);
+        transform: translateY(calc(-2.5rem * 1.3)) scale(113%);
     }
     .card > h3 {
-        font-size: calc(2.4rem * 1.4);
+        font-size: calc(2.4rem * 1.3);
         transform: translateY(0);
     }
     .card > h3::after {
@@ -1743,23 +1790,23 @@ footer a {
         transform: scaleX(1);
     }
     .card > h4 {
-        font-size: calc(1.7rem * 1.4);
+        font-size: calc(1.7rem * 1.3);
         transform: translateY(.2rem);
         filter: opacity(1);
     }
     .card p {
-        bottom: calc(-2rem * 1.4);
-        height: calc(3.8rem * 1.4);
-        width: 27rem;
-        border-radius: calc(1.8rem * 1.4);
-        font-size: calc(1.9rem * 1.4);
+        bottom: calc(-2rem * 1.3);
+        height: calc(3.8rem * 1.3);
+        width: 24rem;
+        border-radius: calc(1.8rem * 1.3);
+        font-size: calc(1.9rem * 1.3);
         letter-spacing: 1.5px;
-        padding: calc(0.8rem * 1.4);
+        padding: calc(0.8rem * 1.3);
         background-position: center;
         background-size: 300%;
     }
     .card:hover img, .card:focus img{
-        transform: translateY(calc(-2.5rem * 1.4)) scale(113%) !important;
+        transform: translateY(calc(-2.5rem * 1.3)) scale(113%) !important;
     }
     .card:nth-last-child(1) {
         display: flex !important;
@@ -1835,13 +1882,12 @@ footer a {
         top: 0;
     }
     .contact {
-        --len: 100%;
         display: block;
-        /* height: 92em !important; */
     }
     .contact>*:not(h2) {
         margin: 4rem auto;
         padding: 0 !important;
+        width: 70%;
     }
     #map {
         height: 30em;
@@ -1849,6 +1895,33 @@ footer a {
     }
     .map-container {
         padding: 0;
+    }
+    #columbo>div {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5em;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        width: auto;
+    }
+    #columbo>div>div>p {
+        width: 60rem;
+        text-align: center;
+        margin-bottom: .5rem;
+    }
+    #columbo img {
+        margin: 0 auto;
+    }
+    #columbo>div h3::after {
+        transform-origin: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #columbo>div h3.invi::after {
+        transform: translateX(-50%) scaleX(0);
+        opacity: 1;
     }
 }
 @media (pointer: coarse) {
@@ -1900,7 +1973,8 @@ footer a {
         width: 50rem;
     }
     .whole_world {
-        width: 100% !important;
+        width: 100%;
+        margin: 3em 0 0;
     }
 }
 @media screen and (max-width: 550px) {
@@ -1925,6 +1999,9 @@ footer a {
     }
     footer h2 {
         font-size: 4rem;
+    }
+    .contact>*:not(h2) {
+        width: 100%;
     }
     .contact form {
         font-size: 1.3rem;
@@ -1978,6 +2055,9 @@ footer a {
     #hero-section {
         font-size: .8rem;
     }
+    #hero-section p {
+        font-size: 2.2em;
+    }
     #hero-section a {
         font-size: 2.35em;
         text-align: center;
@@ -1997,6 +2077,11 @@ footer a {
     }
     #other-products h2 {
         font-size: 5rem !important;
+    }
+    #columbo>div>div>p {
+        font-size: 1.8em;
+        width: 80%;
+        margin: 0 auto;
     }
 }
 @media screen and (max-width: 380px) {
