@@ -2112,6 +2112,7 @@ footer a {
         font-size: 1.8em;
         width: 80%;
         margin: 0 auto;
+        font-weight: 400;
     }
     #columbo>div::after {
         transform: translateY(100%) translateX(-3em);
