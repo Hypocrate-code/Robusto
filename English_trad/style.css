@@ -1749,9 +1749,6 @@ footer a {
     }
 }
 @media screen and (max-width: 900px) {
-    #hero-section svg {
-        right: 5%;
-    }
     #other-products h2 {
         width: max-content;
         font-size: 6rem !important;
