@@ -1902,11 +1902,14 @@ footer a {
         align-items: center;
         height: auto;
         width: auto;
+        margin-bottom: 7em;
+    }
+    #columbo>div>* {
+        text-align: center;
     }
     #columbo>div>div>p {
-        width: 60rem;
-        text-align: center;
-        margin-bottom: .5rem;
+        width: 61rem;
+        margin: 0 auto .5rem;
     }
     #columbo img {
         margin: 0 auto;
@@ -1920,6 +1923,25 @@ footer a {
     #columbo>div h3.invi::after {
         transform: translateX(-50%) scaleX(0);
         opacity: 1;
+    }
+    #columbo h4 {
+        font-size: 4em;
+        margin-top: 1em;
+    }
+    #columbo>div>div>p:nth-child(3) {
+        font-size: 4em;
+        font-weight: 500;
+        letter-spacing: 0;
+        margin: 0 auto .5em;
+    }
+    #columbo>div::after {
+        width: 90%;
+        left: 0;
+        transform: translateX(-6em) translateY(110%);
+        clip-path: polygon(0 0, 100% 0, 100% 19%, 14.5em 19%, 10em 100%, 0 100%);
+    }
+    .map-title {
+        margin-top: 0;
     }
 }
 @media (pointer: coarse) {
@@ -1971,7 +1993,8 @@ footer a {
         width: 50rem;
     }
     .whole_world {
-        width: 100%;
+        width: 100vw;
+        transform: translateX(-6em);
         margin: 3em 0 0;
     }
 }
@@ -2006,6 +2029,14 @@ footer a {
         margin-left: 8rem;
         width: calc(100% - 8rem);
     }
+    #columbo>div::after {
+        --from: 3em;
+        --plus: 2em;
+        --height-of-top: 1em;
+        width: 100vw;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, calc(100% - var(--from)) 100%,calc(100% - var(--from) - var(--plus)) var(--height-of-top), calc(var(--from) + var(--plus)) var(--height-of-top), var(--from) 100%, 0 100%);
+        border-radius: 0;
+    }
 }
 @media screen and (max-width: 550px) {
     html {
@@ -2035,10 +2066,7 @@ footer a {
     }
     #columbo>div h3 {
         font-size: 8vw;
-    }
-    #columbo>div>div>p, #columbo>div h3, .citation>p  {
-        width: auto;
-    }
+    }   
 }
 @media screen and (max-width: 500px) {
     #first_travel_part, #second_travel_part, #third_travel_part {
@@ -2082,6 +2110,12 @@ footer a {
         font-size: 1.8em;
         width: 80%;
         margin: 0 auto;
+    }
+    #columbo>div::after {
+        transform: translateY(100%) translateX(-3em);
+    }
+    .whole_world {
+        transform: translateX(-3em);
     }
 }
 @media screen and (max-width: 380px) {
