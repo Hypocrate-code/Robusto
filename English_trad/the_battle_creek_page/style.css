@@ -1220,7 +1220,7 @@ h1::after {
 .packs {
     width: auto;
     height: auto;
-    max-width: 45rem;
+    max-width: 40rem;
 }
 @keyframes nope {
     0% {translate: -1rem 0;}
