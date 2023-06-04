@@ -43,7 +43,6 @@ nameOfProduct.pop();
 nameOfProduct.shift();
 nameOfProduct.shift();
 nameOfProduct.shift();
-nameOfProduct.shift();
 nameOfProduct = nameOfProduct.join('');
 
 let subName = "Goal : end of the World./Objectif bout du monde.";
@@ -367,7 +366,7 @@ sizeButtonsArray.forEach(btn => {
           sizeButtonsArray[2].classList.remove('chosen');
         }
         btn.classList.add('chosen');
-        price.textContent = '$' + prices[sizeButtonsArray.indexOf(btn)];
+        price.textContent = prices[sizeButtonsArray.indexOf(btn)] + '€';
     })
   })
 

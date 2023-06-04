@@ -365,7 +365,7 @@ sizeButtonsArray.forEach(btn => {
           sizeButtonsArray[2].classList.remove('chosen');
         }
         btn.classList.add('chosen');
-        price.textContent = '$' + prices[sizeButtonsArray.indexOf(btn)];
+        price.textContent = prices[sizeButtonsArray.indexOf(btn)] + '€';
     })
   })
 

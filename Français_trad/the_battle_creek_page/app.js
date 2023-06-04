@@ -43,7 +43,6 @@ nameOfProduct.pop();
 nameOfProduct.shift();
 nameOfProduct.shift();
 nameOfProduct.shift();
-nameOfProduct.shift();
 nameOfProduct = nameOfProduct.join('');
 
 let subName = "Travel precursor./Précurseur de voyage.";

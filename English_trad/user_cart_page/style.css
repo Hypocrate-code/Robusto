@@ -1324,6 +1324,9 @@ footer a {
         width: 100%;
         object-fit: cover;
     }
+    .trash svg:first-child {
+        transform: translate(-.4rem, .3rem);
+    }
     .title h3 {font-size: 3.1rem;}
     .title p {font-size: 2.7rem;}
     #unit-price {font-size: 2.3rem;}

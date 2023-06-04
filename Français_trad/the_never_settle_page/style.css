@@ -140,8 +140,8 @@ button, a {
     box-shadow: 0 2px 1rem var(--really-black-brown);
     background-color: rgba(54, 32, 19, 0.674);
     backdrop-filter: blur(10px);
-    transform: translateY(-100%);
-    animation: fade .4s cubic-bezier(.2,.45,.44,.84) 2s forwards;
+    /* transform: translateY(-100%);
+    animation: fade .4s cubic-bezier(.2,.45,.44,.84) 2s forwards; */
 }
 
 /* Tout en rapport avec la navbar sur le coté */
@@ -619,8 +619,8 @@ main::after {
     justify-content: center;
     width: max-content;
     margin-left: 7rem;
-    transform: translateX(-10rem);
-    filter: opacity(0);
+    /* transform: translateX(-10rem);
+    filter: opacity(0); */
 }
 .product-photo {
     width: 40rem;
@@ -677,6 +677,8 @@ h1{
     position: relative;
     letter-spacing: .17rem;
     overflow: hidden;
+    width: max-content;
+    margin-left: auto;
 }
 
 /* trait sous le nom du produit */
@@ -698,8 +700,9 @@ h1::after {
     font-size: 3.2rem;
     text-align: right;
     letter-spacing: .12rem;
-    transform: translateX(5rem);
-    filter: opacity(0);
+    /* transform: translateX(5rem);
+    filter: opacity(0); */
+    width: 52rem;
 }
 
 .description, .buying-part {
@@ -717,15 +720,15 @@ h1::after {
     font-size: 3rem;
     font-weight: 800;
     color: var(--accent-color);
-    filter: brightness(120%) opacity(0);
+    filter: brightness(120%);
     width: max-content;
-    transform: translateY(100%);
+    /* transform: translateY(100%); */
 }
 .product-content h3 {
     font-size: 2.4rem;
     letter-spacing: .11rem;
-    transform: translateY(100%);
-    filter: opacity(0);
+    /* transform: translateY(100%);
+    filter: opacity(0); */
 }
 .product-description {
     width: 100%;
@@ -733,8 +736,8 @@ h1::after {
     cursor: pointer;
     user-select: none;
     perspective: 1000px;
-    transform: translateY(100%);
-    filter: opacity(0);
+    /* transform: translateY(100%);
+    filter: opacity(0); */
 }
 .product-description-inner {
     position: relative;
@@ -822,8 +825,8 @@ h1::after {
     justify-content: space-between;
     height: 20rem;
     width: calc(50% - 1rem);
-    transform: translateY(100%);
-    filter: opacity(0);
+    /* transform: translateY(100%);
+    filter: opacity(0); */
 }
 
 /* ================ SIZE =============== */
@@ -970,8 +973,8 @@ h1::after {
     width: calc(50% - 1rem);
     height: 100%;
     perspective: 1000px;
-    transform: translateY(100%);
-    filter: opacity(0);
+    /* transform: translateY(100%);
+    filter: opacity(0); */
 }
 
 .sub-content > h4 {
@@ -1526,18 +1529,18 @@ footer a {
 
 h1 span {
     display: inline-block;
-    transform: translateY(-100%);
-    filter: opacity(0.5);
-    animation: fade .4s ease-out forwards;
+    /* transform: translateY(-100%); */
+    /* filter: opacity(0.5); */
+    /* animation: fade .4s ease-out forwards; */
 }
-h1 span:nth-child(1) {animation-delay: 0s;}
+/* h1 span:nth-child(1) {animation-delay: 0s;}
 h1 span:nth-child(2) {animation-delay: 0.15s;}
 h1 span:nth-child(3) {animation-delay: 0.3s;}
-h1 span:nth-child(4) {animation-delay: 0.45s;}
+h1 span:nth-child(4) {animation-delay: 0.45s;} */
 h1::after {
-    animation: fade .5s cubic-bezier(.38,.72,.36,1) .5s forwards;
+    animation: fade .5s cubic-bezier(.38,.72,.36,1) .2s forwards;
 }
-.title h2 {
+/* .title h2 {
     animation: fade .3s ease-in-out .9s forwards;   
 }
 .price {animation: fade-for-price .3s cubic-bezier(.2,.45,.44,.84) 1.25s forwards;}
@@ -1553,7 +1556,7 @@ h1::after {
 .sub-content {
     animation: fade .3s cubic-bezier(.2,.45,.44,.84) 1.85s forwards;
 }
-.photo-container {animation: fade .3s cubic-bezier(.2,.45,.44,.84) .8s forwards;}
+.photo-container {animation: fade .3s cubic-bezier(.2,.45,.44,.84) .8s forwards;} */
 
 @keyframes fade {
     to {
@@ -1561,12 +1564,12 @@ h1::after {
         filter: opacity(1);
     }
 }
-@keyframes fade-for-price {
+/* @keyframes fade-for-price {
     to {
         transform: translateY(-70%);
         filter: opacity(1) brightness(130%);
     }
-}
+} */
 
 /* ========================================== PARTIE RESPONSIVE ============================================== */
 
@@ -1740,8 +1743,8 @@ h1::after {
         margin-left: 0;
         height: 57rem;
         width: auto;
-        transform: translateY(5rem);
-        animation-delay: 1.1s;
+        /* transform: translateY(5rem); */
+        /* animation-delay: 1.1s; */
     }
     .photo-container::after {
         height: 57rem;
@@ -1771,12 +1774,14 @@ h1::after {
     h1 {
         font-size: 7rem;
         width: max-content;
+        margin-left: 0;
     }
     h1::after {
         width: 100%;
+        transform-origin: center;
     }
     .title.first h2 {
-        transform: translateY(50%);
+        /* transform: translateY(50%); */
     }
     h2 {
         font-size: 4rem !important;
@@ -1798,12 +1803,12 @@ h1::after {
     .price {
         font-size: 5rem !important;
     }
-    @keyframes fade-for-price {
+    /* @keyframes fade-for-price {
         to {
             transform: translateY(0%);
             filter: opacity(1) brightness(130%);
         }
-    }
+    } */
     main {
         padding: 10vh 0 8rem;
     }
@@ -2180,6 +2185,9 @@ h1::after {
         font-size: 2rem;
         height: 3.5rem;
         padding-top: .7rem;
+    }
+    .quantifier:not(.plus) {
+        border-right: 1.5px solid var(--black-brown);
     }
 }
 @media screen and (max-width: 250px) {
