@@ -2006,24 +2006,24 @@ footer a {
         width: 100%;
     }
     .advises li {
-        font-size: 3rem;
+        font-size: 2.4rem;
         width: 100% !important;
     }
     #contact li:nth-child(even) {
-        font-size: 3rem;
+        font-size: 2.4rem;
         width: calc(100% - 3rem);
     }
     .advises, #contact {
         width: 100%
     }
     footer h2 {
-        font-size: 4rem;
+        font-size: 3.4rem;
     }
     #contact>ul {
         width: calc(100% - 4rem);
     }
     #contact li:nth-child(odd) {
-        font-size: 3.3rem;
+        font-size: 2.7rem;
     }
     .advises>ol {
         margin-left: 8rem;

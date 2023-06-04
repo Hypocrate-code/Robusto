@@ -24,7 +24,7 @@ html {
     --scale: 55;
     --scale-up-text: 1;
     --scale-down-text: 1;
-    --sans-serif-font: 'Roboto';
+    --sans-serif-font: 'Figtree';
     --serif-font: 'Roboto Slab';
     /* i should have used em & rem instead of those */
 }
@@ -35,7 +35,7 @@ button, a {
     cursor: pointer;
 }
 body {
-    background: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1500.png) fixed;
+    background: url(../../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1500.png) fixed;
     background-color: var(--black-brown);
     background-size: cover;
     color: var(--cream-brown);
@@ -48,44 +48,81 @@ body {
     position: fixed;
     display: flex;
     justify-content: center;
-    gap: 3rem;
+    gap: 5rem;
     align-items: center;
     z-index: 100;
     height: 100%;
     inset: 0;
     background-color: var(--black-brown);
-    transition: .25s;
+    transition: filter .4s ease-out;
 }
 .disappear {
-    animation: disappear .3s forwards;
-}
-@keyframes disappear {
-    from {
-        filter: opacity(80%);
-    }
-    to {
-        filter: opacity(0);
-    }
+    filter: opacity(0);
 }
 .dot {
     width: 6rem;
-    height: 6rem;
-    border-radius: 50%;
-    background-color: var(--cream-brown);
-    animation: loading .2s infinite alternate;
+    transform-origin: center;
+    animation: loading 1s infinite, spinning-beans 1.2s linear infinite;
 }
 .dot:nth-child(2) {
-    animation-delay: .1s;
+    animation-name: loading, spinning-beans2;
+    animation-delay: .125s, 0s;
 }
 .dot:nth-child(3) {
-    animation-delay: .2s;
+    animation-name: loading, spinning-beans3;
+    animation-delay: .225s, 0s;
 }
 @keyframes loading {
     from {
-        transform: translateY(0);
+        translate: 0 0;
+    }
+    50% {
+        translate: 0 -4rem;
     }
     to {
-        transform: translateY(-4rem);
+        translate: 0 0;
+    }
+}
+@keyframes spinning-beans {
+    from {
+        rotate: 0deg;
+    }
+    33% {
+        rotate: 120deg;
+    }
+    66% {
+        rotate: 240deg;
+    }
+    to {
+        rotate: 360deg;
+    }
+}
+@keyframes spinning-beans2 {
+    from {
+        rotate: 120deg;
+    }
+    33% {
+        rotate: 240deg;
+    }
+    66% {
+        rotate: 360deg;
+    }
+    to {
+        rotate: 480deg;
+    }
+}
+@keyframes spinning-beans3 {
+    from {
+        rotate: 240deg;
+    }
+    33% {
+        rotate: 360deg;
+    }
+    66% {
+        rotate: 480deg;
+    }
+    to {
+        rotate: 600deg;
     }
 }
 
@@ -535,6 +572,7 @@ body {
 h1 {
     width: 100%;
     font-size: 4rem;
+    letter-spacing: .1rem;
     position: relative;
 }
 h1::after {
@@ -617,6 +655,11 @@ h1::after {
     filter: opacity(85%);
     transition: all .3s;
 }
+@keyframes card-disappear {
+    to {
+        opacity: 0;
+    }
+}
 .going-up {
     transition: all .2s ease-in-out !important;
     transform: translateY(calc(-100% - 3.4rem));
@@ -636,20 +679,20 @@ h1::after {
     border-radius: 2rem .5rem .5rem 2rem;
     grid-area: 1/1/-1/2;
 }
-
 .product .title {
     grid-area: 1/2/3/3;
     position: relative;
-
 }
 .title h2{
-    font-size: calc(4rem * var(--scale-down-text));
+    font-size: calc(4.2rem * var(--scale-down-text));
     font-family: var(--serif-font), serif;
     margin-top: 1rem;
+    font-weight: 700;
     width: max-content;
     position: relative;
 }
 .title h3 {
+    font-weight: 500;
     font-family: var(--serif-font), serif;
     font-size: 2.5rem;
     margin-bottom: 2rem;
@@ -665,12 +708,14 @@ h1::after {
     clip-path: polygon(2% 0, 100% 0, 98% 100%, 0% 100%);
 }
 .title>p {
-    font-size: 2.4rem;
-    font-weight: 900;
+    font-size: 2rem;
+    font-weight: 500;
     margin-top: .5rem;
+    filter: opacity(.95);
 }
 #unit-price {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    font-weight: 600;
 }
 .quantity {
     display: flex;
@@ -760,7 +805,7 @@ h1::after {
     min-height: 100vh;
     min-height: 100dvh;
     padding: 10.5rem 4rem 2rem 4rem;
-    background-color: #362013d3;
+    background-color: #362013ea;
     box-shadow: -1rem 0 4rem var(--really-black-brown);
 }
 .cart-validation::before,
@@ -793,15 +838,16 @@ h1::after {
 .cart-validation h2 {
     width: 100%;
     position: relative;
-    font-size: calc(3.5rem * var(--scale-up-text));
-    margin-bottom: calc(1.5rem * var(--scale-up-text));
+    letter-spacing: .1rem;
+    font-size: calc(3.2rem * var(--scale-up-text));
+    font-weight: 600;
 }
 .cart-validation h2::after {
     content: '';
     display: block;
     position: absolute;
-    bottom: -1.2rem;
-    height: .2rem;
+    bottom: -1.5rem;
+    height: .25rem;
     background-color: var(--cream-brown);
     border-radius: 999px;
     width: calc(100% + 2rem);
@@ -837,20 +883,20 @@ h1::after {
     padding: .8rem 2rem;
     border-radius: .5rem;
     color: var(--cream-brown);
-    font-weight: 500;
-    letter-spacing: .1rem;
+    font-weight: 700;
+    letter-spacing: .12rem;
     font-size: calc(1.7rem * var(--scale-up-text));
     border: .3rem solid var(--latte-brown);
     background-color: var(--latte-brown);
     cursor: pointer;
     transition: all .2s;
-    max-width: 13rem;
+    font-family: var(--sans-serif-font);
+    max-width: 14rem;
 }
 .cart-validation label input:focus,
 .cart-validation>label>input:hover,
 .cart-validation label input:focus-visible {
     outline: none;
-    border-radius: .8rem;
 }
 .cart-validation label input::placeholder {
     font-size: calc(1.6rem * var(--scale-up-text));
@@ -859,7 +905,6 @@ h1::after {
 .cart-validation label button:hover,
 .cart-validation label button:focus-visible {
     background-color: transparent;
-    border-radius: .8rem;
 }
 .recap-products {
     margin: calc(3rem * var(--scale-up-text)) 0 calc(2rem * var(--scale-up-text));
@@ -889,6 +934,7 @@ h1::after {
 }
 .recap-product *:nth-last-child(2) {
     text-align: center;
+    font-weight: 700;
 }
 .recap-product h3 {
     font-weight: 400;
@@ -896,6 +942,9 @@ h1::after {
 }
 .mendatory-informations {
     margin: calc(2rem * var(--scale-up-text)) 0 calc(1.5rem * var(--scale-up-text));
+}
+.mendatory-informations div:nth-child(3) p:nth-child(2) #accent {
+    font-weight: 800;
 }
 .mendatory-informations div:not(:nth-child(3)) p {
     font-size: calc(1.8rem * var(--scale-up-text));
@@ -918,17 +967,17 @@ h1::after {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 15.5rem;
+    height: 16rem;
 }
 .cart-validation>div:last-child a {
-    width: 93%;
+    width: 100%;
     text-align: center;
     padding: 1.4rem;
     font-family: var(--sans-serif-font), sans-serif;
-    border-radius: .5rem;
+    border-radius: 10rem;
     font-size: calc(2.8rem * var(--scale-up-text));
     background-image: linear-gradient(to right, var(--accent-color), var(--spicy-purple));
-    background-size: 400%;
+    background-size: 285%;
     color: var(--cream-brown);
     text-decoration: none;
     font-weight: 700;
@@ -945,7 +994,6 @@ h1::after {
 .cart-validation div:last-child a:focus-visible,
 .cart-validation div:last-child a:hover {
     background-position: 90%;
-    border-radius: .7rem;
 }
 
 footer {
@@ -1001,7 +1049,9 @@ footer>div>h2 {
 .advises>h2 {
     margin-bottom: 2rem;
 }
-
+footer a {
+    color: var(--cream-brown) !important;
+}
 
 /* ****************************************************************************INITIALISATION FINALE***************************************************************************** */
 
@@ -1010,7 +1060,7 @@ footer>div>h2 {
 }
 #accent {
     color: var(--accent-color);
-    font-weight: 800;
+    font-weight: 700;
 }
 
 @keyframes fade-in-top {
@@ -1046,7 +1096,7 @@ footer>div>h2 {
 }
 @media screen and (min-width: 1500px) {
     body {
-        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_2000.png);
+        background-image: url(../../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_2000.png);
     }
 }
 @media screen and (max-width: 1500px) {
@@ -1054,7 +1104,7 @@ footer>div>h2 {
         font-size: 56%;
     }
     body {
-        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1500.png);
+        background-image: url(../../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1500.png);
     }
 }
 @media screen and (max-width: 1350px) {
@@ -1067,10 +1117,10 @@ footer>div>h2 {
     }
     .cart-validation>div:last-child {
         justify-content: center;
-        gap: 1rem;
+        gap: 2rem;
     }    
     .cart-validation div:last-child a {
-        height: calc(5.7rem * var(--scale-up-text));
+        height: calc(6rem * var(--scale-up-text));
         font-size: calc(2.8rem * var(--scale-up-text));
         line-height: calc(5.7rem * var(--scale-up-text) - 2.8rem);
     }
@@ -1158,10 +1208,10 @@ footer>div>h2 {
     }
     body {
         display: block;
-        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1000.png);
+        background-image: url(../../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1000.png);
     }
     :root {
-        --scale-up-text: 1.5;
+        --scale-up-text: 1.3;
     }
     .cart-validation > div:last-child {
         height: auto;
@@ -1218,7 +1268,7 @@ footer>div>h2 {
 }
 @media screen and (max-width: 660px) {
     body {
-        background-image: url(../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_500.png);
+        background-image: url(../../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_500.png);
     }
     footer {
         flex-direction: column;
@@ -1255,8 +1305,11 @@ footer>div>h2 {
 @media screen and (max-width: 500px) {
     .quantity {
         position: initial;
-        margin-top: 2rem;
+        margin-top: 1.9rem;
         justify-content: center;
+    }
+    .quantifier:not(.plus) {
+        border-right: 1.5px solid var(--black-brown);
     }
     .product {
         height: auto;
@@ -1283,7 +1336,7 @@ footer>div>h2 {
 }
 @media screen and (max-width: 454px) {
     html {
-        font-size: 1.5vw;
+        font-size: 1.4vw;
     }
     .line {
         height: 2px;

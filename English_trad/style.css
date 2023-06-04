@@ -2027,8 +2027,32 @@ footer a {
         padding: 6rem;
         width: 100%;
     }
+    .advises li {
+        font-size: 2.4rem;
+        width: 100% !important;
+    }
+    #contact li:nth-child(even) {
+        font-size: 2.4rem;
+        width: calc(100% - 3rem);
+    }
+    .advises, #contact {
+        width: 100%
+    }
     footer h2 {
-        font-size: 4rem;
+        font-size: 3.4rem;
+    }
+    #contact>ul {
+        width: calc(100% - 4rem);
+    }
+    #contact li:nth-child(odd) {
+        font-size: 2.7rem;
+    }
+    .advises>ol {
+        margin-left: 8rem;
+        width: calc(100% - 8rem);
+    }
+    #columbo>div h3 {
+        font-size: 8vw;
     }
     .contact>*:not(h2) {
         width: 100%;
@@ -2041,30 +2065,6 @@ footer a {
     }
     .email {
         width: 15em;
-    }
-    .advises li {
-        font-size: 3rem;
-        width: 100% !important;
-    }
-    #contact li:nth-child(even) {
-        font-size: 3rem;
-        width: calc(100% - 3rem);
-    }
-    .advises, #contact {
-        width: 100%
-    }
-    #contact>ul {
-        width: calc(100% - 4rem);
-    }
-    #contact li:nth-child(odd) {
-        font-size: 3.3rem;
-    }
-    .advises>ol {
-        margin-left: 8rem;
-        width: calc(100% - 8rem);
-    }
-    #columbo>div h3 {
-        font-size: 8vw;
     }
 }
 @media screen and (max-width: 500px) {

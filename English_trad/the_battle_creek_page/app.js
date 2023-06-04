@@ -40,9 +40,13 @@ beans = document.querySelectorAll('.bean');
 let nameOfProduct = document.querySelector('h1').textContent;
 nameOfProduct = Array.from(nameOfProduct)
 nameOfProduct.pop();
+nameOfProduct.shift();
+nameOfProduct.shift();
+nameOfProduct.shift();
+nameOfProduct.shift();
 nameOfProduct = nameOfProduct.join('');
 
-let subName = "the original one./l'original.";
+let subName = "Travel precursor./Précurseur de voyage.";
 const main = document.querySelector('main'),
 cartLink = document.querySelector('[href="../user_cart_page/index.html"]'),
 beansBackground = document.querySelector('.website-background');
@@ -181,7 +185,7 @@ window.addEventListener('load', () => {
           comingFromBottomCard.unobserve(descriptionCard.target);
         }
       });
-    }, {rootMargin: '-55px'});
+    }, {rootMargin: '-15px'});
     descriptionCards.forEach(descriptionCard => {
       comingFromBottomCard.observe(descriptionCard);
       });
@@ -382,7 +386,7 @@ sizeButtonsArray.forEach(btn => {
           sizeButtonsArray[2].classList.remove('chosen');
         }
         btn.classList.add('chosen');
-        price.textContent = '$' + prices[sizeButtonsArray.indexOf(btn)];
+        price.textContent = prices[sizeButtonsArray.indexOf(btn)] + '€';
     })
   })
 

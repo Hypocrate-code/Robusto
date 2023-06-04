@@ -40,9 +40,13 @@ beans = document.querySelectorAll('.bean');
 let nameOfProduct = document.querySelector('h1').textContent;
 nameOfProduct = Array.from(nameOfProduct)
 nameOfProduct.pop();
+nameOfProduct.shift();
+nameOfProduct.shift();
+nameOfProduct.shift();
+nameOfProduct.shift();
 nameOfProduct = nameOfProduct.join('');
 
-let subName = "the black one./l'ébène";
+let subName = "Goal : end of the World./Objectif bout du monde.";
 const main = document.querySelector('main'),
 cartLink = document.querySelector('[href="../user_cart_page/index.html"]'),
 beansBackground = document.querySelector('.website-background');
@@ -163,7 +167,7 @@ window.addEventListener('load', () => {
           comingFromBottomCard.unobserve(descriptionCard.target);
         }
       });
-    }, {rootMargin: '-55px'});
+    }, {rootMargin: '-15px'});
     descriptionCards.forEach(descriptionCard => {
       comingFromBottomCard.observe(descriptionCard);
     });
@@ -392,13 +396,13 @@ buyButton.addEventListener('click', () => {
     })
 
     if(sizeButtonsArray[0].classList.contains('chosen')) {
-      loop(nameOfProduct, 'M', b, '../assets/black_300.png', subName, prices[0]);
+      loop(nameOfProduct, 'M', b, '../../assets/black_300.png', subName, prices[0]);
     }
     else if(sizeButtonsArray[1].classList.contains('chosen')) {
-      loop(nameOfProduct,'L', b, '../assets/black_300.png', subName, prices[1]);
+      loop(nameOfProduct,'L', b, '../../assets/black_300.png', subName, prices[1]);
     }
     else {
-      loop(nameOfProduct,'XL', b, '../assets/black_300.png', subName, prices[2]);
+      loop(nameOfProduct,'XL', b, '../../assets/black_300.png', subName, prices[2]);
     }
     quantity = 0;
     result.innerHTML = 0;
