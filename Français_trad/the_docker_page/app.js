@@ -45,7 +45,7 @@ nameOfProduct.shift();
 nameOfProduct.shift();
 nameOfProduct = nameOfProduct.join('');
 
-let subName = "Travel precursor./Précurseur de voyage.";
+let subName = "The Pirate's rest./Le repos du Pirate.";
 const main = document.querySelector('main'),
 cartLink = document.querySelector('[href="../user_cart_page/index.html"]'),
 beansBackground = document.querySelector('.website-background');
@@ -415,13 +415,13 @@ buyButton.addEventListener('click', () => {
     })
 
     if(sizeButtonsArray[0].classList.contains('chosen')) {
-      loop(nameOfProduct, 'M', b, '../../assets/batlle creek_300.png', subName, prices[0]);
+      loop(nameOfProduct, 'M', b, '../../assets/docker_300.png', subName, prices[0]);
     }
     else if(sizeButtonsArray[1].classList.contains('chosen')) {
-      loop(nameOfProduct,'L', b, '../../assets/batlle creek_300.png', subName, prices[1]);
+      loop(nameOfProduct,'L', b, '../../assets/docker_300.png', subName, prices[1]);
     }
     else {
-      loop(nameOfProduct,'XL', b, '../../assets/batlle creek_300.png', subName, prices[2]);
+      loop(nameOfProduct,'XL', b, '../../assets/docker_300.png', subName, prices[2]);
     }
     quantity = 0;
     result.innerHTML = 0;

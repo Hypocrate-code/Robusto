@@ -22,7 +22,7 @@ buyButton = document.querySelector('.buy-button');
 let cartIconStyle = window.getComputedStyle(cartIcon);
 
 const sizeButtonsArray = Array.from(document.querySelectorAll('#size-button'));
-let prices = ['12.99', '18.00', '29.50', '15.00', '20.00', '32.00'];
+let prices = ['18.00', '24.50', '38.00'];
 const price = document.querySelector('.price');
 
 const productDescription = document.querySelector('.product-description-inner'),
@@ -43,10 +43,9 @@ nameOfProduct.pop();
 nameOfProduct.shift();
 nameOfProduct.shift();
 nameOfProduct.shift();
-nameOfProduct.shift();
 nameOfProduct = nameOfProduct.join('');
 
-let subName = "The Pirate's rest./Le repos du Pirate.";
+let subName = "Goal : end of the World./Objectif bout du monde.";
 const main = document.querySelector('main'),
 cartLink = document.querySelector('[href="../user_cart_page/index.html"]'),
 beansBackground = document.querySelector('.website-background');
@@ -104,25 +103,6 @@ hamburger.addEventListener('click', ()=> {
     }, {once: true})
   }
 })
-const contactAnchor = document.querySelector('a[href="#contact"]');
-contactAnchor.addEventListener('click', () => {
-  if(window.innerWidth<=380) {
-    document.body.classList.remove('dark');
-    Array.from(hamburger.children).forEach(line => line.classList.remove('active'));
-    hamburger.style.setProperty('animation-play-state', 'running');
-    coffeeJar.classList.remove("active");
-    coffeeUp.beginElement();
-    coffeeJarContainer.style.setProperty('--animation', 'liquid-reverse 0.4s');
-    coffeeCup.classList.remove('out');
-    coffeeSmoke.classList.remove('visible');
-    coffeeJarContainer.setAttribute("aria-expanded", false);
-    hamburger.setAttribute('aria-expanded', false);
-    hamburger.addEventListener('animationend', ()=> {
-      hamburger.style.setProperty('animation-play-state', 'paused');
-    }, {once: true})
-  }
-})
-
 
 coffeeJarContainer.addEventListener('click', () => {
   Array.from(hamburger.children).forEach(line => line.classList.toggle('active'));
@@ -171,6 +151,7 @@ function loop(name, size, qtt, productImg, subName, price) {
       localStorage.setItem(newIndex+1, JSON.stringify(ourProduct));
     }
   };
+
 const descriptionCards = Array.from(document.querySelectorAll('.details-container>div'));
 window.addEventListener('load', () => {
   if(window.innerWidth<=1000) {
@@ -188,14 +169,13 @@ window.addEventListener('load', () => {
     }, {rootMargin: '-15px'});
     descriptionCards.forEach(descriptionCard => {
       comingFromBottomCard.observe(descriptionCard);
-      });
-    }
+    });
+  }
   loader.classList.add('disappear');
   loader.addEventListener('transitionend', () => {
-  loader.style.display = 'none';
+    loader.style.display = 'none';
   })
 })
-
 
 const images = document.querySelectorAll('[data-src]');
 
@@ -241,15 +221,15 @@ const lazyLoader = new IntersectionObserver(function (images, lazyLoader) {
   images.forEach(image => {
     if(!image.isIntersecting){return;}
     else{
-    loading(image.target);
-    lazyLoader.unobserve(image.target);
+      loading(image.target);
+      lazyLoader.unobserve(image.target);
     }
   });
 }, {rootMargin: '400px'});
-
 images.forEach(image => {
   lazyLoader.observe(image);
 });
+
 productDescription.addEventListener('click', () => {
   if(window.innerWidth > 934) {
     productDescription.classList.toggle('returned');
@@ -321,7 +301,6 @@ function rightFunction() {
   }, {once: true})
 }
 
-// const scrollTop = document.documentElement.scrollHeight;
 
 left.addEventListener('click', () => {
   setUpSlider();
@@ -374,6 +353,7 @@ productImage.addEventListener('mouseleave', function() {
   resetZoom();
 });
 
+
 sizeButtonsArray.forEach(btn => {
     btn.addEventListener('click', event => {
         if(sizeButtonsArray[0].classList.contains('chosen')) {
@@ -386,8 +366,7 @@ sizeButtonsArray.forEach(btn => {
           sizeButtonsArray[2].classList.remove('chosen');
         }
         btn.classList.add('chosen');
-        const instance = sizeButtonsArray.indexOf(btn);
-        price.innerHTML = `${prices[instance]}€ <s>${prices[instance+3]}</s>`;
+        price.textContent = prices[sizeButtonsArray.indexOf(btn)] + '€';
     })
   })
 
@@ -416,16 +395,34 @@ buyButton.addEventListener('click', () => {
     })
 
     if(sizeButtonsArray[0].classList.contains('chosen')) {
-      loop(nameOfProduct, 'M', b, '../../assets/docker_300.png', subName, prices[0]);
+      loop(nameOfProduct, 'M', b, '../../assets/black_300.png', subName, prices[0]);
     }
     else if(sizeButtonsArray[1].classList.contains('chosen')) {
-      loop(nameOfProduct,'L', b, '../../assets/docker_300.png', subName, prices[1]);
+      loop(nameOfProduct,'L', b, '../../assets/black_300.png', subName, prices[1]);
     }
     else {
-      loop(nameOfProduct,'XL', b, '../../assets/docker_300.png', subName, prices[2]);
+      loop(nameOfProduct,'XL', b, '../../assets/black_300.png', subName, prices[2]);
     }
     quantity = 0;
     result.innerHTML = 0;
+  }
+})
+const contactAnchor = document.querySelector('a[href="#contact"]');
+contactAnchor.addEventListener('click', () => {
+  if(window.innerWidth<=380) {
+    document.body.classList.remove('dark');
+    Array.from(hamburger.children).forEach(line => line.classList.remove('active'));
+    hamburger.style.setProperty('animation-play-state', 'running');
+    coffeeJar.classList.remove("active");
+    coffeeUp.beginElement();
+    coffeeJarContainer.style.setProperty('--animation', 'liquid-reverse 0.4s');
+    coffeeCup.classList.remove('out');
+    coffeeSmoke.classList.remove('visible');
+    coffeeJarContainer.setAttribute("aria-expanded", false);
+    hamburger.setAttribute('aria-expanded', false);
+    hamburger.addEventListener('animationend', ()=> {
+      hamburger.style.setProperty('animation-play-state', 'paused');
+    }, {once: true})
   }
 })
 cartLink.addEventListener('click', ()=>{
@@ -451,3 +448,5 @@ plus.addEventListener('click', function() {
 minus.addEventListener('click', function() {
   test(quantity);
 });
+
+
