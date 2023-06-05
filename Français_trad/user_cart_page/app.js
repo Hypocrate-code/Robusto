@@ -256,8 +256,8 @@ function init() {
                 subTotalPrices += parseFloat(productData.price*productData.quantity);
             }
         })
-        subTotal.textContent = `${subTotalPrices}€`;
-        total.textContent = `${subTotalPrices + parseFloat(shippings.textContent)}€`;
+        subTotal.textContent = `${(subTotalPrices).toFixed(2)}€`;
+        total.textContent = `${(subTotalPrices + parseFloat(shippings.textContent)).toFixed(2)}€`;
     };
 }
 init();
@@ -412,14 +412,17 @@ function edit(indx, qtt, key) {
             subTotalPrices += JSON.parse(localStorage.getItem(key)).quantity*JSON.parse(localStorage.getItem(key)).price;
         }
     })
-    subTotal.textContent = `${subTotalPrices}€`;
-    total.textContent = `${subTotalPrices + parseFloat(shippings.textContent)}€`
+    subTotal.textContent = `${subTotalPrices.toFixed(2)}€`;
+    total.textContent = `${(subTotalPrices + parseFloat(shippings.textContent)).toFixed(2)}€`
     if(qtt==0) {
         recap.removeChild(recap.children[indx]);
     }
+    if(localStorage.length == 1) {
+        total.textContent = '0.00€'
+    }
     else {
         const {name, size, quantity, link, subName, price} = JSON.parse(localStorage.getItem(key));
-        recap.children[indx].children[0].textContent = `${name}  ×${quantity}`;
+        recap.children[indx].children[0].textContent = `Le ${name}  ×${quantity}`;
         recap.children[indx].children[2].textContent = `${price*quantity}€`;
     }
 }
