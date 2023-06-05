@@ -22,7 +22,7 @@ buyButton = document.querySelector('.buy-button');
 let cartIconStyle = window.getComputedStyle(cartIcon);
 
 const sizeButtonsArray = Array.from(document.querySelectorAll('#size-button'));
-let prices = ['18.00', '24.50', '38.00'];
+let prices = ['20.00', '26.50', '41.00'];
 const price = document.querySelector('.price');
 
 const productDescription = document.querySelector('.product-description-inner'),
@@ -46,7 +46,7 @@ nameOfProduct.shift();
 nameOfProduct.shift();
 nameOfProduct = nameOfProduct.join('');
 
-let subName = "Goal : end of the World./Objectif bout du monde.";
+let subName = "Final step./Dernière étape.";
 const main = document.querySelector('main'),
 cartLink = document.querySelector('[href="../user_cart_page/index.html"]'),
 beansBackground = document.querySelector('.website-background');
@@ -394,13 +394,13 @@ buyButton.addEventListener('click', () => {
     })
 
     if(sizeButtonsArray[0].classList.contains('chosen')) {
-      loop(nameOfProduct, 'M', b, '../../assets/black_300.png', subName, prices[0]);
+      loop(nameOfProduct, 'M', b, '../../assets/fifdles_heads_300.png', subName, prices[0]);
     }
     else if(sizeButtonsArray[1].classList.contains('chosen')) {
-      loop(nameOfProduct,'L', b, '../../assets/black_300.png', subName, prices[1]);
+      loop(nameOfProduct,'L', b, '../../assets/fifdles_heads_300.png', subName, prices[1]);
     }
     else {
-      loop(nameOfProduct,'XL', b, '../../assets/black_300.png', subName, prices[2]);
+      loop(nameOfProduct,'XL', b, '../../assets/fifdles_heads_300.png', subName, prices[2]);
     }
     quantity = 0;
     result.innerHTML = 0;

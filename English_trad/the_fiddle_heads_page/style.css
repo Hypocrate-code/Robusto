@@ -625,7 +625,7 @@ main::after {
 .product-photo {
     width: 40rem;
     height: 60rem;
-    background-image: url("../../assets/black_450.png");
+    background-image: url("../../assets/fifdles_heads_450.png");
     background-size: 100%;
     background-repeat: no-repeat;
     position: relative;
@@ -1774,9 +1774,6 @@ h1::after {
     h1::after {
         width: 100%;
         transform-origin: center;
-    }
-    .title.first h2 {
-        /* transform: translateY(50%); */
     }
     h2 {
         font-size: 4rem !important;
