@@ -719,7 +719,7 @@ h1::after {
     /* transform: translateY(100%); */
 }
 .price>s {
-    font-size: 1.5rem;
+    font-size: .6em;
     filter: brightness(80%);
 }
 .product-content h3 {
@@ -1117,6 +1117,7 @@ h1::after {
 }
 .content h4 {
     margin-bottom: 1.5rem;
+    line-height: 110%;
 }
 .content p,
 .single-card-description p {
@@ -1776,6 +1777,7 @@ h1::after {
     h1 {
         font-size: 7rem;
         width: max-content;
+        margin-left: 0;
     }
     h1::after {
         width: 100%;
@@ -1793,7 +1795,6 @@ h1::after {
     }
     .product-content h3, .product-content h4 {
         font-size: 4rem;
-        width: max-content;
     }
     .description, .buying-part {
         gap: 2.5rem;
