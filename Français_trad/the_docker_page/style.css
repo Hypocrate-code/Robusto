@@ -26,7 +26,7 @@ html {
     --accent-color: #339989;
     --spicy-purple : #5f2c82;
     --scale: 51;
-    --h1-size: 49rem;
+    --h1-size: 30rem;
     --sans-serif-font: 'Figtree';
     --serif-font: 'Roboto Slab';
 }
@@ -621,7 +621,7 @@ main::after {
 .product-photo {
     width: 40rem;
     height: 60rem;
-    background-image: url("../../assets/batlle\ creek_450.png");
+    background-image: url("../../assets/docker_450.png");
     background-size: 100%;
     background-repeat: no-repeat;
     position: relative;
@@ -718,6 +718,10 @@ h1::after {
     filter: brightness(120%);
     width: max-content;
     /* transform: translateY(100%); */
+}
+.price>s {
+    font-size: .6em;
+    filter: brightness(80%);
 }
 .product-content h3 {
     font-size: 2.4rem;
@@ -2186,7 +2190,7 @@ h1::after {
         padding-top: .7rem;
     }
     .product-photo {
-        background-image: url(../../assets/batlle\ creek_300.png);
+        background-image: url(../../assets/docker_300.png);
     }
 }
 @media screen and (max-width: 250px) {

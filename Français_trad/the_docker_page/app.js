@@ -22,7 +22,7 @@ buyButton = document.querySelector('.buy-button');
 let cartIconStyle = window.getComputedStyle(cartIcon);
 
 const sizeButtonsArray = Array.from(document.querySelectorAll('#size-button'));
-let prices = ['16.00', '22.00', '37.00'];
+let prices = ['12.99', '18.00', '29.50', '15.00', '20.00', '32.00'];
 const price = document.querySelector('.price');
 
 const productDescription = document.querySelector('.product-description-inner'),
@@ -385,7 +385,8 @@ sizeButtonsArray.forEach(btn => {
           sizeButtonsArray[2].classList.remove('chosen');
         }
         btn.classList.add('chosen');
-        price.textContent = prices[sizeButtonsArray.indexOf(btn)] + '€';
+        const instance = sizeButtonsArray.indexOf(btn);
+        price.innerHTML = `${prices[instance]}€ <s>${prices[instance+3]}</s>`;
     })
   })
 
