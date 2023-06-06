@@ -1781,9 +1781,6 @@ h1::after {
         width: 100%;
         transform-origin: center;
     }
-    .title.first h2 {
-        /* transform: translateY(50%); */
-    }
     h2 {
         font-size: 4rem !important;
     }
@@ -1796,7 +1793,6 @@ h1::after {
     }
     .product-content h3, .product-content h4 {
         font-size: 4rem;
-        width: max-content;
     }
     .description, .buying-part {
         gap: 2.5rem;

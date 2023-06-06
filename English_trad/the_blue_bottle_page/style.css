@@ -1788,7 +1788,6 @@ h1::after {
     }
     .product-content h3, .product-content h4 {
         font-size: 4rem;
-        width: max-content;
     }
     .description, .buying-part {
         gap: 2.5rem;
