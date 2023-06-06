@@ -26,7 +26,7 @@ html {
     --accent-color: #339989;
     --spicy-purple : #5f2c82;
     --scale: 51;
-    --h1-size: 49rem;
+    --h1-size: 40rem;
     --sans-serif-font: 'Figtree';
     --serif-font: 'Roboto Slab';
 }
@@ -441,7 +441,7 @@ button, a {
 }
 .item2 svg {
     width: 25rem;
-    height: 100%;
+    /* height: 2rem; */
 }
 
 /* bouton compte utilisateur et panier */
@@ -476,7 +476,7 @@ button, a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 16rem;
+    width: 11rem;
     border-radius: 1rem;
     height: 100%;
     padding: 1rem 0;
@@ -488,10 +488,6 @@ button, a {
     letter-spacing: .1rem;
     transition: all .2s;
     cursor: pointer;
-    text-decoration: none;
-}
-.user-buttons li:first-child button {
-    width: 11rem;
 }
 .flag{
     width: 5rem;
@@ -525,6 +521,14 @@ button, a {
 .user-buttons li:first-child ul li {
     display: flex;
     justify-content: center;
+}
+.user-buttons li:first-child>div a {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 18rem;
+    padding-left: 1.2rem;
+    text-decoration: none;
 }
 .user-icon, .shopping-cart-icon {
     width: 4.8rem;
@@ -621,7 +625,7 @@ main::after {
 .product-photo {
     width: 40rem;
     height: 60rem;
-    background-image: url("../../assets/batlle\ creek_450.png");
+    background-image: url("../../assets/blue bottle_450.png");
     background-size: 100%;
     background-repeat: no-repeat;
     position: relative;
@@ -668,11 +672,12 @@ main::after {
 }
 h1{
     font-weight: 700;
-    width: 100%;
+    width: 52rem;
     font-size: 6rem;
     position: relative;
     letter-spacing: .17rem;
     overflow: hidden;
+    text-align: right;
 }
 
 /* trait sous le nom du produit */
@@ -683,7 +688,7 @@ h1::after {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: calc(var(--h1-size) - 4rem);
+    width: var(--h1-size);
     height: .4rem;
     background-color: var(--accent-color);
     clip-path: polygon(0 0, 98% 0, 100% 100%, 2% 100%);
@@ -752,7 +757,6 @@ h1::after {
     font-family: var(--serif-font);
     border-left: .8rem solid rgba(153, 88, 42, 0.7);
     background-color: rgba(67, 40, 24, 0.5);
-    /* box-shadow: 0 0 1rem #43281874; */
     border-radius: 1rem;
     letter-spacing: .05rem;
 }
@@ -924,6 +928,7 @@ h1::after {
     border: none;
     transition: all .1s;
     text-align: center;
+    fill: var(--black-brown);
 }
 
 
@@ -935,9 +940,6 @@ h1::after {
 .buy-button:focus-visible svg,
 .buy-button:hover svg {
     transform: rotate(-40deg);
-}
-.buy-button svg {
-    fill: var(--black-brown);
 }
 .cart-icon {
     transition: transform .1s;
@@ -1085,8 +1087,9 @@ h1::after {
 }
 .double-card-description {
     grid-area: 2/1/3/3;
+    padding: 2.5rem 5rem;
     height: max-content;
-    justify-content: space-around;
+    justify-content: space-between;
     gap: .8rem;
 }
 
@@ -1100,14 +1103,11 @@ h1::after {
     display: none;
 }
 .country {
-    width: 20rem;
-    height: min-content;
-}
-.country:first-child {
-    width: 24.5rem;
+    width: 55%;
+    height: 30rem;
 }
 .content {
-    width: 48%;
+    width: 45%;
     line-height: 3.4rem;
 }
 .content h4 {
@@ -1521,13 +1521,14 @@ footer>div>h2 {
 footer a {
     color: var(--cream-brown) !important;
 }
+
 /* ANIMATION JUSTE APRES LE CHARGEMENT  */
 
 h1 span {
     display: inline-block;
-    /* transform: translateY(-100%); */
-    /* filter: opacity(0.5); */
-    /* animation: fade .4s ease-out forwards; */
+    /* transform: translateY(-100%);
+    filter: opacity(0.5);
+    animation: fade .4s ease-out forwards; */
 }
 /* h1 span:nth-child(1) {animation-delay: 0s;}
 h1 span:nth-child(2) {animation-delay: 0.15s;}
@@ -1538,8 +1539,8 @@ h1::after {
 }
 /* .title h2 {
     animation: fade .3s ease-in-out .9s forwards;   
-} */
-/* .price {animation: fade-for-price .3s cubic-bezier(.2,.45,.44,.84) 1.25s forwards;}
+}
+.price {animation: fade-for-price .3s cubic-bezier(.2,.45,.44,.84) 1.25s forwards;}
 .product-content h3 {
     animation: fade .3s cubic-bezier(.2,.45,.44,.84) 1.4s forwards;
 }
@@ -1566,6 +1567,7 @@ h1::after {
         filter: opacity(1) brightness(130%);
     }
 } */
+
 /* ========================================== PARTIE RESPONSIVE ============================================== */
 
 @media screen and (max-width: 1700px) {
@@ -1610,7 +1612,6 @@ h1::after {
     }
     .details-container {
         padding: 2rem 20rem;
-
     }
 }
 @media screen and (max-width: 1165px) {
@@ -1619,7 +1620,6 @@ h1::after {
         flex-direction: column;
         padding: 2rem 14rem;
     }
-    .double-card-description {padding: 3.5rem 1.5rem;}
     .double-card-description h4 {font-size: 4.5rem; margin-bottom: 2rem;}
     .double-card-description p,
     .single-card-description p {
@@ -1719,11 +1719,11 @@ h1::after {
 }
 @media screen and (max-width: 1018px) {
     html {font-size: 44%;}
-    .drop-down-language-picker {
-        bottom: -23.5rem;
-    }
     body {
         background-image: url(../../assets/lukasz-rawa-fmc-tFMMiBs-unsplash_1000.png);
+    }
+    .drop-down-language-picker {
+        bottom: -23.5rem;
     }
 }
 @media screen and (max-width: 934px) {
@@ -1774,7 +1774,7 @@ h1::after {
     }
     h1::after {
         width: 100%;
-        transform-origin: center
+        transform-origin: center;
     }
     h2 {
         font-size: 4rem !important;
@@ -1796,12 +1796,12 @@ h1::after {
     .price {
         font-size: 5rem !important;
     }
-    /* @keyframes fade-for-price {
+    @keyframes fade-for-price {
         to {
             transform: translateY(0%);
             filter: opacity(1) brightness(130%);
         }
-    } */
+    }
     main {
         padding: 10vh 0 8rem;
     }
@@ -1888,6 +1888,7 @@ h1::after {
         height: 8.5rem;
         border: .5rem solid var(--accent-color);
         width: 85%;
+        min-width: max-content;
         border-radius: 4.25rem;
         font-size: 2.5rem;
         letter-spacing: .3rem;
@@ -2028,6 +2029,9 @@ h1::after {
         padding: 4rem 2rem;
         gap: 3rem;
     }
+    .country {
+        width: 100%;
+    }
     .double-card-description.second h4 {
         font-size: 5rem;
     }
@@ -2083,9 +2087,6 @@ h1::after {
         font-size: 3.4rem;
         font-family: var(--serif-font) !important;
     }
-    .price {
-        transform: none;
-    }
     #contact>ul {
         width: calc(100% - 4rem);
     }
@@ -2126,9 +2127,6 @@ h1::after {
     .details-container h3::before {
         bottom: 50%;
         width: 65%;
-    }
-    .quantifier:not(.plus) {
-        border-right: 1.5px solid var(--black-brown);
     }
 }
 @media screen and (max-width: 380px) {
@@ -2181,8 +2179,8 @@ h1::after {
         height: 3.5rem;
         padding-top: .7rem;
     }
-    .product-photo {
-        background-image: url(../../assets/batlle\ creek_300.png);
+    .quantifier:not(.plus) {
+        border-right: 1.5px solid var(--black-brown);
     }
 }
 @media screen and (max-width: 250px) {

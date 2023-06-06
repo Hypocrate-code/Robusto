@@ -1904,7 +1904,7 @@ h1::after {
     }
     .buy-button svg {
         height: 75%;
-        width: max-content;
+        width: 6rem;
     }
     .buy-button:hover {
         transform: none;
