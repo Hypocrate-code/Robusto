@@ -2,33 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Robusto_Login</title>
+    <title>Robusto | Connexion</title>
+    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16x16.png">
+    <link rel="manifest" href="../../assets/site.webmanifest">
+    <link rel="mask-icon" href="../../assets/safari-pinned-tab.svg" color="#5bbad5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&family=Roboto+Slab:wght@300;400;500;600;700;800;900&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 <body>
-    <div class="connexion-container">
-        <div class="login">
-            <h2>Login :</h2>
-            <form action="confidentiel.php" method="post">
-                    <label for="user-email">Enter your mail <input id="user-email" type="email"></label>
-                    <label for="user-password">Enter your password <input id="user-password" type="password"></label>
-                    <input type="submit">
+    <main>
+        <div class="connexion-container">
+            <h1>Connectez-vous</h1>
+            <form action="../index.html" method="get">
+                <input type="text" placeholder="Identifiant" required>
+                <input type="password" placeholder="Mot de passe" maxlength="16" required>
+                <button type="submit">Connexion</button>
             </form>
-            <h2>Vos préférences :</h2>
-            <form action="optionnel.php" method="get">
-                <label for="news">Recevoir la newsletter <input id="news" type="radio"></label>
-                <label for="id">Sauvegarder les identifiants : <input id="id" type="checkbox"></label>
-                <input type="submit">
-        </form>
-            
         </div>
-    </div>
-    <div class="website-background"></div>
-
+    </main>
+    <script src="app.js"></script>
 </body>
 </html>
